@@ -1,0 +1,4 @@
+packages:
+- 'packages/application/'
+- 'packages/lib/'
+- 'packages/components/'
