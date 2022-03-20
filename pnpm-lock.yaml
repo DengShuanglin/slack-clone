@@ -47,7 +47,7 @@ importers:
 
   packages/application:
     specifiers:
-      '@stack-pkg/components': workspace:^0.0.0
+      '@slack-pkg/components': workspace:^0.0.0
       '@types/react': ^17.0.33
       '@types/react-dom': ^17.0.10
       '@vitejs/plugin-react': ^1.0.7
@@ -56,7 +56,7 @@ importers:
       typescript: ^4.5.4
       vite: ^2.8.0
     dependencies:
-      '@stack-pkg/components': link:../components
+      '@slack-pkg/components': link:../components
       react: registry.npmmirror.com/react/17.0.2
       react-dom: registry.npmmirror.com/react-dom/17.0.2_react@17.0.2
     devDependencies:

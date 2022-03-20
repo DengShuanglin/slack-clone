@@ -1,7 +1,7 @@
-function a() {
+function A() {
 
 }
 
 export {
-    a
+    A
 }
