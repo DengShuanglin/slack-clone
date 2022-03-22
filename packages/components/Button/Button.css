@@ -1,0 +1,12 @@
+.component_button {
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+}
+
+.button_icon {
+  margin: 4px;
+}

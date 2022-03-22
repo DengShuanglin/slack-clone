@@ -1,0 +1,73 @@
+.register_sign_root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.register_sign_head {
+  padding: 48px 0 30px;
+  width: 100%;
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(3,1fr);
+}
+
+.register_sign_logo {
+  display: flex;
+  justify-content: center;
+}
+
+.register_sign_content {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 100%;
+  align-items: center;
+  max-width: 800px;
+}
+
+.register_sign_title {
+  font-family: Slack-Larsseit,Helvetica Neue,Helvetica,Segoe UI,Tahoma,Arial,sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 46px;
+  max-width: 700px;
+  text-align: center;
+  letter-spacing: -.75px;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.register_sign_title_sub {
+  font-size: 18px;
+  line-height: 27px;
+  margin-bottom: 32px;
+  color: #454245;
+  max-width: 700px;
+  text-align: center;
+}
+
+.register_sign_form {
+  max-width: 400px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.register_sign_foot {
+  padding: 32px 0;
+  display: flex;
+  align-items: center;
+}
+
+.register_sign_foot a {
+  font-size: 15px;
+  color: #696969;
+  margin-right: 16px;
+}
+
+.register_sign_foot a:hover {
+  color: #0b4c8c;
+  text-decoration: underline;
+}

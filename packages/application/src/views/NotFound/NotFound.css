@@ -1,0 +1,80 @@
+#page {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+}
+
+#page_contents {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0 auto;
+  padding: 8rem 4%;
+  width: 92%;
+}
+
+#page_contents .card {
+  background-color: rgba(255,255,255,.9);
+  max-width: 24em;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 0 rgb(0 0 0 / 25%);
+  padding: 2rem 2rem 1rem;
+  margin: 0 auto 2rem;
+  position: relative;
+  border: 1px solid #ddd;
+}
+
+.warning_icon {
+  margin-right: 4px;
+}
+
+#content {
+  background-image: url('http://47.96.142.165:313/down/nbTH8euGsAqW');
+  animation: backgroundScroll 20s linear infinite;
+  height: 714px;
+  opacity: 1;
+  /* -webkit-filter: blur(0) grayscale(1);
+  filter: blur(0) grayscale(1); */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-position: 50% 100%;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  -webkit-transform: scale3d(2,2,2);
+  -webkit-transition: all .66s ease-in-out;
+  -webkit-transition-property: opacity -webkit-filter -webkit-transform;
+  -webkit-transition-delay: .33s;
+  transform: scale3d(2,2,2);
+  transition: all .66s ease-in-out;
+  transition-property: opacity filter transform;
+}
+
+@keyframes backgroundScroll {
+  0% {
+    background-position: 33% 100%;
+  }
+  25% {
+    background-position: 66% 100%;
+  }
+  50% {
+    background-position: 99% 100%;
+  }
+  75% {
+    background-position: 66% 100%;
+  }
+  100% {
+    background-position: 33% 100%;
+  }
+}
