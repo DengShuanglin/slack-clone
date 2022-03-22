@@ -1,15 +1,13 @@
-import { useState } from 'react'
-import logo from './logo.svg'
+import { Component, useState } from 'react'
 import './App.css'
-import {runTest} from "@slack-pkg/audio-utils";
-import AudioRecord from "../../components/src/audio-record";
-import Workspace from "./pages/workspace";
+import SignRegisterRoute from './router/SignRegisterRoute'
+
 function App() {
   const [count, setCount] = useState(0)
-  runTest();
+
   return (
     <div className="App">
-      <Workspace/>
+      <SignRegisterRoute/>
     </div>
   )
 }
