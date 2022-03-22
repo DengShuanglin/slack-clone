@@ -73,3 +73,12 @@
   margin-left: 6px;
   user-select: none;
 }
+
+.drop_arrow {
+  transition: all .3s ease;
+  transform: rotate(-90deg);
+}
+
+.arrow_down {
+  transform: rotate(0deg);
+}

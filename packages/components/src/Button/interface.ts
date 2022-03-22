@@ -8,5 +8,6 @@ export interface buttonProps {
   borderRadius?: string | number,
   show_icon?: boolean,
   fontSize?: string | number,
-  fontWeight?: number
+  fontWeight?: number,
+  onClickEvent?: (e: MouseEvent) => void,
 }

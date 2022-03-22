@@ -14,12 +14,14 @@ class Button extends React.Component<buttonProps> {
       color,
       borderRadius,
       fontSize,
-      fontWeight
+      fontWeight,
+      onClickEvent
     } = this.props
     return (
       <button
         className='component_button'
         disabled={disabled}
+        onClick={(evt) => { if (onClickEvent) onClickEvent(evt) }}
         style={{
           cursor: disabled ? 'not-allowed' : '',
           backgroundColor: backgroundColor,

@@ -4,11 +4,6 @@ import { inputProps } from './interface'
 
 
 export class Input extends React.Component<inputProps> {
-
-  static defaultProps = {
-    type: 'text'
-  }
-
   state = {
     isFocus: false
   }

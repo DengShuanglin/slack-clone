@@ -12,4 +12,4 @@
 | disabled     | boolean          | false    | 是否禁用                                              |
 | showIcon     | boolean          | false    | 是否显示icon                                              |
 | maxLength    | number           | -        | 输入字数上限                                          |
-| onChangeEvent | (e?: React.ChangeEvent&lt;HTMLInputElement&gt;) => void | -  | 输入框变化时的回调函数  |
+| onChangeEvent | MouseEventHandler<HTMLAnchorElement> \| MouseEventHandler<HTMLButtonElement> | -  | 点击后的回调函数  |

@@ -8,3 +8,6 @@
 | width            | string、number    | -        | 输入框框度                                                   |
 | height           | string、number    | -        | 输入框高度                                                   |
 | color            | string            | -        | 字体颜色                                                   |
+| arrowCallback     | (e?: React.ChangeEvent&lt;HTMLClickElement&gt;) => void | -  | 点击箭头和标题的回调函数  |
+| ellipsisCallback     | (e?: React.ChangeEvent&lt;HTMLClickElement&gt;) => void | -  | 点击省略号的回调函数  |
+| plusCallback     | (e?: React.ChangeEvent&lt;HTMLClickElement&gt;) => void | -  | 点击加号的回调函数  |

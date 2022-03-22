@@ -12,3 +12,4 @@
 | fontSize         | string、number    | -        | 按钮文字大小                                                   |
 | fontWeight       | number             | -        | 按钮文字粗细                                                   |
 | disabled         | boolean           | false    | 是否禁用                                                  |
+| onClickEvent     | (e?: React.ChangeEvent&lt;HTMLClickElement&gt;) => void | -  | 输入框变化时的回调函数  |

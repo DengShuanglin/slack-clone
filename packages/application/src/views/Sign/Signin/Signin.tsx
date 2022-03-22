@@ -37,6 +37,7 @@ export default function SignIn() {
             </div>
             <div style={{ marginBottom: '20px' }}>
               <Button
+                onClickEvent={() => { console.log('click') }}
                 width='100%'
                 height='44px'
                 backgroundColor='#611f69'
