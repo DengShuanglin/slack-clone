@@ -1,0 +1,13 @@
+{
+  "name": "@slack-pkg/audio-utils",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+  },
+  "dependencies": {
+
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4"
+  }
+}

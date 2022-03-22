@@ -1,7 +1,3 @@
-function A() {
+export * from "./audio-record";
 
-}
 
-export {
-    A
-}
