@@ -1,7 +1,7 @@
 import './Register.css'
 import '../style/index.css'
-import Input from '../../../../../components/Input/Input'
-import Button from '../../../../../components/Button/Button'
+import Input from '../../../../../components/src/Input/Input'
+import Button from '../../../../../components/src/Button/Button'
 
 export default function Register() {
   return (

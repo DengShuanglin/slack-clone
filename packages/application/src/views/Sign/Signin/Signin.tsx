@@ -1,10 +1,9 @@
 import './Signin.css'
 import '../style/index.css'
-import Input from '../../../../../components/Input/Input'
-import Button from '../../../../../components/Button/Button'
+import {Input,Button} from '@slack-pkg/components'
 
 
-export default function Signin() {
+export default function SignIn() {
   return (
     <div className='register_sign_root'>
       <header className='register_sign_head'>
@@ -39,13 +38,15 @@ export default function Signin() {
             <div style={{ marginBottom: '20px' }}>
               <Button
                 width='100%'
-                text='使用电子邮件登陆'
+                height='44px'
                 backgroundColor='#611f69'
                 color='#ffffff'
-                height='44px'
-                borderRadius='4px'
                 fontSize={18}
-                fontWeight={900}>
+
+                text='使用电子邮件登陆'
+                borderRadius='4px'
+                fontWeight={900}
+              >
               </Button>
             </div>
           </div>

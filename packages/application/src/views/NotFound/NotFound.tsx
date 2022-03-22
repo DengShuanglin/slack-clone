@@ -8,7 +8,7 @@ export default function NotFound() {
         </div>
         <div className="card">
           <h1><svg className="icon warning_icon" aria-hidden="true">
-            <use xlinkHref="#icon-jinggao"></use>
+            <use xlinkHref="#icon-jinggao"/>
           </svg>出了点小故障...</h1>
           <p>我们不太确定出了什么问题。如果你需要帮助，你可以返回，或尝试访问我们的<a href="/signin">登陆页</a></p>
         </div>

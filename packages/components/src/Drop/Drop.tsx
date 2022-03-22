@@ -45,7 +45,7 @@ export class Drop extends React.Component<dropProps> {
           </span>
         </div>
         <div className="component_drop_content">
-          {[1, 2, 3].map(item => {
+          {[1, 2, 3].map(_ => {
             return <div className='component_drop_content_item'>
               <div className='component_drop_content_icon'>
                 <img className='drop_img' src="https://img1.baidu.com/it/u=3702625202,3169032464&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500" alt="" />

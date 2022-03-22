@@ -5,11 +5,11 @@ export default function ConfirmEmail() {
   return (
     <div className='register_sign_root'>
       <header className='register_sign_head'>
-        <div className="register_sign_head_col_left"></div>
+        <div className="register_sign_head_col_left"/>
         <a href="#/signin" className='register_sign_logo'>
           <img height={70} src="https://img1.baidu.com/it/u=4209449786,4185436610&fm=253&fmt=auto&app=138&f=JPEG?w=1000&h=500" alt="" />
         </a>
-        <div className="register_sign_head_col_right"></div>
+        <div className="register_sign_head_col_right"/>
       </header>
       <article className='register_sign_content'>
         <h1 className='register_sign_title'>查看你的电子邮件获取代码</h1>
@@ -47,7 +47,7 @@ export default function ConfirmEmail() {
         {/* 验证码通过，显示加载 */}
         <div className="email_loading_container">
           <svg className="icon email_loading_icon" aria-hidden="true">
-            <use xlinkHref="#icon-loading"></use>
+            <use xlinkHref="#icon-loading"/>
           </svg>
           <span className='email_loading_text'>正在加载你的工作区···</span>
         </div>

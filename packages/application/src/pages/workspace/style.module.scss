@@ -22,6 +22,12 @@
     .workspace-content-side-bar {
       width: 321px;
       background-color: var(--background-brand-color-2);
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-content: center;
+      justify-content: flex-start;
+      align-items: stretch;
     }
 
     .workspace-content {

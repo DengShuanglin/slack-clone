@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
-import '../../components/iconfont/iconfont';
+import '../../components/src/iconfont/iconfont';
 //import '../../components/iconfont/iconfont.css'
 
 ReactDOM.render(
