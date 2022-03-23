@@ -7,9 +7,12 @@
 | borderRadius     | string、number    | -        | 圆角                                                   |
 | color            | string            | -        | 按钮文字颜色                                                   |
 | show_icon        | boolean           | false        | 是否显示按钮icon                                                   |
+| iconString       | string            | -         | icon 的字符串                                                   |
+| iconWidth        | string、number    | -         | icon 的高                                                   |
+| iconHeight       | string、number    | -         | icon 的宽                                                   |
 | width            | string、number    | -        | 输入框框度                                                   |
 | height           | string、number    | -        | 输入框高度                                                   |
 | fontSize         | string、number    | -        | 按钮文字大小                                                   |
 | fontWeight       | number             | -        | 按钮文字粗细                                                   |
 | disabled         | boolean           | false    | 是否禁用                                                  |
-| onClickEvent     | (e?: React.ChangeEvent&lt;HTMLClickElement&gt;) => void | -  | 输入框变化时的回调函数  |
+| onClickEvent     | (e?: React.ChangeEvent&lt;HTMLClickElement&gt;) => void | -  | 点击按钮的回调函数  |

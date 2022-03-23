@@ -1,0 +1,27 @@
+.component_user_avatar {
+  display: inline-flex;
+  position: relative;
+  cursor: pointer;
+}
+
+.user_status,
+.user_status_stroke{
+  position: absolute;
+  border-radius: 50%;
+}
+
+.user_status {
+  background-color: #2BAC76;
+  width: 8px;
+  height: 8px;
+  bottom: 0;
+  right: -2px;
+}
+
+.user_status_stroke {
+  background-color: #350d36;
+  bottom: -5px;
+  width: 16px;
+  height: 16px;
+  right: -7px;
+}

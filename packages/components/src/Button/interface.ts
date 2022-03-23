@@ -9,5 +9,8 @@ export interface buttonProps {
   show_icon?: boolean,
   fontSize?: string | number,
   fontWeight?: number,
+  iconString?: string,
+  iconWidth?: string | number,
+  iconHeight?: string | number,
   onClickEvent?: (e: MouseEvent) => void,
 }

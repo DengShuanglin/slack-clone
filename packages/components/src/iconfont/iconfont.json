@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "519517",
+      "name": "消息-线性",
+      "font_class": "xiaoxixianxing",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "629339",
+      "name": "时间",
+      "font_class": "shijian",
+      "unicode": "e64d",
+      "unicode_decimal": 58957
+    },
+    {
+      "icon_id": "1025089",
+      "name": "艾特",
+      "font_class": "aite",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
       "icon_id": "1305488",
       "name": "loading",
       "font_class": "loading",
@@ -18,6 +39,20 @@
       "font_class": "plus",
       "unicode": "e8fe",
       "unicode_decimal": 59646
+    },
+    {
+      "icon_id": "7947379",
+      "name": "空心问号",
+      "font_class": "kongxinwenhao",
+      "unicode": "ed19",
+      "unicode_decimal": 60697
+    },
+    {
+      "icon_id": "11391531",
+      "name": "书写",
+      "font_class": "shuxie",
+      "unicode": "e638",
+      "unicode_decimal": 58936
     },
     {
       "icon_id": "14202145",
@@ -51,8 +86,8 @@
       "icon_id": "26742379",
       "name": "星星",
       "font_class": "xingxing",
-      "unicode": "e625",
-      "unicode_decimal": 58917
+      "unicode": "e626",
+      "unicode_decimal": 58918
     }
   ]
 }
