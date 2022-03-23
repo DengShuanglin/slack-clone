@@ -45,7 +45,7 @@ export default function Register() {
           <div>
             <label htmlFor="email_misc_checkbox" className="register_email">
               <input type="checkbox" id='email_misc_checkbox' onChange={() => {}} checked className='register_checkbox' />
-              <span>可以向我发送有关 Slack 的电子邮件。</span>
+              <span>可以向我发送有关 简单聊 的电子邮件。</span>
             </label>
           </div>
           <div className="register_form__ts_and_cs">

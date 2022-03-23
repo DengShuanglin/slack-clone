@@ -11,7 +11,7 @@ export default class SignRegisterRoute extends Component {
       <>
           <Route path="/sign/register" component={Register} />
           <Route path="/sign/signin" component={Signin} />
-          <Route path="/sign/ConfirmEmail" component={ConfirmEmail} />
+          <Route path="/sign/confirmemail" component={ConfirmEmail} />
           <Redirect from="/" to="/sign/signin" exact />
       </>
     )

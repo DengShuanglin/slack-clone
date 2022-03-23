@@ -15,19 +15,9 @@ export default function Index() {
         <Aside resizeWidth={resizeWidth} />
         {/* 滑块控制左侧大小 */}
         <div className="resize" style={{ left: resizeWidth - 5 }}
-          onMouseDown={(evt) => {
-            changeIsResize(true)
-          }}
-          onMouseMove={(evt) => {
-            if (isResize) {
-              console.log(evt)
-              changeResizeWidth(evt.pageX)
-            }
-          }}
-          onMouseOut={(evt) => {
-            console.log('松开')
-            changeIsResize(false)
-          }}>
+          onMouseDown={(evt) => { changeIsResize(true) }}
+          onMouseMove={(evt) => { if (isResize) { changeResizeWidth(evt.pageX) } }}
+          onMouseOut={(evt) => { changeIsResize(false) }}>
           <input type="range" min={180} max={594} step={10} value={resizeWidth} />
         </div>
         {/* 右侧聊天区域 */}

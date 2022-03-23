@@ -81,7 +81,7 @@ export default function Aside(props: any) {
               {/* 私信队列 */}
               <li className='workspace_aside_msg_item' style={{ paddingLeft: '20px', position: 'relative' }}>
                 <UserAvatar
-                  status='online'
+                  status='offline'
                   avatarUrl='https://img1.baidu.com/it/u=3702625202,3169032464&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500'
                   borderRadius={4}
                   width={20}

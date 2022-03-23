@@ -26,3 +26,10 @@
   color: #0b4c8c;
   text-decoration: underline;
 }
+
+.img_code_container {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

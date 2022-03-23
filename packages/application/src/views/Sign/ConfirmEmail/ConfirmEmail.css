@@ -56,6 +56,10 @@
   margin-top: 40px;
 }
 
+.email_loading_container {
+  margin-bottom: 20px;
+}
+
 .email_loading_icon {
   animation: email_loading 2s linear infinite;
 }
@@ -64,6 +68,18 @@
   font-size: 16px;
   margin-left: 4px;
   color: #383838;
+}
+
+.email_loading_failed {
+  border-radius: 4px;
+  width: 500px;
+  background-color: rgba(224,30,90,.1);
+  border: 1px solid rgba(224,30,90,.4);
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.38463;
+  text-align: center;
 }
 
 @keyframes email_loading {
