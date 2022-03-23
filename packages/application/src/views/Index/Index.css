@@ -1,0 +1,55 @@
+.index_container {
+  width: 100vw;
+  height: 100vh;
+  grid-template-rows: 44px auto -webkit-min-content;
+  grid-template-rows: 44px auto min-content;
+  display: grid;
+}
+
+.index_workspace {
+  grid-template-areas: 'workspace_aside workspace_chat';
+  display: grid;
+  grid-template-rows: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.resize {
+  position: absolute;
+  z-index: 1000;
+  top: 1px;
+  width: 8px;
+  bottom: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: col-resize;
+}
+
+.resize::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: transparent;
+  transition: background-color .15s .15s,box-shadow .15s .15s;
+}
+
+.resize:hover {
+  background-color: rgba(29,155,209,1);
+  box-shadow: 0 0 0 1px #1d9bd1;
+}
+
+.resize input {
+  position: absolute;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
