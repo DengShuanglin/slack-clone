@@ -1,11 +1,15 @@
 import {useState} from "react";
 import {AxiosResponse} from "axios";
+import {ResponseEntity} from "./types";
 
 
-function useRequest<T = any, P = any>(requestFn: (t: T) => Promise<AxiosResponse<P>>) {
+function useRequest<T = any, P =any >(requestFn: (t: T) => Promise<AxiosResponse<ResponseEntity<P>>>):[{
+    state: 'pending' | 'finish' | 'error'
+    data?: ResponseEntity<P>
+},(t: T) => Promise<ResponseEntity<P>>] {
     const [data, setDate] = useState<{
         state: 'pending' | 'finish' | 'error'
-        data?: P
+        data?: ResponseEntity<P>
     }>({
         state: 'pending',
         data: undefined,
@@ -15,9 +19,10 @@ function useRequest<T = any, P = any>(requestFn: (t: T) => Promise<AxiosResponse
             data: data.data,
             state: 'pending'
         })
-        return new Promise(async (resolve, reject) => {
+        return new Promise<ResponseEntity<P>>(async (resolve, reject) => {
             await requestFn(t).then((res) => {
-                if (res.status !== 200) {
+                console.log(res);
+                if (res.status !== 200&&res.status!==201) {
                     setDate({
                         data: res.data,
                         state: 'error'

@@ -13,5 +13,5 @@ export interface buttonProps {
   iconWidth?: string | number,
   iconHeight?: string | number,
   iconColor?: string,
-  onClickEvent?: (e: MouseEvent) => void,
+  onClickEvent?: (e: React.MouseEvent<HTMLButtonElement>) => void,
 }

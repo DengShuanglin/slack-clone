@@ -4,10 +4,42 @@ import '../style/index.css'
 import Input from '../../../../../components/src/Input/Input'
 import Button from '../../../../../components/src/Button/Button'
 import useRequest from "../../../utils/request/hooks";
-import { loginRequest } from "../../../api/authRequest";
+import {getLoginCaptchaRequest, loginRequest} from "../../../api/authRequest";
+import {useEffect, useState} from "react";
+import {localStorageItemName} from "../../../utils/request";
 
 
 export default function SignIn() {
+  const [state,setState] = useState({
+    email:'',
+    password:'',
+    verifyCode:'',
+    captchaId:''
+  })
+  const [data,getData]=useRequest(loginRequest);
+
+  const [imgData,getImgData] = useRequest(getLoginCaptchaRequest);
+
+  useEffect(()=>{
+    getImgData({height:40,width:80});
+  },[])
+  useEffect(()=>{
+    if(imgData.state==='finish'&&imgData.data?.result?.id){
+      setState({
+        ...state,
+        captchaId: imgData.data.result.id
+      })
+    }
+  },[imgData.data])
+    useEffect(()=>{
+        if(data.state==='finish'){
+            if(data.data?.result?.user_id){
+                localStorage.setItem(localStorageItemName.ACCESS_TOKEN,data.data.result.access_token);
+                localStorage.setItem(localStorageItemName.REFRESH_TOKEN,data.data.result.refresh_token);
+            }
+        }
+    },[data.state])
+
   return (
     <div className='register_sign_root'>
       <header className='register_sign_head'>
@@ -28,7 +60,7 @@ export default function SignIn() {
         <div className="register_sign_title_sub">
           我们建议使用<strong>你的工作电子邮件地址。</strong>
         </div>
-        <form action="" className="register_sign_form">
+        <div className="register_sign_form">
           <div>
             <div style={{ marginBottom: '20px' }}>
               <Input
@@ -36,8 +68,9 @@ export default function SignIn() {
                 width='100%'
                 height='40px'
                 fontSize={18}
-                placeholder="name@work-email.com">
-              </Input>
+                value={state.email}
+                onChangeEvent={e=>setState((state)=>({...state,email: e?.target.value||''}))}
+                placeholder="name@work-email.com"/>
             </div>
             <div style={{ marginBottom: '20px' }}>
               <Input
@@ -45,8 +78,9 @@ export default function SignIn() {
                 width='100%'
                 height='40px'
                 fontSize={18}
-                placeholder="your-password">
-              </Input>
+                value={state.password}
+                onChangeEvent={e=>setState((state)=>({...state,password: e?.target.value||''}))}
+                placeholder="your-password"/>
             </div>
             <div className="img_code_container">
               <div className="signin_img_code">
@@ -58,8 +92,9 @@ export default function SignIn() {
                   width='100%'
                   height='40px'
                   fontSize={18}
-                  placeholder="图片验证码">
-                </Input>
+                  value={state.verifyCode}
+                  onChangeEvent={e=>setState((state)=>({...state,verifyCode: e?.target.value||''}))}
+                  placeholder="图片验证码"/>
               </div>
             </div>
             <div className="signin_manual" style={{ marginBottom: '20px' }}>
@@ -72,7 +107,11 @@ export default function SignIn() {
             </div>
             <div style={{ marginBottom: '20px' }}>
               <Button
-                onClickEvent={() => { console.log('click') }}
+                onClickEvent={() => {
+                    if (/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(state.email)) {
+                        getData(state);
+                    }
+                }}
                 width='100%'
                 height='44px'
                 backgroundColor='#611f69'
@@ -81,11 +120,11 @@ export default function SignIn() {
                 text='登陆'
                 borderRadius='4px'
                 fontWeight={900}
-              >
-              </Button>
+
+              />
             </div>
           </div>
-        </form>
+        </div>
       </article>
       <footer className='register_sign_foot'>
         <a href="">隐私权和条款</a>

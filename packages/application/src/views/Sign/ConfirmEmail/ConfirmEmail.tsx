@@ -2,8 +2,25 @@ import './ConfirmEmail.css'
 import '../style/index.css'
 import Input from '../../../../../components/src/Input/Input'
 import Button from '../../../../../components/src/Button/Button'
+import {useHistory, useLocation} from "react-router";
+import {useEffect, useState} from "react";
+import useRequest from "../../../utils/request/hooks";
+import {getMailCaptchaRequest, registerRequest} from "../../../api/authRequest";
 
 export default function ConfirmEmail() {
+  const [state,setState] = useState({
+
+  })
+  const [registerResult,getRegisterResult] = useRequest(registerRequest);
+  const history=useHistory();
+  const location=useLocation<{
+    email:string;
+    id:string;
+  }>();
+  const email = location.state['email'];
+  const id = location.state['id'];
+
+
   const autoFocusInput = (e: any) => {
     const inputs = document.getElementsByClassName('email_code_item_input');
     if (e.target.value.length == 1) {
@@ -66,8 +83,8 @@ export default function ConfirmEmail() {
             width='100%'
             height='40px'
             fontSize={18}
-            placeholder="your-password">
-          </Input>
+            value={email}
+            placeholder="your-password"/>
         </div>
         {/* 验证码通过，显示加载 */}
         <div className="email_loading_container">

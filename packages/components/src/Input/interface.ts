@@ -4,7 +4,7 @@ export interface inputProps {
   value?: any,
   fontSize?: string | number,
   type?: 'text' | 'password' | 'number',
-  placeholder?: string | number,
+  placeholder?: string,
   disabled?: boolean,
   onChangeEvent?: (e?: React.ChangeEvent<HTMLInputElement>) => void,
   width?: string | number,
