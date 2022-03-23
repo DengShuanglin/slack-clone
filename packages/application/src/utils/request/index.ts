@@ -24,6 +24,7 @@ request.interceptors.request.use((config)=>{
     return config;
 })
 request.interceptors.response.use((config)=>{
+    config.status
     return config;
 })
 
