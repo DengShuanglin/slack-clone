@@ -1,7 +1,10 @@
+import MarkdownInputEditor  from './MarkdownInputEditor'
+
 function A() {
 
 }
 
 export {
-    A
+    A,
+    MarkdownInputEditor
 }
