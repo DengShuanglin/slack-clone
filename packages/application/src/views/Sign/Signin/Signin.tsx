@@ -1,6 +1,8 @@
 import './Signin.css'
 import '../style/index.css'
-import {Input,Button} from '@slack-pkg/components'
+// import {Input,Button} from '@slack-pkg/components'
+import Input from '../../../../../components/src/Input/Input'
+import Button from '../../../../../components/src/Button/Button'
 
 
 export default function SignIn() {
