@@ -12,5 +12,6 @@ export interface buttonProps {
   iconString?: string,
   iconWidth?: string | number,
   iconHeight?: string | number,
+  iconColor?: string,
   onClickEvent?: (e: MouseEvent) => void,
 }

@@ -18,7 +18,8 @@ class Button extends React.Component<buttonProps> {
       onClickEvent,
       iconString,
       iconWidth,
-      iconHeight
+      iconHeight,
+      iconColor
     } = this.props
     return (
       <button
@@ -35,7 +36,7 @@ class Button extends React.Component<buttonProps> {
           fontSize: fontSize,
           fontWeight: fontWeight
         }}>
-        <svg style={{ display: show_icon ? 'inline-block' : 'none', width: iconWidth, height: iconHeight }} className="icon button_icon" aria-hidden="true">
+        <svg style={{ display: show_icon ? 'inline-block' : 'none', width: iconWidth, height: iconHeight, color: iconColor }} className="icon button_icon" aria-hidden="true">
           <use xlinkHref={iconString}></use>
         </svg>
         {text ? text : ''}

@@ -6,7 +6,7 @@
 .component_drop_header {
   display: flex;
   align-items: center;
-  padding: 4px 16px;
+  padding: 4px 10px;
 }
 
 .component_drop_header:hover .drop_icon {

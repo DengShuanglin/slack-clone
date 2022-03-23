@@ -10,6 +10,7 @@
 | iconString       | string            | -         | icon 的字符串                                                   |
 | iconWidth        | string、number    | -         | icon 的高                                                   |
 | iconHeight       | string、number    | -         | icon 的宽                                                   |
+| iconColor        | string            | -         | icon 的颜色                                                   |
 | width            | string、number    | -        | 输入框框度                                                   |
 | height           | string、number    | -        | 输入框高度                                                   |
 | fontSize         | string、number    | -        | 按钮文字大小                                                   |
