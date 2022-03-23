@@ -11,5 +11,7 @@ function SocketHubProvider(props: SocketHubProviderPropsType) {
     const cache = useMemo(() => {
         return {}
     }, [])
-    return <SocketHubContext.Provider value={cache}></SocketHubContext.Provider>
+    return <SocketHubContext.Provider value={cache}>
+        {props.children}
+    </SocketHubContext.Provider>
 }
