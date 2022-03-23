@@ -17,14 +17,13 @@ request.interceptors.request.use((config)=>{
     let access_token = localStorage.getItem(localStorageItemName.ACCESS_TOKEN);
     if(access_token!==null){
         config.headers={
+            "Authorization":"Bearer "+access_token,
             ...config.headers,
-            "Authorization":"Bearer "+access_token
         }
     }
     return config;
 })
 request.interceptors.response.use((config)=>{
-    if(config)
     return config;
 })
 

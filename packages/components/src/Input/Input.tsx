@@ -7,7 +7,6 @@ export class Input extends React.Component<inputProps> {
   state = {
     isFocus: false
   }
-
   render() {
     const { value, maxLength, type, placeholder, disabled, width, height, borderRadius, showIcon, fontSize } = this.props
     return (
