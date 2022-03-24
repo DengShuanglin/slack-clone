@@ -61,6 +61,7 @@
   position: absolute;
   right: 20px;
   bottom: 8px;
+  z-index: 88;
 }
 
 .workspace_aside_msg_item {

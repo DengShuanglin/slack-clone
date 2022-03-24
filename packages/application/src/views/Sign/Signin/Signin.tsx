@@ -129,15 +129,15 @@ export default function SignIn() {
                                 borderRadius='4px'
                                 fontWeight={900}
 
-                            />
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <footer className='register_sign_foot'>
-                <a href="">隐私权和条款</a>
-                <a href="">联系我们</a>
-            </footer>
+              />
+            </div>
+          </div>
         </div>
-    )
+      </article>
+      <footer className='register_sign_foot'>
+        <a href="">隐私权和条款</a>
+        <a href="">联系我们</a>
+      </footer>
+    </div>
+  )
 }

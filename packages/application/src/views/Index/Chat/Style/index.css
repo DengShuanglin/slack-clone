@@ -1,0 +1,5 @@
+.main_chat_contents {
+  display: grid;
+  grid-template-rows: 49px auto;
+  height: 100%;
+}
