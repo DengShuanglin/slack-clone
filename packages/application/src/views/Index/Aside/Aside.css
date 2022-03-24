@@ -6,7 +6,7 @@
 }
 
 .workspace_aside_header {
-  color: #FFFFFF;
+  color: #ffffff;
   height: 50px;
   font-size: 18px;
   line-height: 1.33334;
@@ -40,9 +40,9 @@
   display: flex;
   align-items: center;
   padding: 0 54px 0 16px;
-  transition-property: background-color,border-color;
+  transition-property: background-color, border-color;
   transition-duration: 80ms;
-  transition-timing-function: cubic-bezier(.36,.19,.29,1);
+  transition-timing-function: cubic-bezier(0.36, 0.19, 0.29, 1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   background-clip: padding-box;
@@ -74,7 +74,7 @@
 
 .workspace_aside_header:hover,
 .workspace_aside_msg_item:hover {
-  background-color: #350D36;
+  background-color: #350d36;
 }
 
 .workspace_aside_msg_item:hover .workspace_aside_msg_item_del {
@@ -91,13 +91,13 @@
   margin-right: 10px;
 }
 
-.workspace_aside_msg_item_del{ 
+.workspace_aside_msg_item_del {
   position: absolute;
   font-size: 20px;
   transform: rotate(45deg);
   right: 10px;
   opacity: 0;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
 .workspace_aside_msg_item_del:hover {
@@ -105,7 +105,7 @@
 }
 
 .workspace_add_msg_item {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   height: 20px;
   width: 20px;
   border-radius: 4px;

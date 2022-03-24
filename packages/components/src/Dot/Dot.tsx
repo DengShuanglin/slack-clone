@@ -10,28 +10,44 @@ const status: StatusMap = {
 
 export class Dot extends React.Component<dotProps> {
   render() {
-    const { type, left, right, top, bottom, width, height, borderRadius, backgroundColor } = this.props
+    const {
+      type,
+      left,
+      right,
+      top,
+      bottom,
+      width,
+      height,
+      borderRadius,
+      backgroundColor
+    } = this.props
     return (
-      <div className='component_dot_container' style={{
-        left,
-        right,
-        top,
-        bottom,
-        backgroundColor: type ? '#3F0F3F' : '',
-        borderRadius
-      }}>
-        <div className='component_dot' style={{
-          backgroundColor: backgroundColor ? backgroundColor : status[type],
-          width,
-          height,
-          borderRadius,
-          border: type == 'offline' ? '1px solid rgba(255, 255, 255, 0.7)' : ''
-        }}></div>
+      <div
+        className='component_dot_container'
+        style={{
+          left,
+          right,
+          top,
+          bottom,
+          backgroundColor: type ? '#3F0F3F' : '',
+          borderRadius
+        }}
+      >
+        <div
+          className='component_dot'
+          style={{
+            backgroundColor: backgroundColor ? backgroundColor : status[type],
+            width,
+            height,
+            borderRadius,
+            border:
+              type == 'offline' ? '1px solid rgba(255, 255, 255, 0.7)' : ''
+          }}
+        ></div>
       </div>
     )
   }
 }
-
 
 // const Dot: React.FC<dotProps> = ({ kind = 'online', ...rest }) => {
 //   <div className='component_dot' style={{

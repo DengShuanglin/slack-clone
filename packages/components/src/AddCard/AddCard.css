@@ -12,15 +12,15 @@
 }
 
 .card_container::before {
-    background: rgba(0,0,0,.6);
-    content: "";
-    height: 100%;
-    left: 0;
-    opacity: 1;
-    position: absolute;
-    top: 0;
-    transition: opacity 80ms linear;
-    width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  content: '';
+  height: 100%;
+  left: 0;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  transition: opacity 80ms linear;
+  width: 100%;
 }
 
 .card_content {
@@ -35,24 +35,24 @@
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 0 1px 0 18px 48px 0 rgba(0,0,0,.35);
+  box-shadow: 0 0 0 1px 0 18px 48px 0 rgba(0, 0, 0, 0.35);
 }
 
 .add_card_header {
-    border-radius: 8px 8px 0 0;
-    flex-shrink: 0;
-    min-height: 70px;
-    overflow: hidden;
-    width: 100%;
+  border-radius: 8px 8px 0 0;
+  flex-shrink: 0;
+  min-height: 70px;
+  overflow: hidden;
+  width: 100%;
 }
 
 .add_card_title_container {
   padding-right: 76px;
-    align-items: center;
-    display: flex;
-    min-height: 70px;
-    padding: 20px 28px;
-    width: 100%;
+  align-items: center;
+  display: flex;
+  min-height: 70px;
+  padding: 20px 28px;
+  width: 100%;
 }
 
 .add_card_title {
@@ -65,8 +65,8 @@
 .close_card_icon {
   transform: rotate(45deg);
   width: 26px;
-    height: 26px;
-    color: #666666;
+  height: 26px;
+  color: #666666;
 }
 
 .close_card {

@@ -1,18 +1,18 @@
 .main_chat_contents {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    height: 100%;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  height: 100%;
 }
 
 .msg_to_anyone {
-    box-shadow: 0 1px 0 0 #1d1c1d21,0 4px 12px -2px #00000014;
-    background: #ffffff;
-    box-shadow: 0 1px 0 0 #1d1c1d21;
-    display: flex;
-    justify-content: center;
-    padding: 0 20px;
-    z-index: 1;
+  box-shadow: 0 1px 0 0 #1d1c1d21, 0 4px 12px -2px #00000014;
+  background: #ffffff;
+  box-shadow: 0 1px 0 0 #1d1c1d21;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+  z-index: 1;
 }
 
 .destination {

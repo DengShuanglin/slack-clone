@@ -20,23 +20,21 @@ code {
   overflow: hidden;
 }
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 :root {
-    --background-brand-color-1: #442848;
-    --background-brand-color-2: #3F0F3F;
-    --background-brand-color-3: #301134;
+  --background-brand-color-1: #442848;
+  --background-brand-color-2: #3f0f3f;
+  --background-brand-color-3: #301134;
 
-    --background-light-color-1: #FFFFFF;
-    --background-light-color-2: #F8F8F8;
-    --background-light-color-3: #E1E1E1;
-    --background-light-color-4: #C4C4C4;
-    --background-light-color-5: #939393;
+  --background-light-color-1: #ffffff;
+  --background-light-color-2: #f8f8f8;
+  --background-light-color-3: #e1e1e1;
+  --background-light-color-4: #c4c4c4;
+  --background-light-color-5: #939393;
 
-    --line-color-1: #FFFFFF;
-    --line-color-2: #DFDFDF;
-    --line-color-3: #C4C4C4;
-
-
+  --line-color-1: #ffffff;
+  --line-color-2: #dfdfdf;
+  --line-color-3: #c4c4c4;
 }

@@ -68,7 +68,7 @@
   right: 10px;
   top: 10px;
   border-radius: 4px;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
 }
 
@@ -82,5 +82,5 @@
   height: 24px;
   transform: rotate(45deg);
   color: #616061;
-  transition: all .4s ease;
+  transition: all 0.4s ease;
 }

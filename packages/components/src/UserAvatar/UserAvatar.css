@@ -5,13 +5,13 @@
 }
 
 .user_status,
-.user_status_stroke{
+.user_status_stroke {
   position: absolute;
   border-radius: 50%;
 }
 
 .user_status {
-  background-color: #2BAC76;
+  background-color: #2bac76;
   width: 8px;
   height: 8px;
   bottom: 0;

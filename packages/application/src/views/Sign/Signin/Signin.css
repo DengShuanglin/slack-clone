@@ -1,8 +1,8 @@
 .signin_manual {
   display: flex;
   padding: 12px 24px;
-  color: rgba(var(--sk_foreground_max_solid,97,96,97),1);
-  background-color: rgba(var(--sk_primary_foreground,29,28,29),.05);
+  color: rgba(var(--sk_foreground_max_solid, 97, 96, 97), 1);
+  background-color: rgba(var(--sk_primary_foreground, 29, 28, 29), 0.05);
   border-radius: 8px;
 }
 

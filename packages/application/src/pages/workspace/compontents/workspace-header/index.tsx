@@ -1,7 +1,5 @@
-import style from "../../style.module.scss";
+import style from '../../style.module.scss'
 
-export function WorkspaceHeader(){
-    return <div className={style['workspace-header']}>
-
-    </div>
+export function WorkspaceHeader() {
+  return <div className={style['workspace-header']}></div>
 }

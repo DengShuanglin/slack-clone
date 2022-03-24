@@ -10,7 +10,7 @@
   width: 100%;
   display: grid;
   align-items: center;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .register_sign_logo {
@@ -29,13 +29,14 @@
 }
 
 .register_sign_title {
-  font-family: Slack-Larsseit,Helvetica Neue,Helvetica,Segoe UI,Tahoma,Arial,sans-serif;
+  font-family: Slack-Larsseit, Helvetica Neue, Helvetica, Segoe UI, Tahoma,
+    Arial, sans-serif;
   font-weight: 700;
   font-size: 48px;
   line-height: 46px;
   max-width: 700px;
   text-align: center;
-  letter-spacing: -.75px;
+  letter-spacing: -0.75px;
   margin-bottom: 20px;
   margin-top: 0;
 }

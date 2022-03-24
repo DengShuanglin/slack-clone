@@ -1,5 +1,5 @@
 .component_input_container {
-  border: 1px solid rgba(29,28,29,.3);
+  border: 1px solid rgba(29, 28, 29, 0.3);
   display: inline-flex;
   align-items: center;
   box-sizing: border-box;
@@ -17,6 +17,6 @@
 }
 
 .component_input_focus {
-  box-shadow: 0 0 0 4px #C1E0EF;
+  box-shadow: 0 0 0 4px #c1e0ef;
   -webkit-appearance: none;
 }

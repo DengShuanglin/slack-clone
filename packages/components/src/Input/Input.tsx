@@ -3,19 +3,36 @@ import { useState, React } from 'react'
 import './Input.css'
 import { inputProps } from './interface'
 
-
 export function Input(props: inputProps) {
-  const [isFocus, setIsFocus] = useState(false);
-  const { value, maxLength, type, placeholder, disabled, width, height, borderRadius, showIcon, fontSize } = props
+  const [isFocus, setIsFocus] = useState(false)
+  const {
+    value,
+    maxLength,
+    type,
+    placeholder,
+    disabled,
+    width,
+    height,
+    borderRadius,
+    showIcon,
+    fontSize
+  } = props
   return (
     <div
-      className={isFocus ? 'component_input_container component_input_focus' : 'component_input_container'}
-      style={{ borderRadius: borderRadius }}>
-      {
-        showIcon ? <svg className="icon input_icon" aria-hidden="true">
-          <use xlinkHref="#icon-search"></use>
-        </svg> : ''
+      className={
+        isFocus
+          ? 'component_input_container component_input_focus'
+          : 'component_input_container'
       }
+      style={{ borderRadius: borderRadius }}
+    >
+      {showIcon ? (
+        <svg className='icon input_icon' aria-hidden='true'>
+          <use xlinkHref='#icon-search'></use>
+        </svg>
+      ) : (
+        ''
+      )}
       <input
         maxLength={maxLength}
         style={{ height: height, width: width, fontSize: fontSize }}
@@ -24,25 +41,21 @@ export function Input(props: inputProps) {
           props.onChangeEvent?.(evt)
         }}
         onFocus={() => {
-          setIsFocus(
-            true
-          )
+          setIsFocus(true)
         }}
         onBlur={() => {
-          setIsFocus(
-            false
-          )
+          setIsFocus(false)
         }}
         disabled={disabled}
         type={type}
         placeholder={placeholder || ''}
-        value={value} />
+        value={value}
+      />
     </div>
   )
 }
 
 export default Input
-
 
 // export default function Input() {
 //   const [isFocus, setIsFocus] = useState(false)

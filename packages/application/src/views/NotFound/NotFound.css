@@ -18,7 +18,7 @@
 }
 
 #page_contents .card {
-  background-color: rgba(255,255,255,.9);
+  background-color: rgba(255, 255, 255, 0.9);
   max-width: 24em;
 }
 
@@ -52,12 +52,12 @@
   background-position: 50% 100%;
   background-size: auto 100%;
   background-repeat: no-repeat;
-  -webkit-transform: scale3d(2,2,2);
-  -webkit-transition: all .66s ease-in-out;
+  -webkit-transform: scale3d(2, 2, 2);
+  -webkit-transition: all 0.66s ease-in-out;
   -webkit-transition-property: opacity -webkit-filter -webkit-transform;
-  -webkit-transition-delay: .33s;
-  transform: scale3d(2,2,2);
-  transition: all .66s ease-in-out;
+  -webkit-transition-delay: 0.33s;
+  transform: scale3d(2, 2, 2);
+  transition: all 0.66s ease-in-out;
   transition-property: opacity filter transform;
 }
 
