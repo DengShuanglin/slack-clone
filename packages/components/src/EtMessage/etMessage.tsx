@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React, { ReactNode, useState} from "react";
 import './etMessage.css'
 
 export interface IEtMessageProps {
@@ -7,13 +7,14 @@ export interface IEtMessageProps {
     userName?: string
     creatTime?: string
     repliesList?: []
+    children?: ReactNode
 }
 
-const EtMessage:React.FC<IEtMessageProps> = (props) => {
+const EtMessage:React.FC<IEtMessageProps> = (props:IEtMessageProps) => {
     const { avatarUrl, userId, userName, creatTime, repliesList, children } = props
-
+    const [ isMouseOn, setMouse ] = useState(false)
     return (
-        <div className="message-container">
+        <div className="message-container" onMouseOver={() =>  setMouse(true)} onMouseOut={() => setMouse(false) }>
             <div className="left-group">
                 <img src={avatarUrl} alt={userName} />
             </div>
@@ -26,7 +27,19 @@ const EtMessage:React.FC<IEtMessageProps> = (props) => {
                     {children}
                 </div>
                 <div className="message-buttom-group">
-                    {/* 回复功能 */}
+                    <div className="message-buttom-reply">
+                        {"shuyuan,xiaoming,lihua"}
+                    </div>
+                    <div className="message-buttom-count">{"3 replies!"}</div>
+                </div>
+            </div>
+            <div className="tool-group" style={{
+                display: isMouseOn ? 'block' : 'none'
+            }}>
+                <div className="tool-group-box">
+                    <img src="http://cdn.qiniu.shuyuanlab.cn/3.png" alt="" />
+                    <img src="http://cdn.qiniu.shuyuanlab.cn/2.png" alt="" />
+                    <img src="http://cdn.qiniu.shuyuanlab.cn/4.png" alt="" />
                 </div>
             </div>
         </div>

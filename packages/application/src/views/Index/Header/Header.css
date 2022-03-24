@@ -65,3 +65,11 @@
 .top_nav_right_help {
   margin-right: 12px;
 }
+
+.top_nav_right_avatar {
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

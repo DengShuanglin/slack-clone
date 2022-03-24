@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './etDivider.css'
 export interface IEtDividerProps {
     time?: string
@@ -8,6 +8,7 @@ export interface IEtDividerProps {
 
 const EtDivider: React.FC<IEtDividerProps> = (props) => {
     const { time, color, lineColor } = props
+    
     return (
        <>
         <div className='divider-container'>
