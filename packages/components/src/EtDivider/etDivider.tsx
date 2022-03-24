@@ -1,3 +1,4 @@
+import Item from 'antd/lib/list/Item';
 import React, {useState} from 'react';
 import './etDivider.css'
 export interface IEtDividerProps {
@@ -8,10 +9,10 @@ export interface IEtDividerProps {
 
 const EtDivider: React.FC<IEtDividerProps> = (props) => {
     const { time, color, lineColor } = props
-    
+    const [isShow, setShow] = useState(false)
     return (
        <>
-        <div className='divider-container'>
+        <div className='divider-container' onClick={() => {setShow(!isShow)}}>
             <div className='line' style={{borderBottom: `1px solid ${lineColor}`,}}></div>
             <div className='divider-time' style={{color: color,}}>
                 {time}
@@ -22,6 +23,21 @@ const EtDivider: React.FC<IEtDividerProps> = (props) => {
             <div className='line' style={{
                 borderBottom: `1px solid ${lineColor}`,  
             }}></div>
+            
+        </div>
+        <div className='divider-pop' style={{
+            display: isShow ? 'block' : 'none'
+        }}>
+            <div className='divider-pop-box'>
+                <div className='divider-pop-title'>
+                    跳转至......
+                </div>
+                {['一小时','三小时','12个小时','24小时','3天','7天'].map((item,index) => {
+                   return  <div className='divider-pop-item' key={index}>
+                       {item}
+                   </div>
+                })}
+            </div>
         </div>
        </>
     ); 
