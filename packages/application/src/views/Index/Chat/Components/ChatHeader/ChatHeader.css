@@ -16,3 +16,15 @@
   white-space: nowrap;
   align-items: baseline;
 }
+
+.chat_header_info {
+  margin-left: 8px;
+  align-self: baseline;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  line-height: 1.38463;
+  font-weight: 400;
+  color: #1d1c1e;
+  flex-shrink: 9999;
+}

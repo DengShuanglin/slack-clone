@@ -1,0 +1,86 @@
+.virtual_list_container {
+  height: calc(100% - 48px);
+  overflow-y: scroll;
+}
+
+.virtual_list_item {
+  margin: 16px;
+}
+
+.virtual_list_item_content {
+  padding: 10px 12px 14px;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px #1d1c1d21;
+  font-size: 15px;
+  position: relative;
+}
+
+.virtual_list_item_content:hover .virtual_list_item_delete_icon {
+  opacity: 1;
+}
+
+.virtual_list_item_content_head {
+  font-size: 13px;
+  line-height: 1.38463;
+  font-weight: 400;
+  color: #616061;
+  margin-bottom: 8px;
+}
+
+.virtual_list_item_content_gutter {
+  display: flex;
+  align-items: center;
+}
+
+.virtual_list_item_content_gutter .user_avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+}
+
+.virtual_list_item_content_gutter_right {
+  flex: 1 1 0;
+  margin-left: 10px;
+}
+
+.virtual_list_item_content_gutter_right .user_name {
+  color: #1d1c1d;
+  font-weight: 900;
+  word-break: break-word;
+}
+
+.virtual_list_item_content_gutter_right .content_time {
+  color: #616061;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.virtual_list_item_content_gutter_msg_href {
+  background: #1d9bd11a;
+  color: #1264a3;
+  padding: 0 2px 1px;
+  border-radius: 3px;
+  margin-left: 4px;
+}
+
+.virtual_list_item_delete {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border-radius: 4px;
+  transition: all .3s ease;
+  cursor: pointer;
+}
+
+.virtual_list_item_delete:hover {
+  background: #1d1c1d0a;
+}
+
+.virtual_list_item_delete_icon {
+  opacity: 0;
+  width: 24px;
+  height: 24px;
+  transform: rotate(45deg);
+  color: #616061;
+  transition: all .4s ease;
+}

@@ -9,7 +9,6 @@ export default function Header() {
     {imgUrl:"http://cdn.qiniu.shuyuanlab.cn/Frame.png",text:'cscs'},
     {imgUrl:"http://cdn.qiniu.shuyuanlab.cn/Frame.png",text:'全体'},
     {imgUrl:"http://cdn.qiniu.shuyuanlab.cn/Frame.png",text:'随机'},
-
   ]
   return (
     <div className="index_top_nav">

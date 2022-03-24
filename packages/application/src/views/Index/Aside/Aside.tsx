@@ -2,10 +2,11 @@ import './Aside.css'
 import Button from "../../../../../components/src/Button/Button"
 import Drop from "../../../../../components/src/Drop/Drop"
 import UserAvatar from "../../../../../components/src/UserAvatar/UserAvatar"
+import AddCard from "../../../../../components/src/AddCard/AddCard"
 import { useState } from 'react'
 
 export default function Aside(props: any) {
-  const { resizeWidth } = props
+  const { resizeWidth, openChannelCard, openMemberCard } = props
   const [msgList, changeMsgList] = useState([
     {
       icon: '#icon-xiaoxixianxing',
@@ -61,7 +62,7 @@ export default function Aside(props: any) {
         {/* channel */}
         <div className='workspace_aside_user_channel'>
           <div className="workspace_aside_user_channel_item" style={{ margin: '20px 0' }}>
-            <Drop width='100%' title="频道" />
+            <Drop width='100%' title="频道" plusCallback={() => { if (openChannelCard) openChannelCard() }} />
             <ul style={{ marginTop: '10px' }}>
               {/* 频道队列 */}
               <li className='workspace_aside_msg_item' style={{ paddingLeft: '30px' }}>
@@ -69,7 +70,9 @@ export default function Aside(props: any) {
                 <span style={{ marginLeft: '10px' }}>频道名称</span>
               </li>
               {/* 添加队列 */}
-              <li className='workspace_aside_msg_item' style={{ paddingLeft: '20px' }}>
+              <li className='workspace_aside_msg_item' style={{ paddingLeft: '20px' }} onClick={() => {
+                if (openChannelCard) openChannelCard()
+              }}>
                 <div className="workspace_add_msg_item">
                   <svg className="icon" aria-hidden="true">
                     <use xlinkHref="#icon-plus"></use>
@@ -80,7 +83,7 @@ export default function Aside(props: any) {
             </ul>
           </div>
           <div className="workspace_aside_user_channel_item" style={{ margin: '20px 0' }}>
-            <Drop width='100%' title="私信" />
+            <Drop width='100%' title="私信" plusCallback={() => { if (openMemberCard) openMemberCard() }} />
             <ul style={{ marginTop: '10px' }}>
               {/* 私信队列 */}
               <li className='workspace_aside_msg_item' style={{ paddingLeft: '20px', position: 'relative' }}>
@@ -96,7 +99,9 @@ export default function Aside(props: any) {
                 </svg>
               </li>
               {/* 添加团队成员 */}
-              <li className='workspace_aside_msg_item' style={{ paddingLeft: '20px' }}>
+              <li className='workspace_aside_msg_item' style={{ paddingLeft: '20px' }} onClick={() => {
+                if (openMemberCard) openMemberCard()
+              }}>
                 <div className="workspace_add_msg_item">
                   <svg className="icon" aria-hidden="true">
                     <use xlinkHref="#icon-plus"></use>
