@@ -1,0 +1,7 @@
+.main_chat_contents {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    height: 100%;
+}
+

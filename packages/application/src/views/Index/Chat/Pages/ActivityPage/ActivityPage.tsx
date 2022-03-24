@@ -8,6 +8,8 @@ export default function ActivityPage() {
   return (
     <div className='main_chat_contents'>
       <ChatHeader title="提及和回复" />
+      
+
     </div>
   )
 }

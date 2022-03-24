@@ -1,0 +1,6 @@
+.chat_body {
+    margin-top: 5px;
+    height: 60%;
+    width: inherit;
+    overflow-y: scroll;
+}
