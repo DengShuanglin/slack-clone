@@ -1,11 +1,14 @@
 import {io} from "socket.io-client";
-import {createContext, ReactNode, useEffect, useMemo} from "react";
+import {createContext, ReactNode, useContext, useEffect, useMemo} from "react";
 import {Socket} from "socket.io-client/build/esm/socket";
+import {UserContext} from "../../store";
+import {localStorageItemName} from "../request";
 
-const baseURL = ''
+const baseURL = 'ws://121.5.68.110:3001?/user_id='
 
 type SocketHubContextValueType = {
     socketClient: null | Socket
+    status: 'beforeReady'|'ready'|'connecting'|'connected'|'disconnect'|'shutdown'
     eventCallback: {
         [eventKey: string]: {
             [callBackKey: string]: Function
@@ -17,6 +20,7 @@ type SocketHubContextValueType = {
 const SocketHubContext = createContext<SocketHubContextValueType>({
     socketClient: null,
     eventCallback: {},
+    status:'beforeReady',
     registerCallback:()=>{}
 });
 
@@ -28,12 +32,50 @@ function SocketHubProvider(props: SocketHubProviderPropsType) {
     const cache = useMemo<SocketHubContextValueType>(() => {
         return {
             socketClient: null,
-            eventCallback: {},
+            eventCallback: {
+                "disconnect":{
+                    "reConnect":()=>{
+                        if(cache.status !== 'shutdown'){
+                            cache.socketClient?.connect();
+                        }
+                    }
+                },
+            },
+            status:'beforeReady',
             registerCallback:()=>{},
         }
     }, [])
+    const userCtx=useContext(UserContext);
+
+    useEffect(()=>{
+        if(cache.socketClient!==null){
+            cache.socketClient.removeAllListeners();
+            for (let eventCallbackKey in cache.eventCallback) {
+                cache.socketClient.on(eventCallbackKey,(data,fn)=>{
+                    for (let eventCallbackElementKey in (cache.eventCallback[eventCallbackKey]||{})) {
+                        cache.eventCallback[eventCallbackKey][eventCallbackElementKey]?.(data,fn);
+                    }
+                })
+
+            }
+        }
+    },[cache.socketClient])
+
     useEffect(() => {
-        if(cache.socketClient==null)cache.socketClient = io(baseURL, {})
+        if(cache.socketClient==null){
+            cache.status='beforeReady';
+            cache.socketClient = io(baseURL+userCtx.userId, {
+                extraHeaders:{
+                    "Authorization":"Bearer "+localStorage.getItem(localStorageItemName.ACCESS_TOKEN),
+                },
+                auth:{
+                    "Authorization":"Bearer "+localStorage.getItem(localStorageItemName.ACCESS_TOKEN),
+                },
+                autoConnect:false
+            })
+            cache.status='ready';
+        }
+        cache.socketClient.removeAllListeners();
         cache.registerCallback=(eventCallbackKey,eventKey,fn)=>{
             [eventCallbackKey].flat(9999999).forEach((value)=>{
                 cache.eventCallback[value]={
@@ -42,19 +84,13 @@ function SocketHubProvider(props: SocketHubProviderPropsType) {
                 }
             })
         }
-        return
-    }, [])
-    useEffect(()=>{
-        if(cache.socketClient!==null){
-            for (let eventCallbackKey in cache.eventCallback) {
-                cache.socketClient.on(eventCallbackKey,(...data)=>{
-                    for (let eventCallbackElementKey in (cache.eventCallback[eventCallbackKey]||{})) {
-                        cache.eventCallback[eventCallbackKey][eventCallbackElementKey]?.(eventCallbackKey,data);
-                    }
-                })
-            }
+        cache.status='connecting'
+        cache.socketClient.connect();
+        return ()=>{
+            cache.status="shutdown";
+            cache.socketClient?.disconnect();
         }
-    },[cache.socketClient])
+    }, [])
     return <SocketHubContext.Provider value={cache}>
         {props.children}
     </SocketHubContext.Provider>
