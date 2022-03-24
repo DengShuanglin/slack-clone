@@ -1,5 +1,6 @@
 .container-container{
-    width: 150px;
+    width: auto;
+    height: auto;
 }
 
 .children-group { 
@@ -16,7 +17,7 @@
     height: auto;
     width: 361px;
     border-radius: 8px;
-
+    z-index: 20;
 }
 
 .popover-title{

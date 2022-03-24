@@ -1,13 +1,23 @@
 import './Header.css'
 import Button from "../../../../../components/src/Button/Button"
 import UserAvatar from "../../../../../components/src/UserAvatar/UserAvatar"
+import EtPopover from '../../../../../components/src/EtPopover/etPopover'
 
 export default function Header() {
+  const data = [
+    {imgUrl:"http://cdn.qiniu.shuyuanlab.cn/Frame.png",text:'theme'},
+    {imgUrl:"http://cdn.qiniu.shuyuanlab.cn/Frame.png",text:'cscs'},
+    {imgUrl:"http://cdn.qiniu.shuyuanlab.cn/Frame.png",text:'全体'},
+    {imgUrl:"http://cdn.qiniu.shuyuanlab.cn/Frame.png",text:'随机'},
+
+  ]
   return (
     <div className="index_top_nav">
       <div className="top_nav_sidebar">
         <div className='top_nav_sidebar_btn'>
+          <EtPopover content={data} title={"最近"} trigger='click'>
           <Button show_icon iconString='#icon-shijian' iconWidth={20} iconHeight={20} borderRadius="50%" backgroundColor='#00000000' />
+          </EtPopover>
         </div>
       </div>
       <div className="top_nav_search_container">

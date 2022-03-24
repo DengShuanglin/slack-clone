@@ -1,28 +1,25 @@
 import React, {Children, ReactNode, useState} from "react";
 import './etPopover.css'
 
-export interface IContentProps {
-    imgUrl: string
-    text: string
-}
-
 export interface IEtPopoverProps {
     trigger?: 'hover' | 'click'
     title?: string
-    content?: Array<IContentProps>
+    content?: Array<any>
     placement?: 'bottom' | 'left' | 'right' | 'top'
     style?: React.CSSProperties
+    children?:ReactNode
 }
 
-const EtPopover:React.FC<IEtPopoverProps> = (props) => {
+const EtPopover:React.FC<IEtPopoverProps> = (props:IEtPopoverProps) => {
     const { trigger, title, content, placement, style, children } = props
-    const contentList  = content as Array<IContentProps>
+    const contentList  = content as Array<any>
 
     // 设置默认over状态
     const [ isMouseOn, setMouse ] = useState(false)
    
     const popItemOnClick = (index:number) => {
-        console.log(index)
+        // if (item.url) self.location.href = item.url
+        // 路由跳转
     }
 
     return (
@@ -38,9 +35,9 @@ const EtPopover:React.FC<IEtPopoverProps> = (props) => {
                     {
                     contentList.map((item: any, index: number) => 
                          <div className="popover-content-item" key={index} onClick={() => popItemOnClick(index)}>
-                                    <img src="http://cdn.qiniu.shuyuanlab.cn/Frame.png"/>
-                                    {/* <img src={item.imgUrl}/> */}
-                                    {item}          
+                                    {/* <img  src="http://cdn.qiniu.shuyuanlab.cn/Frame.png"/> */}
+                                    <img src={item.imgUrl}/>
+                                    {item.text}          
                             </div>
                         )
                     }  

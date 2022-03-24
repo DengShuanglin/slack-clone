@@ -1,7 +1,7 @@
 import './Register.css'
 import '../style/index.css'
 import {Button, Input} from '@slack-pkg/components'
-import {useHistory} from "react-router";
+import {useHistory} from "react-router-dom";
 import {useEffect, useState} from "react";
 import useRequest from "../../../utils/request/hooks";
 import {getMailCaptchaRequest} from "../../../api/authRequest";

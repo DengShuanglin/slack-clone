@@ -1,7 +1,7 @@
 import './ConfirmEmail.css'
 import '../style/index.css'
 import {Input,Button} from '@slack-pkg/components'
-import {useHistory, useLocation} from "react-router";
+import {useHistory, useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 import useRequest from "../../../utils/request/hooks";
 import {getMailCaptchaRequest, registerRequest} from "../../../api/authRequest";
