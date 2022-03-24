@@ -3,21 +3,14 @@ import './NewMessage.css'
 import '../../Style/index.css'
 import ChatHeader from '../../Components/ChatHeader/ChatHeader'
 import ChatBody from '../../Components/ChatBody/ChatBody'
-<<<<<<< Updated upstream
 import { MarkdownInput } from '@slack-pkg/components'
-=======
 import { MarkdownInputEditor, AudioRecord } from "@slack-pkg/components";
->>>>>>> Stashed changes
+
 
 export default function NewMessage() {
   return (
     <div className='main_chat_contents'>
       <ChatHeader title='新消息' />
-<<<<<<< Updated upstream
-      <ChatBody />
-
-      <MarkdownInput />
-=======
       <div className="msg_to_anyone">
         <div className="destination">
           <span className='destination_prefix'>至:</span>
@@ -30,7 +23,7 @@ export default function NewMessage() {
         <div className="no_destination_body_info">
           <div className="no_destination_body_info_item">
             <div className="no_destination_body_info_item_title">
-              <svg className="icon" style={{width: '20px', height: '20px', marginRight: '10px'}} aria-hidden="true">
+              <svg className="icon" style={{ width: '20px', height: '20px', marginRight: '10px' }} aria-hidden="true">
                 <use xlinkHref="#icon-xingxing"></use>
               </svg>
               起草消息，不受干扰</div>
@@ -45,7 +38,6 @@ export default function NewMessage() {
       {/* <ChatBody /> */}
       <AudioRecord />
       <MarkdownInputEditor style={{ flex: '162px' }} />
->>>>>>> Stashed changes
     </div>
   )
 }
