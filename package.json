@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cd ./packages/application && pnpm run dev",
-    "fix": "eslint --fix ./",
     "lint": "prettier -w ./**/*.{html,css,less,sass,js,tx,jsx,tsx,json}",
     "prepare": "husky install"
   },
