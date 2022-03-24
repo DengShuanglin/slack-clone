@@ -22,41 +22,42 @@ export default function Index() {
     })
   }
 
-  if (ctx.userInfo?.friends)
-    return (
-      <div className='index_container'>
-        <SocketHubProvider>
-          <Header />
+  if (ctx.userInfo?.friends) {
+  }
+  return (
+    <div className='index_container'>
+      <SocketHubProvider>
+        <Header />
+        <div
+          className='index_workspace'
+          style={{ gridTemplateColumns: `${resizeWidth}px auto` }}
+        >
+          {/* 左侧sidebar */}
+          <Aside resizeWidth={resizeWidth} />
+          {/* 滑块控制左侧大小 */}
           <div
-            className='index_workspace'
-            style={{ gridTemplateColumns: `${resizeWidth}px auto` }}
+            className='resize'
+            style={{ left: resizeWidth - 5 }}
+            onMouseDown={(evt) => {
+              changeIsResize(true)
+            }}
+            onMouseMove={(evt) => {
+              if (isResize) {
+                changeResizeWidth(evt.pageX)
+              }
+            }}
+            onMouseOut={(evt) => {
+              changeIsResize(false)
+            }}
           >
-            {/* 左侧sidebar */}
-            <Aside resizeWidth={resizeWidth} />
-            {/* 滑块控制左侧大小 */}
-            <div
-              className='resize'
-              style={{ left: resizeWidth - 5 }}
-              onMouseDown={(evt) => {
-                changeIsResize(true)
-              }}
-              onMouseMove={(evt) => {
-                if (isResize) {
-                  changeResizeWidth(evt.pageX)
-                }
-              }}
-              onMouseOut={(evt) => {
-                changeIsResize(false)
-              }}
-            >
-              <input type='range' min={180} max={594} step={10} />
-            </div>
-            {/* 右侧聊天区域 */}
-
-            {/* <Route path="/index/threads" component={Threads} /> */}
-            <Chat />
+            <input type='range' min={180} max={594} step={10} />
           </div>
-        </SocketHubProvider>
-      </div>
-    )
+          {/* 右侧聊天区域 */}
+
+          {/* <Route path="/index/threads" component={Threads} /> */}
+          <Chat />
+        </div>
+      </SocketHubProvider>
+    </div>
+  )
 }
