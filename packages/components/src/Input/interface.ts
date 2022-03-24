@@ -6,7 +6,7 @@ export interface inputProps {
   type?: 'text' | 'password' | 'number',
   placeholder?: string,
   disabled?: boolean,
-  onChangeEvent?: (e?: React.ChangeEvent<HTMLInputElement>) => void,
+  onChangeEvent?: (e: any) => void,
   width?: string | number,
   height?: string | number,
   borderRadius?: string | number,

@@ -53,3 +53,49 @@
   overflow: hidden;
   clip: rect(0 0 0 0);
 }
+
+.add_channel_content {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 1;
+    min-height: 50px;
+    overflow: hidden;
+    position: relative;
+    padding: 0 28px;
+}
+
+.add_chennel_info {
+  color: #616061;
+  margin-bottom: 24px;
+}
+
+.create_channel_title {
+  margin-right: 8px;
+}
+
+.create_channel_title_info {
+  font-size: 15px;
+    line-height: 1.46668;
+    font-weight: 400;
+    color: #1d1c1db3;
+}
+
+.create_channel_title_info_bottom {
+  padding-top: 4px;
+    font-size: 13px;
+    line-height: 1.38463;
+    font-weight: 400;
+    color: #1d1c1db3;
+}
+
+.create_channel_title_errow {
+  display: inline-block;
+  font-weight: 700;
+  color: #e8912d;
+}
+
+.create_channel_btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
