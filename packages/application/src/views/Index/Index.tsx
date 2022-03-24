@@ -2,7 +2,6 @@ import Header from './Header/Header'
 import Aside from './Aside/Aside'
 import Chat from './Chat/Chat'
 import './Index.css'
-import { MarkdownInputEditor } from '@slack-pkg/components'
 import { useState } from 'react'
 
 export default function Index() {
