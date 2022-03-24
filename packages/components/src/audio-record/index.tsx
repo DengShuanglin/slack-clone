@@ -90,6 +90,7 @@ enum PlayStateEnum {
 function AudioRecord(
   props: {
     onStopRecording?: (blob: Blob) => void
+    onCancel?: () => void
     childrenButton?: ReactNode
   },
   ref: Ref<{
@@ -154,6 +155,7 @@ function AudioRecord(
     if (recorder !== null) {
       recorder?.reset?.()
       setState(AudioRecordState.READY)
+      props.onCancel?.()
     }
   }
   const play = () => {
