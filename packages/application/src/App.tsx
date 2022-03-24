@@ -1,4 +1,3 @@
-import {Component, useState} from 'react'
 import './App.css'
 import SignRegisterRoute from './router/SignRegisterRoute'
 import IndexRoute from './router/IndexRoute'

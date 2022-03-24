@@ -15,3 +15,9 @@ export * from './UserAvatar';
 import UserAvatar from "./UserAvatar";
 export { UserAvatar }
 export * from './mask';
+import MarkdownInputEditor  from './MarkdownInputEditor'
+
+
+export {
+    MarkdownInputEditor
+}
