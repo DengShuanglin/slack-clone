@@ -22,7 +22,7 @@ type GetMailCaptchaRequestType={
     email:string;
 }
 type GetMailCaptchaResponseType={
-    id:string
+    codeId:string
 }
 export function getMailCaptchaRequest(data:GetMailCaptchaRequestType):Promise<AxiosResponse<ResponseEntity<GetMailCaptchaResponseType>>>{
     return request.request({

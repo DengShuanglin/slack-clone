@@ -1,4 +1,5 @@
-export * from "./audio-record";
+import AudioRecord from "./audio-record";
+export {AudioRecord}
 export * from './Button';
 import Button from "./Button";
 export { Button }

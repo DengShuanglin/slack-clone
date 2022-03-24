@@ -23,7 +23,7 @@ export default function Register() {
                 pathname:'/sign/ConfirmEmail',
                 state:{
                     email,
-                    id:data.data?.result?.id
+                    id:data.data?.result?.codeId
                 }
             })
         }

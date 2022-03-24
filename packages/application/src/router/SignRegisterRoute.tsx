@@ -13,6 +13,7 @@ export default class SignRegisterRoute extends Component {
           <Route path="/sign/signin" ><Signin/></Route>
           <Route path="/sign/ConfirmEmail"><ConfirmEmail/></Route>
           <Redirect from="/" to="/sign/signin" exact />
+          <Redirect from="/sign" to="/sign/signin" exact />
       </>
     )
   }

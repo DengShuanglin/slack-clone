@@ -34,6 +34,7 @@ export default function SignIn() {
             if (data.data?.result?.user_id) {
                 localStorage.setItem(localStorageItemName.ACCESS_TOKEN, data.data.result.access_token);
                 localStorage.setItem(localStorageItemName.REFRESH_TOKEN, data.data.result.refresh_token);
+
             }
         }
     },[data] )

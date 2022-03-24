@@ -7,6 +7,7 @@ import useRequest from "../../../utils/request/hooks";
 import {getMailCaptchaRequest, registerRequest} from "../../../api/authRequest";
 
 export default function ConfirmEmail() {
+    console.log(110)
     const [state, setState] = useState({
         password: '',
         verifyCode: '      ',
@@ -19,10 +20,13 @@ export default function ConfirmEmail() {
     }>();
     const email = location.state?.email;
     const id = location.state?.id;
+    console.log(111,email,id)
     if(email==null||id==null){
         history.replace('/sign/register')
         return null;
     }
+
+    console.log(email)
     useEffect(()=>{
         if(registerResult.state==='finish'){
             history.push('/sign/signin')
