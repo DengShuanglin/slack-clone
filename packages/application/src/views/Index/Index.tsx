@@ -2,6 +2,7 @@ import Header from "./Header/Header"
 import Aside from "./Aside/Aside"
 import Chat from "./Chat/Chat"
 import './Index.css'
+import {MarkdownInputEditor} from '@slack-pkg/components'
 import { useState } from 'react'
 
 
@@ -22,6 +23,7 @@ export default function Index() {
           <input type="range" min={180} max={594} step={10} value={resizeWidth} />
         </div>
         {/* 右侧聊天区域 */}
+
         {/* <Route path="/index/threads" component={Threads} /> */}
         <Chat />
       </div>

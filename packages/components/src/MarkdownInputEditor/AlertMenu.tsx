@@ -1,7 +1,6 @@
-import React from 'react'
 import E from 'wangeditor'
 
-const { $, BtnMenu, DropListMenu, PanelMenu, DropList, Panel, Tooltip } = E
+const { $, BtnMenu } = E
 
 class AlertMenu extends BtnMenu {
   constructor(editor) {

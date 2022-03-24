@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, {CSSProperties, useEffect, useRef, useState} from 'react'
 import ReactWEditor from 'wangeditor-for-react'
 import AlertMenu from './AlertMenu'
 import ImageButton from './ImageButton'
@@ -11,13 +11,14 @@ const instance = axios.create({
 })
 
 interface MarkdownInputEditorProps {
-  value: string
-  onChange: (html: string) => void
-  onBlur: (html: string) => void
-  onFocus: (html: string) => void
+  value?: string
+  onChange?: (html: string) => void
+  onBlur?: (html: string) => void
+  onFocus?: (html: string) => void
+  style?: CSSProperties
 }
 
-const MarkdownInputEditor = () => {
+const MarkdownInputEditor = (props:MarkdownInputEditorProps) => {
   let editorRef = useRef(null)
 
   const [value, setValue] = useState()
@@ -33,10 +34,10 @@ const MarkdownInputEditor = () => {
 
   return (
     <>
-      <div className={styles.root}>
-        <button>发送</button>
-        <button onClick={upload}>img </button>
-        <div>{value}</div>
+      <div className={styles.root} style={props.style}>
+        {/*<button>发送</button>*/}
+        {/*<button onClick={upload}>img </button>*/}
+        {/*<div>{value}</div>*/}
 
         <ReactWEditor
           className={styles.editor}

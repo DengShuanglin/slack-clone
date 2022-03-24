@@ -2,4 +2,8 @@
   display: grid;
   grid-template-rows: 49px auto;
   height: 100%;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
 }

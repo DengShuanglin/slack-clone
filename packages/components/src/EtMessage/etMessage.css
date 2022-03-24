@@ -2,7 +2,7 @@
     display: flex;
     width: 100%;
     height: auto;
-    flex-direction: row; 
+    flex-direction: row;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -16,12 +16,12 @@
     width: auto;
 }
 .avatar-group {
-    background-color: #F8F8F8;  
+    background-color: #F8F8F8;
 }
 .avatar-group img{
     height: 36px;
     width: 36px;
-    
+
 }
 
 .right-group {
@@ -73,6 +73,10 @@
     font-size: 15px;
     line-height: 21px;
     margin-right: 10%;
+
+    white-space: normal;
+    word-break: break-all;
+    word-wrap: normal   ;
 }
 
 .tool-group{
