@@ -1,6 +1,14 @@
-import style from './style.module.scss';
-import {useRecordAudio} from "@slack-pkg/audio-utils";
-import {forwardRef, ReactNode, Ref, useEffect, useImperativeHandle, useRef, useState} from "react";
+import style from './style.module.scss'
+import { useRecordAudio } from '@slack-pkg/audio-utils'
+import {
+  forwardRef,
+  ReactNode,
+  Ref,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState
+} from 'react'
 
 // type useCountDownPropsType = {
 //     start: number;
@@ -65,116 +73,146 @@ import {forwardRef, ReactNode, Ref, useEffect, useImperativeHandle, useRef, useS
 // }
 
 enum AudioRecordState {
-    NOT_READY = "not ready",
-    READY = "ready",
-    PAUSE = "pause",
-    RECORDING = "recording",
-    FINISH = "finish",
+  NOT_READY = 'not ready',
+  READY = 'ready',
+  PAUSE = 'pause',
+  RECORDING = 'recording',
+  FINISH = 'finish'
 }
 
 enum PlayStateEnum {
-    NOT_READY = "not ready",
-    READY = "ready",
-    PLAYING = "playing",
-    PAUSE = "pause",
+  NOT_READY = 'not ready',
+  READY = 'ready',
+  PLAYING = 'playing',
+  PAUSE = 'pause'
 }
 
-function AudioRecord(props: {
-    onStopRecording?: (blob:Blob) => void;
+function AudioRecord(
+  props: {
+    onStopRecording?: (blob: Blob) => void
     childrenButton?: ReactNode
-}, ref: Ref<{
-    getBlob:()=>(Blob|null)
+  },
+  ref: Ref<{
+    getBlob: () => Blob | null
     state: AudioRecordState
     playState: PlayStateEnum
     reset: () => void
-}> | null = null) {
-    const [state, setState] = useState<AudioRecordState>(AudioRecordState.NOT_READY);
-    const [playState, setPlayState] = useState<PlayStateEnum>(PlayStateEnum.NOT_READY);
-    const containerRef = useRef(null);
-    const recorder = useRecordAudio();
-    const audioRef = useRef<HTMLAudioElement | null>(null)
+  }> | null = null
+) {
+  const [state, setState] = useState<AudioRecordState>(
+    AudioRecordState.NOT_READY
+  )
+  const [playState, setPlayState] = useState<PlayStateEnum>(
+    PlayStateEnum.NOT_READY
+  )
+  const containerRef = useRef(null)
+  const recorder = useRecordAudio()
+  const audioRef = useRef<HTMLAudioElement | null>(null)
 
-    useEffect(() => {
-        if (recorder !== null) setState(AudioRecordState.READY);
-    }, [recorder])
-    useImperativeHandle(ref, () => {
-            return {
-                playState,
-                state,
-                getBlob(){
-                    return recorder?.getBlob?.();
-                },
-                reset
-            }
-    }, [containerRef,playState, state]);
-    const startRecording = () => {
-        if (state === AudioRecordState.READY) {
-            recorder.startRecording();
-            setState(AudioRecordState.RECORDING)
-            setPlayState(PlayStateEnum.NOT_READY);
-        }
+  useEffect(() => {
+    if (recorder !== null) setState(AudioRecordState.READY)
+  }, [recorder])
+  useImperativeHandle(
+    ref,
+    () => {
+      return {
+        playState,
+        state,
+        getBlob() {
+          return recorder?.getBlob?.()
+        },
+        reset
+      }
+    },
+    [containerRef, playState, state]
+  )
+  const startRecording = () => {
+    if (state === AudioRecordState.READY) {
+      recorder.startRecording()
+      setState(AudioRecordState.RECORDING)
+      setPlayState(PlayStateEnum.NOT_READY)
     }
-    const stopRecording = () => {
-        if (state === AudioRecordState.RECORDING) {
-            recorder.stopRecording((url: string) => {
-                if (audioRef.current !== null) {
-                    audioRef.current.src = url
-                    setPlayState(PlayStateEnum.READY);
-                }
-            });
-            setState(AudioRecordState.FINISH)
-            props.onStopRecording?.(recorder.getBlob());
+  }
+  const stopRecording = () => {
+    if (state === AudioRecordState.RECORDING) {
+      recorder.stopRecording((url: string) => {
+        if (audioRef.current !== null) {
+          audioRef.current.src = url
+          setPlayState(PlayStateEnum.READY)
         }
+      })
+      setState(AudioRecordState.FINISH)
+      props.onStopRecording?.(recorder.getBlob())
     }
-    // const download = () => {
-    //     if (AudioRecordState.FINISH) {
-    //         invokeSaveAsDialog(recorder?.getBlob?.());
-    //     }
-    // }
-    const reset = () => {
-        if (recorder !== null) {
-            recorder?.reset?.();
-            setState(AudioRecordState.READY)
-        }
+  }
+  // const download = () => {
+  //     if (AudioRecordState.FINISH) {
+  //         invokeSaveAsDialog(recorder?.getBlob?.());
+  //     }
+  // }
+  const reset = () => {
+    if (recorder !== null) {
+      recorder?.reset?.()
+      setState(AudioRecordState.READY)
     }
-    const play = () => {
-        if (audioRef.current !== null && playState !== PlayStateEnum.NOT_READY) {
-            audioRef.current?.play();
-            setPlayState(PlayStateEnum.PLAYING)
-        }
+  }
+  const play = () => {
+    if (audioRef.current !== null && playState !== PlayStateEnum.NOT_READY) {
+      audioRef.current?.play()
+      setPlayState(PlayStateEnum.PLAYING)
     }
-    const pause = () => {
-        if (audioRef.current !== null && playState === PlayStateEnum.PLAYING) {
-            audioRef.current?.pause();
-            setPlayState(PlayStateEnum.PAUSE);
-        }
+  }
+  const pause = () => {
+    if (audioRef.current !== null && playState === PlayStateEnum.PLAYING) {
+      audioRef.current?.pause()
+      setPlayState(PlayStateEnum.PAUSE)
     }
-    const stop = () => {
-        if (audioRef.current !== null && playState === PlayStateEnum.PLAYING) {
-            audioRef.current?.pause();
-            audioRef.current.currentTime = 0;
-            setPlayState(PlayStateEnum.READY);
-        }
+  }
+  const stop = () => {
+    if (audioRef.current !== null && playState === PlayStateEnum.PLAYING) {
+      audioRef.current?.pause()
+      audioRef.current.currentTime = 0
+      setPlayState(PlayStateEnum.READY)
     }
+  }
 
-    return <div className={style['audio-record-container']} ref={containerRef}>
-        {state}
-        <div className={style['audio-record-button-outer']}>
-            <audio style={{display: 'none'}} ref={audioRef} onEnded={() => {
-                setPlayState(PlayStateEnum.READY)
-            }}/>
-            {props.childrenButton}
-            {state === AudioRecordState.READY && <button onClick={() => startRecording()}>开始录制</button>}
-            {state === AudioRecordState.RECORDING && <button onClick={() => stopRecording()}>结束录制</button>}
-            {state === AudioRecordState.FINISH && <button onClick={() => reset()}>重录</button>}
-            {state === AudioRecordState.FINISH && (playState === PlayStateEnum.READY || playState === PlayStateEnum.PAUSE) &&
-            <button onClick={() => play()}>播放/继续</button>}
-            {state === AudioRecordState.FINISH && playState === PlayStateEnum.PLAYING &&
-            <button onClick={() => pause()}>暂停播放</button>}
-            {state === AudioRecordState.FINISH && playState === PlayStateEnum.PLAYING &&
-            <button onClick={() => stop()}>停止播放</button>}
-        </div>
+  return (
+    <div className={style['audio-record-container']} ref={containerRef}>
+      {state}
+      <div className={style['audio-record-button-outer']}>
+        <audio
+          style={{ display: 'none' }}
+          ref={audioRef}
+          onEnded={() => {
+            setPlayState(PlayStateEnum.READY)
+          }}
+        />
+        {props.childrenButton}
+        {state === AudioRecordState.READY && (
+          <button onClick={() => startRecording()}>开始录制</button>
+        )}
+        {state === AudioRecordState.RECORDING && (
+          <button onClick={() => stopRecording()}>结束录制</button>
+        )}
+        {state === AudioRecordState.FINISH && (
+          <button onClick={() => reset()}>重录</button>
+        )}
+        {state === AudioRecordState.FINISH &&
+          (playState === PlayStateEnum.READY ||
+            playState === PlayStateEnum.PAUSE) && (
+            <button onClick={() => play()}>播放/继续</button>
+          )}
+        {state === AudioRecordState.FINISH &&
+          playState === PlayStateEnum.PLAYING && (
+            <button onClick={() => pause()}>暂停播放</button>
+          )}
+        {state === AudioRecordState.FINISH &&
+          playState === PlayStateEnum.PLAYING && (
+            <button onClick={() => stop()}>停止播放</button>
+          )}
+      </div>
     </div>
+  )
 }
 
-export default forwardRef(AudioRecord);
+export default forwardRef(AudioRecord)
