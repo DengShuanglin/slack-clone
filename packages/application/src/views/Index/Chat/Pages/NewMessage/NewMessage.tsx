@@ -13,15 +13,15 @@ export enum MessageType {
 }
 
 export default function NewMessage() {
-  const a = useFriendMessageRequest()
-  if (a != undefined) {
-    a[1]({
-      friend_id: '',
-      user_id: '',
-      messageType: 1,
-      content: ''
-    })
-  }
+  // const a = useFriendMessageRequest()
+  // if (a != undefined) {
+  //   a[1]({
+  //     friend_id: '',
+  //     user_id: '',
+  //     messageType: 1,
+  //     content: ''
+  //   })
+  // }
 
   const handleSend = ({
     type,
