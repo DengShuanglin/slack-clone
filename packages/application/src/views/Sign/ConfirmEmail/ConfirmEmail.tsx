@@ -17,8 +17,12 @@ export default function ConfirmEmail() {
         email: string;
         id: string;
     }>();
-    const email = location.state['email'];
-    const id = location.state['id'];
+    const email = location.state?.email;
+    const id = location.state?.id;
+    if(email==null||id==null){
+        history.replace('/sign/register')
+        return null;
+    }
     useEffect(()=>{
         if(registerResult.state==='finish'){
             history.push('/sign/signin')

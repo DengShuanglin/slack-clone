@@ -13,7 +13,7 @@ function App() {
                 <HashRouter>
                     <SignRegisterRoute/>
                     <IndexRoute/>
-                    <Route component={NotFound}/>
+                    {/*<Route component={NotFound}/>*/}
                 </HashRouter>
             </UserContextProvider>
         </div>
