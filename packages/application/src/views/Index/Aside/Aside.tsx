@@ -9,15 +9,17 @@ export default function Aside(props: any) {
   const [msgList, changeMsgList] = useState([
     {
       icon: '#icon-xiaoxixianxing',
-      title: '消息列'
+      title: '消息列',
+      url: '#/index/threads'
     },
     {
       icon: '#icon-aite',
-      title: '提及和回复'
+      title: '提及和回复',
+      url: '#/index/activity-page'
     },
     {
       icon: '#icon-shenglvehao_v',
-      title: '更多'
+      title: '更多',
     },
   ])
 
@@ -29,7 +31,7 @@ export default function Aside(props: any) {
             <Button text='新工作区' backgroundColor='#00000000' fontWeight={900} fontSize={18} color='#ffffff' />
           </div>
         </div>
-        <div className='new_massage_btn'>
+        <div className='new_massage_btn' onClickCapture={() => self.location.href = '#/index/new-message'}>
           <Button
             show_icon
             iconString='#icon-shuxie'
@@ -45,7 +47,9 @@ export default function Aside(props: any) {
         <ul className="workspace_aside_channel_list" style={{ marginTop: '20px' }}>
           {
             msgList.map((item, index) =>
-              <li className="workspace_aside_msg_item" key={index}>
+              <li className="workspace_aside_msg_item" key={index} onClick={() => {
+                if (item.url) self.location.href = item.url
+              }}>
                 <svg className="icon workspace_aside_msg_item_icon" aria-hidden="true">
                   <use xlinkHref={item.icon}></use>
                 </svg>

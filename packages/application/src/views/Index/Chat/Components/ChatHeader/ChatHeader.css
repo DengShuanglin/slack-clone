@@ -1,0 +1,18 @@
+.chat_header {
+  height: 49px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px 0 20px;
+  --saf-0: rgba(var(--sk_foreground_low,29,28,29),0.13);
+  box-shadow: 0 1px 0 0 var(--saf-0);
+  flex-shrink: 0;
+  z-index: 3;
+}
+.chat_header_title {
+  font-size: 18px;
+  line-height: 1.33334;
+  font-weight: 900;
+  display: flex;
+  white-space: nowrap;
+  align-items: baseline;
+}

@@ -6,7 +6,7 @@ import NotFound from "../views/NotFound/NotFound"
 export default class IndexRoute extends Component {
   render() {
     return (
-        <Route path="/index" ><Index/></Route>
+      <Route path="/index" ><Index /></Route>
     )
   }
 }

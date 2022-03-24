@@ -44,7 +44,7 @@ export default function SignIn() {
     <div className='register_sign_root'>
       <header className='register_sign_head'>
         <div className="register_sign_head_col_left"></div>
-        <a href="#/signin" className='register_sign_logo'>
+        <a href="#/sign/signin" className='register_sign_logo'>
           <img height={70} src="https://img1.baidu.com/it/u=4209449786,4185436610&fm=253&fmt=auto&app=138&f=JPEG?w=1000&h=500" alt="" />
         </a>
         <div className="href_register_container">
