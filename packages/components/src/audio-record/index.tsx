@@ -139,10 +139,10 @@ function AudioRecord(
         if (audioRef.current !== null) {
           audioRef.current.src = url
           setPlayState(PlayStateEnum.READY)
+          props.onStopRecording?.(recorder.getBlob())
         }
       })
       setState(AudioRecordState.FINISH)
-      props.onStopRecording?.(recorder.getBlob())
     }
   }
   // const download = () => {
