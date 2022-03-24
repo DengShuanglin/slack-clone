@@ -1,7 +1,6 @@
 import './ConfirmEmail.css'
 import '../style/index.css'
-import Input from '../../../../../components/src/Input/Input'
-import Button from '../../../../../components/src/Button/Button'
+import {Input,Button} from '@slack-pkg/components'
 import {useHistory, useLocation} from "react-router";
 import {useEffect, useState} from "react";
 import useRequest from "../../../utils/request/hooks";
@@ -9,7 +8,9 @@ import {getMailCaptchaRequest, registerRequest} from "../../../api/authRequest";
 
 export default function ConfirmEmail() {
   const [state,setState] = useState({
-
+      password:'',
+    verifyCode:'',
+    codeId:''
   })
   const [registerResult,getRegisterResult] = useRequest(registerRequest);
   const history=useHistory();

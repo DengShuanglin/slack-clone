@@ -28,8 +28,11 @@ request.interceptors.request.use((config)=>{
 let requestList:(()=>void)[]=[];
 let isRefreshing=false;
 
-
 request.interceptors.response.use(async(config)=>{
+    return config;
+},(error)=>{
+    const config=error.response;
+
     if(config.status!==200&&config.status!==201){
         if(config.status === 401){
             if(isRefreshing){
@@ -52,7 +55,6 @@ request.interceptors.response.use(async(config)=>{
                     return Promise.reject(config);
                 }else{
                     isRefreshing=true;
-
                     return refreshTokenRequest(refreshToken).then((res)=>{
                         if(res.data.result?.access_token){
                             localStorage.setItem(localStorageItemName.ACCESS_TOKEN,res.data.result?.access_token);
@@ -81,4 +83,5 @@ request.interceptors.response.use(async(config)=>{
         return Promise.resolve(config);
     }
 })
+
 export default request;

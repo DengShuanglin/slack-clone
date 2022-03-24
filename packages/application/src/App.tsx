@@ -2,7 +2,7 @@ import { Component, useState } from 'react'
 import './App.css'
 import SignRegisterRoute from './router/SignRegisterRoute'
 import IndexRoute from './router/IndexRoute'
-import { HashRouter } from "react-router-dom";
+import {HashRouter, Redirect} from "react-router-dom";
 import NotFound from "./views/NotFound/NotFound"
 
 function App() {
