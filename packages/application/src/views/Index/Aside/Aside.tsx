@@ -3,14 +3,14 @@ import Button from '../../../../../components/src/Button/Button'
 import Drop from '../../../../../components/src/Drop/Drop'
 import UserAvatar from '../../../../../components/src/UserAvatar/UserAvatar'
 import AddCard from '../../../../../components/src/AddCard/AddCard'
-import {SetStateAction, useContext, useState} from 'react'
-import {UserContext} from "../../../store";
-import {useHistory, useParams} from "react-router-dom";
+import { SetStateAction, useContext, useState } from 'react'
+import { UserContext } from '../../../store'
+import { useHistory, useParams } from 'react-router-dom'
 
 export default function Aside(props: any) {
-  const ctx=useContext(UserContext);
-  const history = useHistory();
-  const params = useParams<any>();
+  const ctx = useContext(UserContext)
+  const history = useHistory()
+  const params = useParams<any>()
   const { resizeWidth, openChannelCard, openMemberCard } = props
   const [msgList, changeMsgList] = useState([
     {
@@ -44,7 +44,7 @@ export default function Aside(props: any) {
     index: number
   ) => {
     if (item.url) {
-      history.push(item.url);
+      history.push(item.url)
     }
     changeMsgListTargetIndex(index)
     changeChannelTargetIndex(99999)
@@ -52,16 +52,16 @@ export default function Aside(props: any) {
   }
   const clickChannelItem = (item: string, index: SetStateAction<number>) => {
     /* 进入对应频道 */
-    history.push('/index/channelchat',{
-      id:item
-    });
+    history.push('/index/channelchat', {
+      id: item
+    })
     changeChannelTargetIndex(index)
     changeMsgListTargetIndex(99999)
     changeMemberTargetIndex(99999)
   }
   const clickMemberItem = (item: any, index: number) => {
     /* 进入对应用户聊天 */
-    history.push('/index/memberchat',item);
+    history.push('/index/memberchat', item)
     changeMemberTargetIndex(index)
     changeMsgListTargetIndex(99999)
     changeChannelTargetIndex(99999)
@@ -130,7 +130,7 @@ export default function Aside(props: any) {
             <Drop
               width='100%'
               title=''
-              title={'频道('+(ctx.userInfo?.channels.length||0)+')'}
+              title={'频道(' + (ctx.userInfo?.channels.length || 0) + ')'}
               plusCallback={() => {
                 if (openChannelCard) openChannelCard()
               }}
@@ -181,7 +181,7 @@ export default function Aside(props: any) {
           >
             <Drop
               width='100%'
-              title={'好友('+(ctx.userInfo?.friends.length||0)+')'}
+              title={'好友(' + (ctx.userInfo?.friends.length || 0) + ')'}
               plusCallback={() => {
                 if (openMemberCard) openMemberCard()
               }}
@@ -191,8 +191,7 @@ export default function Aside(props: any) {
             />
             <ul style={{ marginTop: '10px' }}>
               {/* 私信队列 */}
-              {
-                ctx.userInfo?.friends.map((item, index) => (
+              {ctx.userInfo?.friends.map((item, index) => (
                 <li
                   className='workspace_aside_msg_item'
                   style={{

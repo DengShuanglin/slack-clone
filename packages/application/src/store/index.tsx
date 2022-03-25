@@ -3,7 +3,7 @@ import { createContext, ReactNode, useMemo, useState } from 'react'
 type UserInfoType = {
   nickname: string
   avatar: string
-  user_id:string
+  user_id: string
   channels: string[]
   friends: Array<{
     id: string
