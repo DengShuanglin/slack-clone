@@ -99,7 +99,7 @@ export default function ActivityPage() {
     <div className='main_chat_contents'>
       <ChatHeader title='提及和回复' />
       <div className='virtual_list_container'>
-        <div className='virtual_list'>
+        <div className='virtual_list' style={{ display: demoData.length ? 'block' : 'none' }}>
           {demoData.map((item, index) => (
             <div className='virtual_list_item'>
               <div className='virtual_list_item_content'>
@@ -142,6 +142,10 @@ export default function ActivityPage() {
               </div>
             </div>
           ))}
+        </div>
+        <div className="virtual_list_container_empty" style={{ display: demoData.length ? 'none' : 'flex' }}>
+          <div className="virtual_list_container_empty_title">实时查看新的活动</div>
+          <div className="virtual_list_container_empty_description">当人员对你的消息做出回复或提及你或你的关键字时，你就会在这里看到。</div>
         </div>
       </div>
     </div>
