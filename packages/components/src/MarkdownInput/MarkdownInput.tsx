@@ -36,7 +36,7 @@ export interface MarkdownInputProps {
   defaultHtml?: string
   loading?: boolean
   onSend?: ({ type, content }: { type: MessageType; content: string }) => void
-  onSaveFile?: (file:Blob)=>string
+  onSaveFile?: (file: Blob) => string
   onChange?: (html: string) => void
   onFocus?: (html: string) => void
   onBlur?: (html: string) => void
@@ -100,7 +100,7 @@ const MarkdownInput: React.FC<MarkdownInputProps> = (
         customInsert(res: any, insertFn: any) {
           // TODO: 调用上传文件接口, 设置msgType为1, 调用onSend回调
           // res 即服务端的返回结果
-          console.log(res);
+          console.log(res)
           props?.onSaveFile?.(res)
 
           onSend && onSend({ type: 1, content: res })
@@ -178,7 +178,6 @@ const MarkdownInput: React.FC<MarkdownInputProps> = (
         />
         <Editor
           defaultConfig={editorConfig}
-          
           // defaultContent={defaultContent}
           defaultHtml={defaultHtml}
           mode='simple '

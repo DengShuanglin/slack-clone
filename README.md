@@ -24,7 +24,9 @@
 ```shell
 pnpm install
 ```
+
 2. 运行
+
 ```shell
 pnpm run dev
 ```
@@ -49,15 +51,16 @@ pnpm run dev
 |    wangeditor    | 4.7.12  |
 
 #### 项目运行截图
+
 <br/>
-<img src="./img/img.png">
+<img src="https://codeup.aliyun.com/6212f97e74c3f3b550746f5d/slack/slack/raw/master/img/img.png">
 <br/>
-<img src="./img/img_1.png">
+<img src="https://codeup.aliyun.com/6212f97e74c3f3b550746f5d/slack/slack/raw/master/img/img_1.png">
 <br/>
-<img src="./img/img_3.png">
+<img src="https://codeup.aliyun.com/6212f97e74c3f3b550746f5d/slack/slack/raw/master/img/img_3.png">
 <br/>
-<img src="./img/img_2.png">
+<img src="https://codeup.aliyun.com/6212f97e74c3f3b550746f5d/slack/slack/raw/master/img/img_2.png">
 <br/>
-<img src="./img/img_4.png">
+<img src="https://codeup.aliyun.com/6212f97e74c3f3b550746f5d/slack/slack/raw/master/img/img_4.png">
 <br/>
-<img src="./img/img_5.png">
+<img src="https://codeup.aliyun.com/6212f97e74c3f3b550746f5d/slack/slack/raw/master/img/img_5.png">

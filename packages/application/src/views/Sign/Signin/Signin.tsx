@@ -5,10 +5,10 @@ import useRequest from '../../../utils/request/hooks'
 import { getLoginCaptchaRequest, loginRequest } from '../../../api/authRequest'
 import { useEffect, useState } from 'react'
 import { localStorageItemName } from '../../../utils/request'
-import {useHistory} from "react-router-dom";
+import { useHistory } from 'react-router-dom'
 
 export default function SignIn() {
-  const history = useHistory();
+  const history = useHistory()
   const [state, setState] = useState({
     email: '',
     password: '',
