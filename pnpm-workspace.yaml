@@ -1,4 +1,4 @@
 packages:
 - 'packages/application/'
-- 'packages/lib/'
+- 'packages/lib/**/'
 - 'packages/components/'

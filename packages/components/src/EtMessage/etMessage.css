@@ -1,0 +1,139 @@
+.message-container {
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: row;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.message-container:hover {
+  background-color: #f8f8f8;
+}
+
+.left-group {
+  width: 50px;
+  padding: 0 3px;
+  /*margin-left: 20px;*/
+}
+.left-group img {
+  width: 44px;
+  /*margin-left: 20px;*/
+}
+.avatar-group {
+  background-color: #f8f8f8;
+}
+.avatar-group img {
+  height: 36px;
+  width: 36px;
+}
+
+.right-group {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: auto;
+}
+
+.message-top-group {
+  display: flex;
+  flex-direction: row;
+}
+
+.message-top-group .name {
+  width: auto;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  color: #1d1c1d;
+}
+
+.message-top-group .creat-time {
+  margin-left: 10px;
+  margin-top: 2px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: left;
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  color: #6f6f6f;
+}
+
+.message-info {
+  height: auto;
+  width: 90%;
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  margin-right: 10%;
+
+  white-space: normal;
+  word-break: break-all;
+  word-wrap: normal;
+}
+
+.tool-group {
+  width: auto;
+  height: 38px;
+  position: relative;
+  left: -20px;
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+
+.tool-group-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: auto;
+}
+
+.tool-group-box img {
+  height: 18px;
+  width: 18px;
+  margin: 7px 10px;
+  box-sizing: border-box;
+}
+.tool-group-box img:hover {
+  background-color: #9b8b8b;
+}
+
+.message-buttom-group {
+  width: 95%;
+  height: 20px;
+  /* background-color: aqua; */
+  display: flex;
+  flex-direction: row;
+}
+
+.message-buttom-reply {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #6f6f6f;
+}
+
+.message-buttom-count {
+  margin-left: 10px;
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 18px;
+  color: #3c71a6;
+}

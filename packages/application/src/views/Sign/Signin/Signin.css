@@ -1,0 +1,35 @@
+.signin_manual {
+  display: flex;
+  padding: 12px 24px;
+  color: rgba(var(--sk_foreground_max_solid, 97, 96, 97), 1);
+  background-color: rgba(var(--sk_primary_foreground, 29, 28, 29), 0.05);
+  border-radius: 8px;
+}
+
+.href_register_container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.href_register {
+  text-align: right;
+  font-size: 13px;
+  padding-right: 40px;
+  color: #696969;
+}
+
+.href_register_a {
+  color: #1264a3;
+}
+
+.href_register_a:hover {
+  color: #0b4c8c;
+  text-decoration: underline;
+}
+
+.img_code_container {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

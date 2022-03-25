@@ -2,7 +2,10 @@
   "compilerOptions": {
     "composite": true,
     "module": "esnext",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "options": {
+      "classnameTransform": "camelCaseOnly"
+    }
   },
   "include": ["vite.config.ts"]
 }

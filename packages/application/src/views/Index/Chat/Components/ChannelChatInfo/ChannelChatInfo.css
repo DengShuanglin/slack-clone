@@ -1,0 +1,41 @@
+.channel_chat_info {
+  margin: 18px 20px 4px 20px;
+}
+
+.channel_chat_info_description {
+  display: flex;
+  align-items: center;
+}
+
+.channel_chat_info_type {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  background-color: #f4ede4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 14px;
+}
+
+.channel_description_head {
+  font-size: 15px;
+  line-height: 1.46668;
+  font-weight: 400;
+  font-weight: 700;
+  color: #1d1c1d;
+}
+
+.channel_description_body {
+  font-size: 15px;
+  line-height: 1.46668;
+  font-weight: 400;
+  color: #1d1c1db3;
+}
+
+.channel_chat_name {
+  color: #1264a3;
+  font-size: 15px;
+  line-height: 1.46668;
+  font-weight: 700;
+}

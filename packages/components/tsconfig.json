@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
+    "jsx": "react",
     "module": "commonjs",
     "sourceMap": true,
     "removeComments": true,
@@ -15,6 +16,11 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
-    "outDir": "dist"
+    "outDir": "dist",
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ]
   }
 }

@@ -1,0 +1,101 @@
+.index_container {
+  width: 100vw;
+  height: 100vh;
+  grid-template-rows: 44px auto -webkit-min-content;
+  grid-template-rows: 44px auto min-content;
+  display: grid;
+}
+
+.index_workspace {
+  grid-template-areas: 'workspace_aside workspace_chat';
+  display: grid;
+  grid-template-rows: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.resize {
+  position: absolute;
+  z-index: 39;
+  top: 1px;
+  width: 8px;
+  bottom: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: col-resize;
+}
+
+.resize::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: transparent;
+  transition: background-color 0.15s 0.15s, box-shadow 0.15s 0.15s;
+}
+
+.resize:hover {
+  background-color: rgba(29, 155, 209, 1);
+  box-shadow: 0 0 0 1px #1d9bd1;
+}
+
+.resize input {
+  position: absolute;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.add_channel_content {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 1;
+  min-height: 50px;
+  overflow: hidden;
+  position: relative;
+  padding: 0 28px;
+}
+
+.add_chennel_info {
+  color: #616061;
+  margin-bottom: 24px;
+}
+
+.create_channel_title {
+  margin-right: 8px;
+}
+
+.create_channel_title_info {
+  font-size: 15px;
+  line-height: 1.46668;
+  font-weight: 400;
+  color: #1d1c1db3;
+}
+
+.create_channel_title_info_bottom {
+  padding-top: 4px;
+  font-size: 13px;
+  line-height: 1.38463;
+  font-weight: 400;
+  color: #1d1c1db3;
+}
+
+.create_channel_title_errow {
+  display: inline-block;
+  font-weight: 700;
+  color: #e8912d;
+}
+
+.create_channel_btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}

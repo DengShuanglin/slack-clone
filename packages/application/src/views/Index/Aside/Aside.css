@@ -1,0 +1,115 @@
+.workspace_aside {
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  z-index: 50;
+}
+
+.workspace_aside_header {
+  color: #ffffff;
+  height: 50px;
+  font-size: 18px;
+  line-height: 1.33334;
+  font-weight: 900;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  background: #3f0e40;
+}
+
+.workspace_aside_channel {
+  min-height: 0;
+  width: 100%;
+  font-size: 15px;
+  contain: strict;
+  flex: 1;
+  height: 100%;
+  position: relative;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  color: #cfc3cf;
+  background: #3f0e40;
+}
+
+.workspace_aside_header_button {
+  cursor: pointer;
+  outline: none;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 54px 0 16px;
+  transition-property: background-color, border-color;
+  transition-duration: 80ms;
+  transition-timing-function: cubic-bezier(0.36, 0.19, 0.29, 1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background-clip: padding-box;
+  position: relative;
+  z-index: 1;
+  flex-direction: row-reverse;
+}
+
+.workspace_aside_header_button_info {
+  flex: 1;
+  min-width: 0;
+  order: 1;
+}
+
+.new_massage_btn {
+  position: absolute;
+  right: 20px;
+  bottom: 8px;
+  z-index: 88;
+}
+
+.workspace_aside_msg_item {
+  height: 28px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.workspace_aside_header:hover,
+.workspace_aside_msg_item:hover {
+  background-color: #350d36;
+}
+
+.workspace_aside_msg_item:hover .workspace_aside_msg_item_del {
+  opacity: 1;
+}
+
+.workspace_aside_msg_user_name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.workspace_aside_msg_item_icon {
+  margin-right: 10px;
+}
+
+.workspace_aside_msg_item_del {
+  position: absolute;
+  font-size: 20px;
+  transform: rotate(45deg);
+  right: 10px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.workspace_aside_msg_item_del:hover {
+  color: #ececec;
+}
+
+.workspace_add_msg_item {
+  background: rgba(255, 255, 255, 0.1);
+  height: 20px;
+  width: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,22 @@
+.component_input_container {
+  border: 1px solid rgba(29, 28, 29, 0.3);
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 2px 4px;
+  width: 100%;
+}
+.input_icon {
+  margin: 6px;
+}
+
+.component_input {
+  outline: none;
+  border: none;
+  margin: 0 10px;
+}
+
+.component_input_focus {
+  box-shadow: 0 0 0 4px #c1e0ef;
+  -webkit-appearance: none;
+}

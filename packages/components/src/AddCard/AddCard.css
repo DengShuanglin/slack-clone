@@ -1,0 +1,88 @@
+.card_container {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  left: 0;
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 1000;
+}
+
+.card_container::before {
+  background: rgba(0, 0, 0, 0.6);
+  content: '';
+  height: 100%;
+  left: 0;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  transition: opacity 80ms linear;
+  width: 100%;
+}
+
+.card_content {
+  font-size: 15px;
+  line-height: 1.46668;
+  font-weight: 400;
+  width: auto;
+  height: auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px 0 18px 48px 0 rgba(0, 0, 0, 0.35);
+}
+
+.add_card_header {
+  border-radius: 8px 8px 0 0;
+  flex-shrink: 0;
+  min-height: 70px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.add_card_title_container {
+  padding-right: 76px;
+  align-items: center;
+  display: flex;
+  min-height: 70px;
+  padding: 20px 28px;
+  width: 100%;
+}
+
+.add_card_title {
+  font-weight: 900;
+  font-size: 28px;
+  line-height: 1.2143;
+  margin: 0;
+}
+
+.close_card_icon {
+  transform: rotate(45deg);
+  width: 26px;
+  height: 26px;
+  color: #666666;
+}
+
+.close_card {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  top: 20px;
+  right: 20px;
+  align-items: center;
+  border-radius: 4px;
+  display: inline-flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.close_card:hover {
+  background: #1d1c1d0a;
+  color: #1d1c1d;
+}

@@ -1,0 +1,14 @@
+.component_button {
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all 80ms linear;
+}
+
+.button_icon {
+  margin: 4px;
+  color: #ffffff;
+}

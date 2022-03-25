@@ -1,0 +1,13 @@
+.component_dot_container {
+  position: absolute;
+  padding: 2px;
+  border-radius: 50%;
+}
+
+.component_dot {
+  background-color: #777777;
+  border-radius: 50%;
+  z-index: 999;
+  width: 10px;
+  height: 10px;
+}
