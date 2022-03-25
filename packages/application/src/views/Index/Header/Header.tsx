@@ -3,8 +3,10 @@ import React, { useState } from 'react'
 import Button from '../../../../../components/src/Button/Button'
 import UserAvatar from '../../../../../components/src/UserAvatar/UserAvatar'
 import EtPopover from '../../../../../components/src/EtPopover/etPopover'
+import {useHistory} from "react-router-dom";
 
 export default function Header() {
+  const history = useHistory()
   const [isShowAvatarPop, setShowAvatarPop] = useState(false)
   const [isShowSearchPop, setShowSearchPop] = useState(false)
 
@@ -82,7 +84,7 @@ export default function Header() {
           </div>
           {/* 搜索结果列表 */}
           {/* <div className='search_result_box'>
-            
+
           </div> */}
         </div>
       </div>
@@ -154,8 +156,11 @@ export default function Header() {
             </div>
             <div className='top_nav_right_avatar_pop_box_item'>{'首选项'}</div>
             <div className='divider'></div>
-            <div className='top_nav_right_avatar_pop_box_item'>
-              {'登出 新工作区'}
+            <div className='top_nav_right_avatar_pop_box_item' onClick={()=>{
+              localStorage.clear();
+              history.push('/sign/signin')
+            }}>
+              {'登出'}
             </div>
           </div>
         </div>

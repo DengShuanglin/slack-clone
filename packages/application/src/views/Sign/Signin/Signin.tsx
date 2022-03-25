@@ -5,8 +5,10 @@ import useRequest from '../../../utils/request/hooks'
 import { getLoginCaptchaRequest, loginRequest } from '../../../api/authRequest'
 import { useEffect, useState } from 'react'
 import { localStorageItemName } from '../../../utils/request'
+import {useHistory} from "react-router-dom";
 
 export default function SignIn() {
+  const history = useHistory();
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -30,7 +32,7 @@ export default function SignIn() {
   }, [imgData.data])
   useEffect(() => {
     if (data.state === 'finish') {
-      if (data.data?.result?.user_id) {
+      if (data.data?.result?.access_token) {
         localStorage.setItem(
           localStorageItemName.ACCESS_TOKEN,
           data.data.result.access_token
@@ -39,6 +41,7 @@ export default function SignIn() {
           localStorageItemName.REFRESH_TOKEN,
           data.data.result.refresh_token
         )
+        history.push('/index')
       }
     }
   }, [data])
