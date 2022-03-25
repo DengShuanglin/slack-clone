@@ -7,9 +7,10 @@ const baseURL = '/user'
 type GetUserInfoResponseType = {
   nickname: string
   avatar: string
+  user_id: string
   channels: string[]
   friends: Array<{
-    id: number
+    id: string
     nickname: string
     avatar: string
   }>

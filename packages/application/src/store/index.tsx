@@ -1,12 +1,12 @@
 import { createContext, ReactNode, useMemo, useState } from 'react'
 
 type UserInfoType = {
-  user_id: number
   nickname: string
   avatar: string
+  user_id:string
   channels: string[]
   friends: Array<{
-    id: number
+    id: string
     nickname: string
     avatar: string
   }>
@@ -14,7 +14,7 @@ type UserInfoType = {
 
 type UserContextValueType = {
   userInfo?: UserInfoType
-  userId?: number
+  user_id?: string
 }
 
 const UserContext = createContext<UserContextValueType>({})

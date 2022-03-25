@@ -78,7 +78,7 @@ function SocketHubProvider(props: SocketHubProviderPropsType) {
   useEffect(() => {
     if (cache.socketClient == null) {
       cache.status = 'beforeReady'
-      cache.socketClient = io(baseURL + userCtx.userId, {
+      cache.socketClient = io(baseURL + userCtx.user_id, {
         extraHeaders: {
           Authorization:
             'Bearer ' + localStorage.getItem(localStorageItemName.ACCESS_TOKEN)

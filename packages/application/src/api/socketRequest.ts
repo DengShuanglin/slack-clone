@@ -14,8 +14,8 @@ type SocketDataEntity<T = any> = {
 }
 
 type AddFriendRequestType = {
-  user_id: number
-  friend_id: number
+  user_id: string
+  friend_id: string
 }
 
 export function useAddFriendRequest() {
@@ -30,13 +30,13 @@ export function useAddFriendRequest() {
 }
 
 type ConfirmFriendRequestType = {
-  friend_id: number
+  friend_id: string
   nickname: string
   avatar: string
 }
 type ConfirmFriendResponseType = {
-  user_id: number
-  friend_id: number
+  user_id: string
+  friend_id: string
 }
 
 export function useConfirmFriendListener() {
@@ -62,11 +62,11 @@ export function useConfirmFriendListener() {
 }
 
 type JoinFriendSocketRequestType = {
-  user_id: number
-  friend_id: number
+  user_id: string
+  friend_id: string
 }
 
-type JoinFriendSocketResponseType = { friend_id: number; user_id: number }
+type JoinFriendSocketResponseType = { friend_id: string; user_id: string }
 
 export function useJoinFriendSocketRequest() {
   const ctx = useContext(SocketHubContext)
@@ -87,8 +87,8 @@ enum MessageType {
 }
 
 type FriendMessage = {
-  user_id: number
-  friend_id: number
+  user_id: string
+  friend_id: string
   messageType: MessageType
   content: string
 }

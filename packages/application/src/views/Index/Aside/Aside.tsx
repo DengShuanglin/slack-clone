@@ -3,22 +3,27 @@ import Button from '../../../../../components/src/Button/Button'
 import Drop from '../../../../../components/src/Drop/Drop'
 import UserAvatar from '../../../../../components/src/UserAvatar/UserAvatar'
 import AddCard from '../../../../../components/src/AddCard/AddCard'
-import { SetStateAction, useState } from 'react'
+import {SetStateAction, useContext, useState} from 'react'
+import {UserContext} from "../../../store";
+import {useHistory, useParams} from "react-router-dom";
 
 export default function Aside(props: any) {
+  const ctx=useContext(UserContext);
+  const history = useHistory();
+  const params = useParams<any>();
   const { resizeWidth, openChannelCard, openMemberCard } = props
   const [msgList, changeMsgList] = useState([
     {
       id: 0,
       icon: '#icon-xiaoxixianxing',
       title: '消息列',
-      url: '#/index/threads'
+      url: '/index/threads'
     },
     {
       id: 1,
       icon: '#icon-aite',
       title: '提及和回复',
-      url: '#/index/activity-page'
+      url: '/index/activity-page'
     }
     // {
     //   id: 2,
@@ -38,21 +43,25 @@ export default function Aside(props: any) {
       | { id: number; icon: string; title: string; url?: undefined },
     index: number
   ) => {
-    if (item.url) self.location.href = item.url
+    if (item.url) {
+      history.push(item.url);
+    }
     changeMsgListTargetIndex(index)
     changeChannelTargetIndex(99999)
     changeMemberTargetIndex(99999)
   }
   const clickChannelItem = (item: string, index: SetStateAction<number>) => {
     /* 进入对应频道 */
-    self.location.href = '#/index/channelchat'
+    history.push('/index/channelchat',{
+      id:item
+    });
     changeChannelTargetIndex(index)
     changeMsgListTargetIndex(99999)
     changeMemberTargetIndex(99999)
   }
   const clickMemberItem = (item: any, index: number) => {
     /* 进入对应用户聊天 */
-    self.location.href = '#/index/memberchat'
+    history.push('/index/memberchat',item);
     changeMemberTargetIndex(index)
     changeMsgListTargetIndex(99999)
     changeChannelTargetIndex(99999)
@@ -120,7 +129,8 @@ export default function Aside(props: any) {
           >
             <Drop
               width='100%'
-              title='频道'
+              title=''
+              title={'频道('+(ctx.userInfo?.channels.length||0)+')'}
               plusCallback={() => {
                 if (openChannelCard) openChannelCard()
               }}
@@ -131,7 +141,7 @@ export default function Aside(props: any) {
             <ul style={{ marginTop: '10px' }}>
               {/* 频道队列 */}
               {/* 循环创建 */}
-              {['频道1', '频道2', '频道3'].map((item, index) => (
+              {ctx.userInfo?.channels.map((item, index) => (
                 <li
                   className='workspace_aside_msg_item'
                   style={{
@@ -171,7 +181,7 @@ export default function Aside(props: any) {
           >
             <Drop
               width='100%'
-              title='私信'
+              title={'好友('+(ctx.userInfo?.friends.length||0)+')'}
               plusCallback={() => {
                 if (openMemberCard) openMemberCard()
               }}
@@ -181,26 +191,8 @@ export default function Aside(props: any) {
             />
             <ul style={{ marginTop: '10px' }}>
               {/* 私信队列 */}
-              {[
-                {
-                  userAvatar:
-                    'https://img1.baidu.com/it/u=3702625202,3169032464&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500',
-                  userName: '小明',
-                  userStatus: 'online'
-                },
-                {
-                  userAvatar:
-                    'https://img1.baidu.com/it/u=3702625202,3169032464&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500',
-                  userName: '小明222',
-                  userStatus: 'offline'
-                },
-                {
-                  userAvatar:
-                    'https://img1.baidu.com/it/u=3702625202,3169032464&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500',
-                  userName: '小明333',
-                  userStatus: 'online'
-                }
-              ].map((item, index) => (
+              {
+                ctx.userInfo?.friends.map((item, index) => (
                 <li
                   className='workspace_aside_msg_item'
                   style={{
@@ -216,8 +208,8 @@ export default function Aside(props: any) {
                   onClick={() => clickMemberItem(item, index)}
                 >
                   <UserAvatar
-                    status={item.userStatus}
-                    avatarUrl={item.userAvatar}
+                    status={'offline'}
+                    avatarUrl={item.avatar}
                     borderRadius={4}
                     width={20}
                     height={20}
@@ -226,7 +218,7 @@ export default function Aside(props: any) {
                     className='workspace_aside_msg_user_name'
                     style={{ margin: '0 16px 0 10px' }}
                   >
-                    {item.userName}
+                    {item.nickname}
                   </span>
                   <svg
                     className='icon workspace_aside_msg_item_del'
