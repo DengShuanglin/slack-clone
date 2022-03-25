@@ -84,7 +84,18 @@ export default function Index() {
   }
 
   return (
-    <div className='index_container'>
+    <div
+      className='index_container'
+      onMouseMove={(evt) => {
+        if (isResize) {
+          changeResizeWidth(evt.pageX)
+        }
+      }}
+      onMouseUp={(evt) => {
+        changeIsResize(false)
+        console.log(11)
+      }}
+    >
       <SocketHubProvider>
         <Header />
         <div
@@ -99,14 +110,6 @@ export default function Index() {
             style={{ left: resizeWidth - 5 }}
             onMouseDown={(evt) => {
               changeIsResize(true)
-            }}
-            onMouseMove={(evt) => {
-              if (isResize) {
-                changeResizeWidth(evt.pageX)
-              }
-            }}
-            onMouseOut={(evt) => {
-              changeIsResize(false)
             }}
           >
             <input type='range' min={180} max={594} step={10} />
