@@ -19,7 +19,7 @@ export default function Aside(props: any) {
       icon: '#icon-aite',
       title: '提及和回复',
       url: '#/index/activity-page'
-    },
+    }
     // {
     //   id: 2,
     //   icon: '#icon-shenglvehao_v',
@@ -32,8 +32,12 @@ export default function Aside(props: any) {
   const [closeChannel, changeCloseChannel] = useState(false)
   const [closeMember, changeCloseMember] = useState(false)
 
-
-  const workspaceAsideMsgItem = (item: { id: number; icon: string; title: string; url: string } | { id: number; icon: string; title: string; url?: undefined }, index: number) => {
+  const workspaceAsideMsgItem = (
+    item:
+      | { id: number; icon: string; title: string; url: string }
+      | { id: number; icon: string; title: string; url?: undefined },
+    index: number
+  ) => {
     if (item.url) self.location.href = item.url
     changeMsgListTargetIndex(index)
     changeChannelTargetIndex(99999)
@@ -94,7 +98,9 @@ export default function Aside(props: any) {
               className='workspace_aside_msg_item'
               key={index}
               onClick={() => workspaceAsideMsgItem(item, index)}
-              style={{ backgroundColor: msgListTargetIndex == index ? '#1164A3' : '' }}
+              style={{
+                backgroundColor: msgListTargetIndex == index ? '#1164A3' : ''
+              }}
             >
               <svg
                 className='icon workspace_aside_msg_item_icon'
@@ -125,22 +131,23 @@ export default function Aside(props: any) {
             <ul style={{ marginTop: '10px' }}>
               {/* 频道队列 */}
               {/* 循环创建 */}
-              {
-                ['频道1', '频道2', '频道3'].map((item, index) =>
-                (
-                  <li
-                    className='workspace_aside_msg_item'
-                    style={{
-                      display: closeChannel && channelTargetIndex != index ? 'none' : 'flex',
-                      paddingLeft: '30px',
-                      backgroundColor: channelTargetIndex == index ? '#1164A3' : ''
-                    }}
-                    onClick={() => clickChannelItem(item, index)}
-                  >
-                    #<span style={{ marginLeft: '10px' }}>{item}</span>
-                  </li>
-                ))
-              }
+              {['频道1', '频道2', '频道3'].map((item, index) => (
+                <li
+                  className='workspace_aside_msg_item'
+                  style={{
+                    display:
+                      closeChannel && channelTargetIndex != index
+                        ? 'none'
+                        : 'flex',
+                    paddingLeft: '30px',
+                    backgroundColor:
+                      channelTargetIndex == index ? '#1164A3' : ''
+                  }}
+                  onClick={() => clickChannelItem(item, index)}
+                >
+                  #<span style={{ marginLeft: '10px' }}>{item}</span>
+                </li>
+              ))}
               {/* 添加队列 */}
               <li
                 className='workspace_aside_msg_item'
@@ -174,56 +181,61 @@ export default function Aside(props: any) {
             />
             <ul style={{ marginTop: '10px' }}>
               {/* 私信队列 */}
-              {
-                [
-                  {
-                    userAvatar: 'https://img1.baidu.com/it/u=3702625202,3169032464&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500',
-                    userName: '小明',
-                    userStatus: 'online'
-                  },
-                  {
-                    userAvatar: 'https://img1.baidu.com/it/u=3702625202,3169032464&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500',
-                    userName: '小明222',
-                    userStatus: 'offline'
-                  },
-                  {
-                    userAvatar: 'https://img1.baidu.com/it/u=3702625202,3169032464&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500',
-                    userName: '小明333',
-                    userStatus: 'online'
-                  }
-                ].map((item, index) => (
-                  <li
-                    className='workspace_aside_msg_item'
-                    style={{
-                      paddingLeft: '20px',
-                      position: 'relative',
-                      backgroundColor: memberTargetIndex == index ? '#1164A3' : '',
-                      display: closeMember && memberTargetIndex != index ? 'none' : 'flex',
-                    }}
-                    onClick={() => clickMemberItem(item, index)}
+              {[
+                {
+                  userAvatar:
+                    'https://img1.baidu.com/it/u=3702625202,3169032464&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500',
+                  userName: '小明',
+                  userStatus: 'online'
+                },
+                {
+                  userAvatar:
+                    'https://img1.baidu.com/it/u=3702625202,3169032464&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500',
+                  userName: '小明222',
+                  userStatus: 'offline'
+                },
+                {
+                  userAvatar:
+                    'https://img1.baidu.com/it/u=3702625202,3169032464&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500',
+                  userName: '小明333',
+                  userStatus: 'online'
+                }
+              ].map((item, index) => (
+                <li
+                  className='workspace_aside_msg_item'
+                  style={{
+                    paddingLeft: '20px',
+                    position: 'relative',
+                    backgroundColor:
+                      memberTargetIndex == index ? '#1164A3' : '',
+                    display:
+                      closeMember && memberTargetIndex != index
+                        ? 'none'
+                        : 'flex'
+                  }}
+                  onClick={() => clickMemberItem(item, index)}
+                >
+                  <UserAvatar
+                    status={item.userStatus}
+                    avatarUrl={item.userAvatar}
+                    borderRadius={4}
+                    width={20}
+                    height={20}
+                  />
+                  <span
+                    className='workspace_aside_msg_user_name'
+                    style={{ margin: '0 16px 0 10px' }}
                   >
-                    <UserAvatar
-                      status={item.userStatus}
-                      avatarUrl={item.userAvatar}
-                      borderRadius={4}
-                      width={20}
-                      height={20}
-                    />
-                    <span
-                      className='workspace_aside_msg_user_name'
-                      style={{ margin: '0 16px 0 10px' }}
-                    >
-                      {item.userName}
-                    </span>
-                    <svg
-                      className='icon workspace_aside_msg_item_del'
-                      aria-hidden='true'
-                    >
-                      <use xlinkHref='#icon-plus'></use>
-                    </svg>
-                  </li>
-                ))
-              }
+                    {item.userName}
+                  </span>
+                  <svg
+                    className='icon workspace_aside_msg_item_del'
+                    aria-hidden='true'
+                  >
+                    <use xlinkHref='#icon-plus'></use>
+                  </svg>
+                </li>
+              ))}
               {/* 添加团队成员 */}
               <li
                 className='workspace_aside_msg_item'

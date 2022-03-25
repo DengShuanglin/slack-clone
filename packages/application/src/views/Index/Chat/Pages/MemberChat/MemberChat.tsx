@@ -11,7 +11,7 @@ export default function MemberChat() {
   return (
     <div className='main_chat_contents'>
       <ChatHeader title='# 频道名称' />
-      <MemberChatInfo UserName="UserName" />
+      <MemberChatInfo UserName='UserName' />
       <ChatBody />
       <MarkdownInput />
     </div>

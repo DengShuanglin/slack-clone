@@ -88,12 +88,14 @@ export default function Index() {
       className='index_container'
       onMouseMove={(evt) => {
         if (isResize) {
-          changeResizeWidth(evt.pageX)
+          changeResizeWidth(Math.min(Math.max(evt.pageX, 200), 500))
         }
       }}
       onMouseUp={(evt) => {
         changeIsResize(false)
-        console.log(11)
+      }}
+      onMouseLeave={(evt) => {
+        changeIsResize(false)
       }}
     >
       <SocketHubProvider>

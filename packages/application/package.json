@@ -10,8 +10,6 @@
   "dependencies": {
     "@slack-pkg/audio-utils": "workspace:^0.0.0",
     "@slack-pkg/components": "workspace:^0.0.0",
-    "@types/react-router": "^5.1.18",
-    "@types/react-router-dom": "^5.3.3",
     "axios": "^0.26.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -21,6 +19,8 @@
   "devDependencies": {
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
+    "@types/react-router": "^5.1.18",
+    "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "^1.0.7",
     "scss": "^0.2.4",
     "typescript": "^4.5.4",
