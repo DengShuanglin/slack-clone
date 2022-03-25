@@ -6,6 +6,8 @@ import EtPopover from '../../../../../components/src/EtPopover/etPopover'
 
 export default function Header() {
   const [isShowAvatarPop, setShowAvatarPop] = useState(false)
+  const [isShowSearchPop, setShowSearchPop] = useState(false)
+
   const data = [
     { imgUrl: 'http://cdn.qiniu.shuyuanlab.cn/Frame.png', text: 'theme' },
     { imgUrl: 'http://cdn.qiniu.shuyuanlab.cn/Frame.png', text: 'cscs' },
@@ -29,7 +31,7 @@ export default function Header() {
         </div>
       </div>
       <div className='top_nav_search_container'>
-        <div className='top_nav_search_btn'>
+        <div className='top_nav_search_btn' onClick={() => {setShowSearchPop(!isShowSearchPop)}}>
           <Button
             show_icon
             iconString='#icon-search'
@@ -39,6 +41,32 @@ export default function Header() {
             height='100%'
             text='搜索 新工作区'
           />
+        </div>
+         {/* 搜索弹出框 */}
+        <div className='search_pop' style={{
+          display: isShowSearchPop ? 'block' : 'none',
+        }}>
+          {/* 搜索框 */}
+          <div className='search_pop_box'>
+            <img id='search_icon' src="http://cdn.qiniu.shuyuanlab.cn/search.png"/>
+            <input type="text" placeholder='搜索'/>
+            <img id='cancel_icon' src="http://cdn.qiniu.shuyuanlab.cn/chahca.png" onClick={()=>{setShowSearchPop(false)}}/>
+          </div>
+          <div className='divider'></div>
+          {/* 无搜索结果占位 */}
+          <div className='search_result_empt'>
+            <div className=''>
+              <b>{"搜索消息、文件等"}</b>
+              <br/>
+              {"查找特定消息、文档或决策？如果是在 Slack 中，"}
+              <br/>
+              {"你可以在搜索中找到它。"}
+            </div>
+          </div>
+          {/* 搜索结果列表 */}
+          {/* <div className='search_result_box'>
+            
+          </div> */}
         </div>
       </div>
       <div className='top_nav_right'>
