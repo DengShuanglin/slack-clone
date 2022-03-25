@@ -29,6 +29,8 @@ export default function Aside(props: any) {
   const [msgListTargetIndex, changeMsgListTargetIndex] = useState(99999)
   const [channelTargetIndex, changeChannelTargetIndex] = useState(99999)
   const [memberTargetIndex, changeMemberTargetIndex] = useState(99999)
+  const [closeChannel, changeCloseChannel] = useState(false)
+  const [closeMember, changeCloseMember] = useState(false)
 
 
   const workspaceAsideMsgItem = (item: { id: number; icon: string; title: string; url: string } | { id: number; icon: string; title: string; url?: undefined }, index: number) => {
@@ -116,6 +118,9 @@ export default function Aside(props: any) {
               plusCallback={() => {
                 if (openChannelCard) openChannelCard()
               }}
+              arrowCallback={() => {
+                changeCloseChannel(!closeChannel)
+              }}
             />
             <ul style={{ marginTop: '10px' }}>
               {/* 频道队列 */}
@@ -125,7 +130,11 @@ export default function Aside(props: any) {
                 (
                   <li
                     className='workspace_aside_msg_item'
-                    style={{ paddingLeft: '30px', backgroundColor: channelTargetIndex == index ? '#1164A3' : '' }}
+                    style={{
+                      display: closeChannel && channelTargetIndex != index ? 'none' : 'flex',
+                      paddingLeft: '30px',
+                      backgroundColor: channelTargetIndex == index ? '#1164A3' : ''
+                    }}
                     onClick={() => clickChannelItem(item, index)}
                   >
                     #<span style={{ marginLeft: '10px' }}>{item}</span>
@@ -159,6 +168,9 @@ export default function Aside(props: any) {
               plusCallback={() => {
                 if (openMemberCard) openMemberCard()
               }}
+              arrowCallback={() => {
+                changeCloseMember(!closeMember)
+              }}
             />
             <ul style={{ marginTop: '10px' }}>
               {/* 私信队列 */}
@@ -182,7 +194,12 @@ export default function Aside(props: any) {
                 ].map((item, index) => (
                   <li
                     className='workspace_aside_msg_item'
-                    style={{ paddingLeft: '20px', position: 'relative', backgroundColor: memberTargetIndex == index ? '#1164A3' : '' }}
+                    style={{
+                      paddingLeft: '20px',
+                      position: 'relative',
+                      backgroundColor: memberTargetIndex == index ? '#1164A3' : '',
+                      display: closeMember && memberTargetIndex != index ? 'none' : 'flex',
+                    }}
                     onClick={() => clickMemberItem(item, index)}
                   >
                     <UserAvatar
