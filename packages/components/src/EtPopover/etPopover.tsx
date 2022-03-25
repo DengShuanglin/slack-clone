@@ -8,10 +8,11 @@ export interface IEtPopoverProps {
   placement?: 'bottom' | 'left' | 'right' | 'top'
   style?: React.CSSProperties
   children?: ReactNode
+  width?: string
 }
 
 const EtPopover: React.FC<IEtPopoverProps> = (props: IEtPopoverProps) => {
-  const { trigger, title, content, placement, style, children } = props
+  const { trigger, title, content, placement, style, children, width } = props
   const contentList = content as Array<any>
 
   // 设置默认over状态
@@ -36,7 +37,8 @@ const EtPopover: React.FC<IEtPopoverProps> = (props: IEtPopoverProps) => {
         <div
           className='popover-content'
           style={{
-            display: isMouseOn ? 'block' : 'none'
+            display: isMouseOn ? 'block' : 'none',
+            width: width
           }}
         >
           <div className='popover-title'>{title}</div>
@@ -58,7 +60,8 @@ const EtPopover: React.FC<IEtPopoverProps> = (props: IEtPopoverProps) => {
 }
 
 EtPopover.defaultProps = {
-  trigger: 'click'
+  trigger: 'click',
+  width: '360px'
 }
 
 export default EtPopover
