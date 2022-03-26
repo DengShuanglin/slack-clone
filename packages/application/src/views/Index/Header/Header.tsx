@@ -20,6 +20,7 @@ export default function Header() {
   const [isShowAvatarPop, setShowAvatarPop] = useState(false)
   const [isShowSearchPop, setShowSearchPop] = useState(false)
   const [isShowFirendReqestPop, setShowFirendRequestPop] = useState(false)
+  const [isShowChangInfoPop, setShowChangeInfoPop] = useState(false)
 
   useEffect(() => {
     if (searchParams.email.trim().length > 0) {
@@ -220,8 +221,13 @@ export default function Header() {
               {'暂停通知'}
             </div>
             <div className='divider'></div>
-            <div className='top_nav_right_avatar_pop_box_item'>
-              {'个人档案'}
+            <div 
+              className='top_nav_right_avatar_pop_box_item' 
+              onClick={() => {
+                setShowChangeInfoPop(!isShowChangInfoPop)
+                setShowAvatarPop(false)
+              }}>
+              {'修改个人信息'}
             </div>
             <div className='top_nav_right_avatar_pop_box_item'>{'首选项'}</div>
             <div
@@ -310,6 +316,49 @@ export default function Header() {
             <div className='firend_reqest_pop_box_right'>{'已拒绝'}</div>
           </div>
         </div>
+
+        {/* 修改个人信息弹出框 */}
+        <div
+          className='changinfo_pop_box'
+          style={{
+            display: isShowChangInfoPop ? 'flex' : 'none'
+          }}
+        >
+          <div className='firend_reqest_pop_box_title firend_reqest_pop_box_item'>
+            {'修改信息:'}
+            <img
+              className='firend_reqest_pop_box_title_cancle'
+              src='http://cdn.qiniu.shuyuanlab.cn/chahca.png'
+              onClick={() => {
+                setShowChangeInfoPop(false)
+              }}
+            />
+          </div>
+          {/* 修改个人信息 */}
+          <div className='firend_reqest_pop_box_item'>
+            <div className='firend_reqest_pop_box_left'>
+                {"姓名"}
+            </div>
+            <div className='firend_reqest_pop_box_right'>
+             <input type="text" />
+            </div>
+          </div>
+
+          <div className='firend_reqest_pop_box_item'>
+            <div className='firend_reqest_pop_box_left'>
+              {"头像链接"}
+            </div>
+            <div className='firend_reqest_pop_box_right'>
+             <input type="text"/>
+            </div>
+          </div>
+
+          <div style={{'display':'flex','flexDirection':'row','justifyContent':'right','marginRight':'40px','textAlign':'center'}}>
+              <button className='btn'>确定</button>
+              <button className='btn'>取消</button>
+          </div>
+        </div>
+
       </div>
     </div>
   )
