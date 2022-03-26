@@ -12,7 +12,7 @@ import { useAddFriendRequest } from '../../../api/socketRequest'
 export default function Header() {
   const history = useHistory()
   const ctx = useContext(UserContext)
-  // const __ =useAddFriendRequest();
+  const __ = useAddFriendRequest()
   const [searchResult, getSearchResult] = useRequest(searchUserRequest)
   const [searchParams, setSearchParams] = useState({
     email: ''
@@ -27,8 +27,9 @@ export default function Header() {
     }
   }, [searchParams])
 
-  // const [addFriendData,toAddFriend] = __?__:[{},()=>{}];
-  const toAddFriend = () => {}
+  console.log(__)
+  const [addFriendData, toAddFriend] = __ ? __ : [{}, () => {}]
+  // const toAddFriend = () => {}
   const data = [
     { imgUrl: 'http://cdn.qiniu.shuyuanlab.cn/Frame.png', text: 'theme' },
     { imgUrl: 'http://cdn.qiniu.shuyuanlab.cn/Frame.png', text: 'cscs' },
@@ -115,6 +116,7 @@ export default function Header() {
               {searchResult.data.result.map((value) => {
                 return (
                   <div
+                    key={value.id}
                     style={{
                       padding: '2px 6px',
                       display: 'flex',
@@ -144,7 +146,7 @@ export default function Header() {
                         onClickEvent={(e) => {
                           toAddFriend({
                             user_id: ctx.user_id || '',
-                            friend_id: value.id
+                            friend_id: String(value.id)
                           })
                         }}
                         text={'添加为好友'}
@@ -308,7 +310,6 @@ export default function Header() {
             <div className='firend_reqest_pop_box_right'>{'已拒绝'}</div>
           </div>
         </div>
-        
       </div>
     </div>
   )

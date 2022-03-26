@@ -8,5 +8,12 @@ import useRequest from '../utils/request/hooks'
 import { localStorageItemName } from '../utils/request'
 
 export default function IndexRoute() {
-  return <Route path='/index'>{<Index />}</Route>
+  return (
+    <Route
+      path='/index'
+      component={() => {
+        return <Index />
+      }}
+    ></Route>
+  )
 }

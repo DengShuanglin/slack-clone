@@ -44,9 +44,7 @@ export default function SignRegisterRoute() {
   // }, [history.location.pathname])
   if (localStorage.getItem(localStorageItemName.ACCESS_TOKEN) !== null) {
     history.replace('/index')
-    console.log(11)
   }
-  console.log(12)
   return (
     <>
       <Route path='/sign/register'>

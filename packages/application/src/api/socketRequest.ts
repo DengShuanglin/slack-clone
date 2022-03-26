@@ -20,6 +20,7 @@ type AddFriendRequestType = {
 
 export function useAddFriendRequest() {
   const ctx = useContext(SocketHubContext)
+  console.log(ctx)
   if (ctx.socketClient != null) {
     return manualFactory<AddFriendRequestType, SocketDataEntity>(
       ctx.socketClient

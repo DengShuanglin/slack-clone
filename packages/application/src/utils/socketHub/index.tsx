@@ -75,33 +75,37 @@ function SocketHubProvider(props: SocketHubProviderPropsType) {
     }
   }, [cache.socketClient])
 
+  if (cache.socketClient == null) {
+    cache.status = 'beforeReady'
+    cache.socketClient = io(baseURL + userCtx.user_id, {
+      extraHeaders: {
+        Authorization:
+          'Bearer ' + localStorage.getItem(localStorageItemName.ACCESS_TOKEN)
+      },
+      auth: {
+        Authorization:
+          'Bearer ' + localStorage.getItem(localStorageItemName.ACCESS_TOKEN)
+      },
+      autoConnect: false
+    })
+
+    cache.status = 'ready'
+  }
+
   useEffect(() => {
-    if (cache.socketClient == null) {
-      cache.status = 'beforeReady'
-      cache.socketClient = io(baseURL + userCtx.user_id, {
-        extraHeaders: {
-          Authorization:
-            'Bearer ' + localStorage.getItem(localStorageItemName.ACCESS_TOKEN)
-        },
-        auth: {
-          Authorization:
-            'Bearer ' + localStorage.getItem(localStorageItemName.ACCESS_TOKEN)
-        },
-        autoConnect: false
-      })
-      cache.status = 'ready'
+    if (cache.socketClient !== null) {
+      cache.socketClient.removeAllListeners()
+      cache.registerCallback = (eventCallbackKey, eventKey, fn) => {
+        ;[eventCallbackKey].flat(9999999).forEach((value) => {
+          cache.eventCallback[value] = {
+            ...cache.eventCallback[value],
+            [eventKey]: fn
+          }
+        })
+      }
+      cache.status = 'connecting'
+      cache.socketClient.connect()
     }
-    cache.socketClient.removeAllListeners()
-    cache.registerCallback = (eventCallbackKey, eventKey, fn) => {
-      ;[eventCallbackKey].flat(9999999).forEach((value) => {
-        cache.eventCallback[value] = {
-          ...cache.eventCallback[value],
-          [eventKey]: fn
-        }
-      })
-    }
-    cache.status = 'connecting'
-    cache.socketClient.connect()
     return () => {
       cache.status = 'shutdown'
       cache.socketClient?.disconnect()
