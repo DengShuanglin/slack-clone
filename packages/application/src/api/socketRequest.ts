@@ -40,6 +40,19 @@ type ConfirmFriendResponseType = {
   friend_id: string
 }
 
+export function useConfirmFriendRequest() {
+  const ctx = useContext(SocketHubContext)
+  console.log(ctx)
+  if (ctx.socketClient != null) {
+    return manualFactory<
+      AddFriendRequestType,
+      SocketDataEntity<{ friend_id: string; nickname: string; avatar: string }>
+    >(ctx.socketClient)('confirmFriend')
+  } else {
+    return undefined
+  }
+}
+
 export function useConfirmFriendListener() {
   const ctx = useContext(SocketHubContext)
   const ref = useMemo<any>(() => [null, null], [])

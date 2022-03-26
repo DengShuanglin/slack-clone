@@ -18,7 +18,13 @@ function App() {
             }}
           />
           <IndexRoute />
-          <SignRegisterRoute />
+          <Route
+            path={'/sign'}
+            component={() => {
+              return <SignRegisterRoute />
+            }}
+          />
+
           <Redirect from={'/'} to={'/index'} exact={true} />
           {/*<Route path={'*'} component={() => {*/}
           {/*    return <Redirect to={'/notFound'}/>*/}

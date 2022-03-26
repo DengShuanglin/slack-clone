@@ -3,13 +3,19 @@ import Button from '../../../../../components/src/Button/Button'
 import Drop from '../../../../../components/src/Drop/Drop'
 import UserAvatar from '../../../../../components/src/UserAvatar/UserAvatar'
 import AddCard from '../../../../../components/src/AddCard/AddCard'
-import { SetStateAction, useContext, useState } from 'react'
+import { SetStateAction, useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../../store'
 import { useHistory, useParams } from 'react-router-dom'
 
 export default function Aside(props: any) {
   const ctx = useContext(UserContext)
   const history = useHistory()
+  const [_, set_] = useState(0)
+  useEffect(() => {
+    ctx.addRefreshCallback('Aside', () => {
+      set_((e) => e + 1)
+    })
+  }, [])
   const params = useParams<any>()
   const { resizeWidth, openChannelCard, openMemberCard } = props
   const [msgList, changeMsgList] = useState([
@@ -73,27 +79,13 @@ export default function Aside(props: any) {
         <div className='workspace_aside_header_button'>
           <div className='workspace_aside_header_button_info'>
             <Button
-              text='新工作区'
+              text='WorkSpace'
               backgroundColor='#00000000'
               fontWeight={900}
               fontSize={18}
               color='#ffffff'
             />
           </div>
-        </div>
-        <div
-          className='new_massage_btn'
-          onClickCapture={() => (self.location.href = '#/index/new-message')}
-        >
-          <Button
-            show_icon
-            iconString='#icon-shuxie'
-            backgroundColor='#ffffff'
-            iconColor='#3f0e40'
-            iconHeight={24}
-            iconWidth={24}
-            borderRadius='50%'
-          />
         </div>
       </div>
       {/* 消息列表 */}
@@ -129,7 +121,6 @@ export default function Aside(props: any) {
           >
             <Drop
               width='100%'
-              title=''
               title={'频道(' + (ctx.userInfo?.channels.length || 0) + ')'}
               plusCallback={() => {
                 if (openChannelCard) openChannelCard()

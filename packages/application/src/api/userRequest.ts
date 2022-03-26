@@ -31,11 +31,11 @@ type UpdateUserInfoRequestType = {
 }
 
 export function updateUserInfoRequest(
-  params: UpdateUserInfoRequestType
+  data: UpdateUserInfoRequestType
 ): Promise<AxiosResponse<ResponseEntity>> {
   return request.request({
     method: 'put',
-    params,
+    data,
     url: baseURL + '/update'
   })
 }

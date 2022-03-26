@@ -36,7 +36,7 @@ export interface MarkdownInputProps {
   defaultHtml?: string
   loading?: boolean
   onSend?: ({ type, content }: { type: MessageType; content: string }) => void
-  onSaveFile?: (file: Blob) => Promise<string>
+  onSaveFile?: (file: Blob) => string
   onChange?: (html: string) => void
   onFocus?: (html: string) => void
   onBlur?: (html: string) => void
@@ -120,7 +120,7 @@ const MarkdownInput: React.FC<MarkdownInputProps> = (
   /**
    * 图片消息的处理(msgType=1)在editorConfig下的uploadImage对象中
    */
-  const handleSend = async () => {
+  const handleSend = () => {
     let content = ''
     const textContent: string = editor?.getHtml() || ''
 
@@ -130,7 +130,7 @@ const MarkdownInput: React.FC<MarkdownInputProps> = (
     }
     // 音频消息
     if (msgType === 2 && audio) {
-      const res = await props?.onSaveFile?.(audio)
+      const res = props?.onSaveFile?.(audio)
       content = res || ''
     }
 

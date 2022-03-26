@@ -3,6 +3,7 @@ import './ChatBody.css'
 import EtMessage from '../../../../../../../components/src/EtMessage/etMessage'
 import { UserContext } from '../../../../../store'
 import { MessageType } from '../../Pages/NewMessage/NewMessage'
+import { MessageReview } from '@slack-pkg/components'
 
 type ChatBodyPropsType = {
   friend_id: string
@@ -41,21 +42,7 @@ const ChatBody: React.FC<ChatBodyPropsType> = (props: ChatBodyPropsType) => {
                 : ctx.userInfo?.avatar
             }
           >
-            {value.messageType === MessageType.TEXT && (
-              <div dangerouslySetInnerHTML={{ __html: value.content }} />
-            )}
-            {value.messageType === MessageType.AUDIO && (
-              <audio src={value.content} controls={true} />
-            )}
-            {value.messageType === MessageType.PHOTO && (
-              <img
-                src={value.content}
-                alt={value.content}
-                style={{
-                  maxWidth: '100%'
-                }}
-              />
-            )}
+            <MessageReview type={value.messageType} content={value.content} />
           </EtMessage>
         )
       })}

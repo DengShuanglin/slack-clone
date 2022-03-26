@@ -11,7 +11,6 @@ export async function runTest() {
   // });
   // recorder.startRecording();
   // await sleep(3000);
-  //
   // recorder.stopRecording(function () {
   //     let blob = recorder.getBlob();
   //     invokeSaveAsDialog(blob);
@@ -25,7 +24,8 @@ export function useRecordAudio() {
     stream == null
       ? null
       : RecordRTC(stream, {
-          type: 'audio'
+          type: 'audio',
+          mimeType: 'audio/wav'
         })
   )
 

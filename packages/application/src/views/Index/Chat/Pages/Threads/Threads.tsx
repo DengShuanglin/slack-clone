@@ -73,8 +73,6 @@ export default function Threads() {
           })
         }}
       />
-
-      {/* <MessageReview type={0} content={temp1} /> */}
     </div>
   )
 }

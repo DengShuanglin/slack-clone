@@ -6,13 +6,40 @@ import EtPopover from '../../../../../components/src/EtPopover/etPopover'
 import { useHistory } from 'react-router-dom'
 import { UserContext } from '../../../store'
 import useRequest from '../../../utils/request/hooks'
-import { searchUserRequest } from '../../../api/userRequest'
-import { useAddFriendRequest } from '../../../api/socketRequest'
+import {
+  getUserInfoRequest,
+  searchUserRequest,
+  updateUserInfoRequest
+} from '../../../api/userRequest'
+import {
+  useAddFriendRequest,
+  useConfirmFriendRequest
+} from '../../../api/socketRequest'
+import manualFactory from '../../../utils/socketHub/hooks'
 
 export default function Header() {
   const history = useHistory()
+  const [_, set_] = useState(0)
   const ctx = useContext(UserContext)
+  const [updateUserInfo, setUpdateUserInfo] = useState<{
+    nickname: string
+    avatar: string
+  }>({
+    nickname: ctx.userInfo?.nickname || '',
+    avatar: ctx.userInfo?.avatar || ''
+  })
+  const [updateUserInfoResult, getUpdateUserInfoResult] = useRequest(
+    updateUserInfoRequest
+  )
+  useEffect(() => {
+    if (updateUserInfoResult.state === 'finish') {
+      getUserInfoRequest().then((res) => {
+        ctx.setUserData(res.data.result)
+      })
+    }
+  }, [updateUserInfoResult])
   const __ = useAddFriendRequest()
+  const ___ = useConfirmFriendRequest()
   const [searchResult, getSearchResult] = useRequest(searchUserRequest)
   const [searchParams, setSearchParams] = useState({
     email: ''
@@ -27,9 +54,31 @@ export default function Header() {
       getSearchResult(searchParams)
     }
   }, [searchParams])
+  useEffect(() => {
+    ctx.addRefreshCallback('Header', () => {
+      set_((e) => e + 1)
+    })
+  }, [])
 
   console.log(__)
   const [addFriendData, toAddFriend] = __ ? __ : [{}, () => {}]
+  const [confirmFriendData, toConfirmFriend] = ___ ? ___ : [{}, () => {}]
+
+  useEffect(() => {
+    if (addFriendData.status === 'finish') {
+      getUserInfoRequest().then((res) => {
+        ctx.setUserData(res.data.result)
+      })
+    }
+  }, [addFriendData])
+  useEffect(() => {
+    if (confirmFriendData.status === 'finish') {
+      getUserInfoRequest().then((res) => {
+        ctx.setUserData(res.data.result)
+      })
+    }
+  }, [confirmFriendData])
+
   // const toAddFriend = () => {}
   const data = [
     { imgUrl: 'http://cdn.qiniu.shuyuanlab.cn/Frame.png', text: 'theme' },
@@ -186,6 +235,9 @@ export default function Header() {
       <div className='top_nav_right'>
         <div className='top_nav_right_help'>
           <Button
+            onClickEvent={(e) => {
+              window.open('/notFound')
+            }}
             show_icon
             iconString='#icon-kongxinwenhao'
             iconWidth={20}
@@ -221,7 +273,7 @@ export default function Header() {
             <div className='top_nav_right_avatar_pop_box_uerinfo'>
               <img id='avatar' src={ctx.userInfo?.avatar} alt='' />
               <div className='top_nav_right_avatar_pop_box_uerinfo_right'>
-                <div id='user_name'>{'wangyuyang0313'}</div>
+                <div id='user_name'>{ctx.userInfo?.nickname || ''}</div>
                 <div id='status'>
                   <img src='http://cdn.qiniu.shuyuanlab.cn/6.png' />
                   {'在线'}
@@ -251,7 +303,7 @@ export default function Header() {
             >
               {'修改个人信息'}
             </div>
-            <div className='top_nav_right_avatar_pop_box_item'>{'首选项'}</div>
+            {/*<div className='top_nav_right_avatar_pop_box_item'>{'首选项'}</div>*/}
             <div
               className='top_nav_right_avatar_pop_box_item'
               onClick={() => {
@@ -292,23 +344,35 @@ export default function Header() {
             />
           </div>
           {/* 好友申请信息 */}
-          <div className='firend_reqest_pop_box_item'>
-            <div className='firend_reqest_pop_box_left'>
-              <UserAvatar
-                status='offline'
-                avatarUrl='http://cdn.qiniu.shuyuanlab.cn/avatar.png'
-                borderRadius={4}
-                width={26}
-                height={26}
-              />
-              <div className='firend_reqest_pop_box_name'>{'mingzi'}</div>
-            </div>
-            <div className='firend_reqest_pop_box_right'>
-              <a>{'同意'}</a>
-              &nbsp;&nbsp;
-              <a>{'拒绝'}</a>
-            </div>
-          </div>
+          {[].map(() => {
+            toConfirmFriend
+            return (
+              <div className='firend_reqest_pop_box_item'>
+                <div className='firend_reqest_pop_box_left'>
+                  <UserAvatar
+                    status='offline'
+                    avatarUrl='http://cdn.qiniu.shuyuanlab.cn/avatar.png'
+                    borderRadius={4}
+                    width={26}
+                    height={26}
+                  />
+                  <div className='firend_reqest_pop_box_name'>{'mingzi'}</div>
+                </div>
+                <div className='firend_reqest_pop_box_right'>
+                  <a
+                    onClick={() => {
+                      toConfirmFriend({
+                        user_id: ctx.user_id || '',
+                        friend_id: ''
+                      })
+                    }}
+                  >
+                    {'同意'}
+                  </a>
+                </div>
+              </div>
+            )
+          })}
 
           <div className='firend_reqest_pop_box_item'>
             <div className='firend_reqest_pop_box_left'>
@@ -360,14 +424,36 @@ export default function Header() {
           <div className='firend_reqest_pop_box_item'>
             <div className='firend_reqest_pop_box_left'>{'姓名'}</div>
             <div className='firend_reqest_pop_box_right'>
-              <input type='text' />
+              <input
+                type='text'
+                value={updateUserInfo.nickname}
+                onChange={(e) => {
+                  setUpdateUserInfo((data) => {
+                    return {
+                      ...data,
+                      nickname: e.target.value
+                    }
+                  })
+                }}
+              />
             </div>
           </div>
 
           <div className='firend_reqest_pop_box_item'>
             <div className='firend_reqest_pop_box_left'>{'头像链接'}</div>
             <div className='firend_reqest_pop_box_right'>
-              <input type='text' />
+              <input
+                type='text'
+                value={updateUserInfo.avatar}
+                onChange={(e) => {
+                  setUpdateUserInfo((data) => {
+                    return {
+                      ...data,
+                      avatar: e.target.value
+                    }
+                  })
+                }}
+              />
             </div>
           </div>
 
@@ -380,8 +466,27 @@ export default function Header() {
               textAlign: 'center'
             }}
           >
-            <button className='btn'>确定</button>
-            <button className='btn'>取消</button>
+            <button
+              className='btn'
+              onClick={() => {
+                setShowChangeInfoPop(false)
+                getUpdateUserInfoResult(updateUserInfo)
+              }}
+            >
+              确定
+            </button>
+            <button
+              className='btn'
+              onClick={() => {
+                setShowChangeInfoPop(false)
+                setUpdateUserInfo({
+                  avatar: ctx.userInfo?.avatar || '',
+                  nickname: ctx.userInfo?.nickname || ''
+                })
+              }}
+            >
+              取消
+            </button>
           </div>
         </div>
       </div>
