@@ -1,3 +1,5 @@
+import { CSSProperties } from 'react'
+
 export interface buttonProps {
   text?: string
   backgroundColor?: string
@@ -5,6 +7,7 @@ export interface buttonProps {
   width?: string | number
   height?: string | number
   color?: string
+  style?: CSSProperties
   borderRadius?: string | number
   show_icon?: boolean
   fontSize?: string | number

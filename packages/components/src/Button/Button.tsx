@@ -15,6 +15,7 @@ export function Button(props: buttonProps) {
     fontWeight,
     onClickEvent,
     iconString,
+    style,
     iconWidth,
     iconHeight,
     iconColor
@@ -34,7 +35,8 @@ export function Button(props: buttonProps) {
         color: color,
         borderRadius: borderRadius,
         fontSize: fontSize,
-        fontWeight: fontWeight
+        fontWeight: fontWeight,
+        ...style
       }}
     >
       <svg

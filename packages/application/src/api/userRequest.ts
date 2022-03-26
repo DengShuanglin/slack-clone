@@ -39,3 +39,24 @@ export function updateUserInfoRequest(
     url: baseURL + '/update'
   })
 }
+
+export function searchUserRequest(params: { email: string }): Promise<
+  AxiosResponse<
+    ResponseEntity<
+      [
+        {
+          id: string
+          email: string
+          nickname: string
+          avatar: string
+        }
+      ]
+    >
+  >
+> {
+  return request.request({
+    method: 'get',
+    params,
+    url: baseURL + '/search'
+  })
+}

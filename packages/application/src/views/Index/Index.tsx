@@ -9,9 +9,41 @@ import { useContext, useState, useEffect } from 'react'
 import SocketHubProvider from '../../utils/socketHub'
 import { UserContext } from '../../store'
 import { useFriendMessageRequest } from '../../api/socketRequest'
+import { useHistory } from 'react-router-dom'
+import useRequest from '../../utils/request/hooks'
+import { getUserInfoRequest } from '../../api/userRequest'
+import { localStorageItemName } from '../../utils/request'
 
 export default function Index() {
   const ctx = useContext(UserContext)
+
+  const history = useHistory()
+  const [_, set_] = useState(0)
+  const [data, getData] = useRequest(getUserInfoRequest)
+  useEffect(() => {
+    ctx.addRefreshCallback('IndexRoute', () => {
+      set_(_ + 1)
+    })
+    getData({})
+    return () => {
+      delete ctx.callbackMap['IndexRoute']
+    }
+  }, [])
+  useEffect(() => {
+    if (data.state === 'finish') {
+      if (data.data !== undefined) {
+        ctx.setUserData(data.data.result)
+      } else {
+        ctx.setUserData()
+        history.push('/sign/signin')
+      }
+    }
+    if (data.state === 'error') {
+      ctx.setUserData()
+      history.push('/sign/signin')
+    }
+  }, [data.state])
+
   const [resizeWidth, changeResizeWidth] = useState(215)
   const [isResize, changeIsResize] = useState(false)
   const [channelName, changeChannelName] = useState('')
@@ -22,6 +54,7 @@ export default function Index() {
   const [openAddChannelCard, changeOpenAddChannelCard] = useState(false)
   const [openInviteNewMemberCard, changeOpenInviteNewMemberCard] =
     useState(false)
+
   // const a = useFriendMessageRequest()
   // if (a != undefined) {
   //   a[1]({
@@ -83,6 +116,11 @@ export default function Index() {
     console.log(newMemberEmail)
   }
 
+  if (localStorage.getItem(localStorageItemName.ACCESS_TOKEN) === null) {
+    history.push('/sign/signin')
+    return null
+  }
+  if (ctx.user_id === undefined) return null
   return (
     <div
       className='index_container'

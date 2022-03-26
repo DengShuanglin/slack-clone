@@ -3,12 +3,14 @@ import '../style/index.css'
 import { Input, Button } from '@slack-pkg/components'
 import useRequest from '../../../utils/request/hooks'
 import { getLoginCaptchaRequest, loginRequest } from '../../../api/authRequest'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { localStorageItemName } from '../../../utils/request'
 import { useHistory } from 'react-router-dom'
+import { UserContext } from '../../../store'
 
 export default function SignIn() {
   const history = useHistory()
+  const ctx = useContext(UserContext)
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -41,6 +43,7 @@ export default function SignIn() {
           localStorageItemName.REFRESH_TOKEN,
           data.data.result.refresh_token
         )
+        ctx?.refresh?.()
         history.push('/index')
       }
     }

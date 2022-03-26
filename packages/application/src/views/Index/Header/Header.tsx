@@ -1,15 +1,33 @@
 import './Header.css'
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Button from '../../../../../components/src/Button/Button'
 import UserAvatar from '../../../../../components/src/UserAvatar/UserAvatar'
 import EtPopover from '../../../../../components/src/EtPopover/etPopover'
 import { useHistory } from 'react-router-dom'
+import { UserContext } from '../../../store'
+import useRequest from '../../../utils/request/hooks'
+import { searchUserRequest } from '../../../api/userRequest'
+import { useAddFriendRequest } from '../../../api/socketRequest'
 
 export default function Header() {
   const history = useHistory()
+  const ctx = useContext(UserContext)
+  // const __ =useAddFriendRequest();
+  const [searchResult, getSearchResult] = useRequest(searchUserRequest)
+  const [searchParams, setSearchParams] = useState({
+    email: ''
+  })
   const [isShowAvatarPop, setShowAvatarPop] = useState(false)
   const [isShowSearchPop, setShowSearchPop] = useState(false)
 
+  useEffect(() => {
+    if (searchParams.email.trim().length > 0) {
+      getSearchResult(searchParams)
+    }
+  }, [searchParams])
+
+  // const [addFriendData,toAddFriend] = __?__:[{},()=>{}];
+  const toAddFriend = () => {}
   const data = [
     { imgUrl: 'http://cdn.qiniu.shuyuanlab.cn/Frame.png', text: 'theme' },
     { imgUrl: 'http://cdn.qiniu.shuyuanlab.cn/Frame.png', text: 'cscs' },
@@ -46,7 +64,8 @@ export default function Header() {
             color='#ffffff'
             backgroundColor='#00000000'
             height='100%'
-            text='搜索 新工作区'
+            fontSize={'16px'}
+            text='搜索'
           />
         </div>
         {/* 搜索弹出框 */}
@@ -62,7 +81,16 @@ export default function Header() {
               id='search_icon'
               src='http://cdn.qiniu.shuyuanlab.cn/search.png'
             />
-            <input type='text' placeholder='搜索' />
+            <input
+              type='text'
+              placeholder='搜索'
+              value={searchParams.email}
+              onChange={(e) => {
+                setSearchParams({
+                  email: e.target.value
+                })
+              }}
+            />
             <img
               id='cancel_icon'
               src='http://cdn.qiniu.shuyuanlab.cn/chahca.png'
@@ -73,19 +101,61 @@ export default function Header() {
           </div>
           <div className='divider'></div>
           {/* 无搜索结果占位 */}
-          <div className='search_result_empt'>
-            <div className=''>
-              <b>{'搜索消息、文件等'}</b>
-              <br />
-              {'查找特定消息、文档或决策？如果是在 Slack 中，'}
-              <br />
-              {'你可以在搜索中找到它。'}
+          {!searchResult?.data?.result && (
+            <div className='search_result_empt'>
+              <div className=''>
+                <b>{'搜索联系人'}</b>
+              </div>
             </div>
-          </div>
+          )}
           {/* 搜索结果列表 */}
-          {/* <div className='search_result_box'>
+          {searchResult?.data?.result && (
+            <div className='search_result_box'>
+              {searchResult.data.result.map((value) => {
+                return (
+                  <div
+                    style={{
+                      padding: '2px 6px',
+                      display: 'flex',
+                      'flex-wrap': 'nowrap',
+                      'align-content': 'center',
+                      'justify-content': 'flex - start',
+                      'align-items': 'center'
+                    }}
+                  >
+                    <UserAvatar
+                      status='offline'
+                      avatarUrl={value.avatar || ''}
+                      borderRadius={4}
+                      width={26}
+                      height={26}
+                    />
+                    <span style={{ padding: '0 16px' }}>{value.nickname}</span>
 
-          </div> */}
+                    <div
+                      style={{
+                        flex: 'auto',
+                        textAlign: 'right'
+                      }}
+                    >
+                      <Button
+                        borderRadius='50%'
+                        onClickEvent={(e) => {
+                          toAddFriend({
+                            user_id: ctx.user_id || '',
+                            friend_id: value.id
+                          })
+                        }}
+                        text={'添加为好友'}
+                        fontSize={'16px'}
+                        backgroundColor='#00000000'
+                      />
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          )}
         </div>
       </div>
       <div className='top_nav_right'>
@@ -108,7 +178,7 @@ export default function Header() {
           <UserAvatar
             avatarCallback={() => console.log('avatar')}
             status='online'
-            avatarUrl='https://img1.baidu.com/it/u=3702625202,3169032464&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500'
+            avatarUrl={ctx.userInfo?.avatar || ''}
             borderRadius={4}
             width={26}
             height={26}
@@ -124,11 +194,7 @@ export default function Header() {
         >
           <div className='top_nav_right_avatar_pop_box'>
             <div className='top_nav_right_avatar_pop_box_uerinfo'>
-              <img
-                id='avatar'
-                src='https://img1.baidu.com/it/u=3702625202,3169032464&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500'
-                alt=''
-              />
+              <img id='avatar' src={ctx.userInfo?.avatar} alt='' />
               <div className='top_nav_right_avatar_pop_box_uerinfo_right'>
                 <div id='user_name'>{'wangyuyang0313'}</div>
                 <div id='status'>
