@@ -67,7 +67,16 @@ type JoinFriendSocketRequestType = {
   friend_id: string
 }
 
-type JoinFriendSocketResponseType = { friend_id: string; user_id: string }
+type JoinFriendSocketResponseType = {
+  friend_id: string
+  user_id: string
+  msgs: Array<{
+    messageType: MessageType
+    content: string
+    time: number
+    user_id: string
+  }>
+}
 
 export function useJoinFriendSocketRequest() {
   const ctx = useContext(SocketHubContext)
@@ -105,9 +114,11 @@ export function useFriendMessageRequest() {
     return undefined
   }
 }
-export function useFriendMessageListener() {
+export function useFriendMessageListener(callback: Function) {
   const ctx = useContext(SocketHubContext)
-  const ref = useMemo<any>(() => [null, null], [])
+  const ref = useRef<
+    SocketDataEntity<FriendMessage & { time: string }> | undefined
+  >(undefined)
   const [_, set_] = useState(0)
   useEffect(() => {
     ctx.eventCallback['friendMessage'] = {
@@ -116,13 +127,11 @@ export function useFriendMessageListener() {
         data: SocketDataEntity<FriendMessage & { time: string }>,
         fn: Function
       ) => {
-        ref[0] = data
-        ref[1] = (result: FriendMessage) => {
-          fn(result)
-        }
+        ref.current = data
         set_(_ + 1)
+        callback?.(data)
       }
     }
   }, [])
-  return ref
+  return ref.current
 }

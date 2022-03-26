@@ -19,7 +19,7 @@ export default function Header() {
   })
   const [isShowAvatarPop, setShowAvatarPop] = useState(false)
   const [isShowSearchPop, setShowSearchPop] = useState(false)
-  const [isShowFirendReqestPop, setShowFirendRequestPop] = useState(false)
+  const [isShowFriendRequestPop, setShowFriendRequestPop] = useState(false)
   const [isShowChangInfoPop, setShowChangeInfoPop] = useState(false)
 
   useEffect(() => {
@@ -37,6 +37,9 @@ export default function Header() {
     { imgUrl: 'http://cdn.qiniu.shuyuanlab.cn/Frame.png', text: '全体' },
     { imgUrl: 'http://cdn.qiniu.shuyuanlab.cn/Frame.png', text: '随机' }
   ]
+  // @ts-ignore
+  // @ts-ignore
+  // @ts-ignore
   return (
     <div className='index_top_nav'>
       <div className='top_nav_sidebar'>
@@ -119,12 +122,12 @@ export default function Header() {
                   <div
                     key={value.id}
                     style={{
-                      padding: '2px 6px',
+                      padding: '2px 6px 7px 10px',
                       display: 'flex',
-                      'flex-wrap': 'nowrap',
-                      'align-content': 'center',
-                      'justify-content': 'flex - start',
-                      'align-items': 'center'
+                      flexWrap: 'nowrap',
+                      alignContent: 'center',
+                      justifyContent: 'flex - start',
+                      alignItems: 'center'
                     }}
                   >
                     <UserAvatar
@@ -160,6 +163,24 @@ export default function Header() {
               })}
             </div>
           )}
+          {
+            //@ts-ignore
+            (!searchResult?.data?.result ||
+              (searchResult?.data?.result?.length || 0) === 0) && (
+              <div
+                style={{
+                  padding: '2px 6px 7px 10px',
+                  display: 'flex',
+                  flexWrap: 'nowrap',
+                  alignContent: 'center',
+                  justifyContent: 'flex - start',
+                  alignItems: 'center'
+                }}
+              >
+                暂无搜索结果哦
+              </div>
+            )
+          }
         </div>
       </div>
       <div className='top_nav_right'>
@@ -221,20 +242,21 @@ export default function Header() {
               {'暂停通知'}
             </div>
             <div className='divider'></div>
-            <div 
-              className='top_nav_right_avatar_pop_box_item' 
+            <div
+              className='top_nav_right_avatar_pop_box_item'
               onClick={() => {
                 setShowChangeInfoPop(!isShowChangInfoPop)
                 setShowAvatarPop(false)
-              }}>
+              }}
+            >
               {'修改个人信息'}
             </div>
             <div className='top_nav_right_avatar_pop_box_item'>{'首选项'}</div>
             <div
               className='top_nav_right_avatar_pop_box_item'
               onClick={() => {
-                setShowFirendRequestPop(!isShowFirendReqestPop)
-                console.log(isShowFirendReqestPop)
+                setShowFriendRequestPop(!isShowFriendRequestPop)
+                console.log(isShowFriendRequestPop)
                 setShowAvatarPop(false)
               }}
             >
@@ -256,7 +278,7 @@ export default function Header() {
         <div
           className='firend_reqest_pop_box'
           style={{
-            display: isShowFirendReqestPop ? 'flex' : 'none'
+            display: isShowFriendRequestPop ? 'flex' : 'none'
           }}
         >
           <div className='firend_reqest_pop_box_title firend_reqest_pop_box_item'>
@@ -265,7 +287,7 @@ export default function Header() {
               className='firend_reqest_pop_box_title_cancle'
               src='http://cdn.qiniu.shuyuanlab.cn/chahca.png'
               onClick={() => {
-                setShowFirendRequestPop(false)
+                setShowFriendRequestPop(false)
               }}
             />
           </div>
@@ -336,29 +358,32 @@ export default function Header() {
           </div>
           {/* 修改个人信息 */}
           <div className='firend_reqest_pop_box_item'>
-            <div className='firend_reqest_pop_box_left'>
-                {"姓名"}
-            </div>
+            <div className='firend_reqest_pop_box_left'>{'姓名'}</div>
             <div className='firend_reqest_pop_box_right'>
-             <input type="text" />
+              <input type='text' />
             </div>
           </div>
 
           <div className='firend_reqest_pop_box_item'>
-            <div className='firend_reqest_pop_box_left'>
-              {"头像链接"}
-            </div>
+            <div className='firend_reqest_pop_box_left'>{'头像链接'}</div>
             <div className='firend_reqest_pop_box_right'>
-             <input type="text"/>
+              <input type='text' />
             </div>
           </div>
 
-          <div style={{'display':'flex','flexDirection':'row','justifyContent':'right','marginRight':'40px','textAlign':'center'}}>
-              <button className='btn'>确定</button>
-              <button className='btn'>取消</button>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'right',
+              marginRight: '40px',
+              textAlign: 'center'
+            }}
+          >
+            <button className='btn'>确定</button>
+            <button className='btn'>取消</button>
           </div>
         </div>
-
       </div>
     </div>
   )

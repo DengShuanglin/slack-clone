@@ -30,7 +30,7 @@ export default function MemberChat() {
     <div className='main_chat_contents'>
       <ChatHeader title='# 频道名称' />
       <MemberChatInfo UserName='UserName' />
-      <ChatBody />
+      <ChatBody friend_id={''} />
       <MarkdownInput
         onSend={({ type, content }) => {
           if (ctx.user_id !== undefined && params.id !== undefined) {

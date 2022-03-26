@@ -60,3 +60,16 @@ export function searchUserRequest(params: { email: string }): Promise<
     url: baseURL + '/search'
   })
 }
+
+export function uploadFileRequest(
+  data: FormData
+): Promise<AxiosResponse<ResponseEntity<string>>> {
+  return request.request({
+    method: 'post',
+    data,
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    },
+    url: '/friend/upload'
+  })
+}

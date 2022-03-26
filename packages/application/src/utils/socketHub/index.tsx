@@ -78,6 +78,10 @@ function SocketHubProvider(props: SocketHubProviderPropsType) {
   if (cache.socketClient == null) {
     cache.status = 'beforeReady'
     cache.socketClient = io(baseURL + userCtx.user_id, {
+      query: {
+        Authorization:
+          'Bearer ' + localStorage.getItem(localStorageItemName.ACCESS_TOKEN)
+      },
       extraHeaders: {
         Authorization:
           'Bearer ' + localStorage.getItem(localStorageItemName.ACCESS_TOKEN)
