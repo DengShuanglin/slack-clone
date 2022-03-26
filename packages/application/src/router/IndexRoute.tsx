@@ -14,6 +14,6 @@ export default function IndexRoute() {
       component={() => {
         return <Index />
       }}
-    ></Route>
+    />
   )
 }

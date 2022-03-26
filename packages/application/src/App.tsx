@@ -11,13 +11,19 @@ function App() {
     <div className='App'>
       <UserContextProvider>
         <BrowserRouter>
+          <Route
+            path={'/notFound'}
+            component={() => {
+              return <NotFound />
+            }}
+          />
           <IndexRoute />
           <SignRegisterRoute />
-          {/*<Route component={NotFound}/>*/}
-          {/*<Redirect path='/'*/}
-
-          {/*          to={localStorage.getItem(localStorageItemName.ACCESS_TOKEN) ? '/sign/signin' : '/index'}*/}
-          {/*          exact={true}/>*/}
+          <Redirect from={'/'} to={'/index'} exact={true} />
+          {/*<Route path={'*'} component={() => {*/}
+          {/*    return <Redirect to={'/notFound'}/>*/}
+          {/*}}>*/}
+          {/*</Route>*/}
         </BrowserRouter>
       </UserContextProvider>
     </div>
