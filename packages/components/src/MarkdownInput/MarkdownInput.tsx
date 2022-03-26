@@ -89,7 +89,6 @@ const MarkdownInput: React.FC<MarkdownInputProps> = (
       '|',
       'emotion',
       'uploadImage'
-      // 'audio'
     ]
   }
 
@@ -97,15 +96,12 @@ const MarkdownInput: React.FC<MarkdownInputProps> = (
     placeholder: '请输入内容...',
     MENU_CONF: {
       uploadImage: {
-        customInsert(res: any, insertFn: any) {
-          // TODO: 调用上传文件接口, 设置msgType为1, 调用onSend回调
-          // res 即服务端的返回结果
-          console.log(res)
-          props?.onSaveFile?.(res)
-
-          onSend && onSend({ type: 1, content: res })
-          // 从 res 中找到 url alt href ，然后插图图片
-          // insertFn(url, alt, href)
+        server: '/api/friend/upload',
+        fieldName: 'img',
+        allowedFileTypes: ['image/*'],
+        timeout: 10000,
+        customInsert(res: any) {
+          onSend && onSend({ type: 1, content: res.result })
         }
       }
     },
@@ -133,10 +129,9 @@ const MarkdownInput: React.FC<MarkdownInputProps> = (
       content = textContent
     }
     // 音频消息
-    if (msgType === 2) {
-      // TODO: 调用上传文件接口
-      const url = ''
-      content = url
+    if (msgType === 2 && audio) {
+      const res = props?.onSaveFile?.(audio)
+      content = res || ''
     }
 
     if (onSend && content !== '') {
