@@ -19,6 +19,7 @@ export default function Header() {
   })
   const [isShowAvatarPop, setShowAvatarPop] = useState(false)
   const [isShowSearchPop, setShowSearchPop] = useState(false)
+  const [isShowFirendReqestPop, setShowFirendRequestPop] = useState(false)
 
   useEffect(() => {
     if (searchParams.email.trim().length > 0) {
@@ -221,6 +222,16 @@ export default function Header() {
               {'个人档案'}
             </div>
             <div className='top_nav_right_avatar_pop_box_item'>{'首选项'}</div>
+            <div
+              className='top_nav_right_avatar_pop_box_item'
+              onClick={() => {
+                setShowFirendRequestPop(!isShowFirendReqestPop)
+                console.log(isShowFirendReqestPop)
+                setShowAvatarPop(false)
+              }}
+            >
+              {'好友申请'}
+            </div>
             <div className='divider'></div>
             <div
               className='top_nav_right_avatar_pop_box_item'
@@ -233,6 +244,71 @@ export default function Header() {
             </div>
           </div>
         </div>
+        {/* 好友申请弹出框 */}
+        <div
+          className='firend_reqest_pop_box'
+          style={{
+            display: isShowFirendReqestPop ? 'flex' : 'none'
+          }}
+        >
+          <div className='firend_reqest_pop_box_title firend_reqest_pop_box_item'>
+            {'好友申请:'}
+            <img
+              className='firend_reqest_pop_box_title_cancle'
+              src='http://cdn.qiniu.shuyuanlab.cn/chahca.png'
+              onClick={() => {
+                setShowFirendRequestPop(false)
+              }}
+            />
+          </div>
+          {/* 好友申请信息 */}
+          <div className='firend_reqest_pop_box_item'>
+            <div className='firend_reqest_pop_box_left'>
+              <UserAvatar
+                status='offline'
+                avatarUrl='http://cdn.qiniu.shuyuanlab.cn/avatar.png'
+                borderRadius={4}
+                width={26}
+                height={26}
+              />
+              <div className='firend_reqest_pop_box_name'>{'mingzi'}</div>
+            </div>
+            <div className='firend_reqest_pop_box_right'>
+              <a>{'同意'}</a>
+              &nbsp;&nbsp;
+              <a>{'拒绝'}</a>
+            </div>
+          </div>
+
+          <div className='firend_reqest_pop_box_item'>
+            <div className='firend_reqest_pop_box_left'>
+              <UserAvatar
+                status='offline'
+                avatarUrl='http://cdn.qiniu.shuyuanlab.cn/avatar.png'
+                borderRadius={4}
+                width={26}
+                height={26}
+              />
+              <div className='firend_reqest_pop_box_name'>{'mingzi'}</div>
+            </div>
+            <div className='firend_reqest_pop_box_right'>{'已同意'}</div>
+          </div>
+
+          <div className='firend_reqest_pop_box_item'>
+            <div className='firend_reqest_pop_box_left'>
+              <UserAvatar
+                status='offline'
+                avatarUrl='http://cdn.qiniu.shuyuanlab.cn/avatar.png'
+                borderRadius={4}
+                width={26}
+                height={26}
+              />
+              <div className='firend_reqest_pop_box_name'>{'mingzi'}</div>
+            </div>
+            <div className='firend_reqest_pop_box_right'>{'已拒绝'}</div>
+          </div>
+        </div>
+        
       </div>
     </div>
   )
