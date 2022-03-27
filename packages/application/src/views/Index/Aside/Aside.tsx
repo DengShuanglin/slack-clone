@@ -229,12 +229,12 @@ export default function Aside(props: any) {
                     if (openMemberCard) openMemberCard()
                   }}
                 >
-                  {/*<div className='workspace_add_msg_item'>*/}
-                  {/*  <svg className='icon' aria-hidden='true'>*/}
-                  {/*    <use xlinkHref='#icon-plus'></use>*/}
-                  {/*  </svg>*/}
-                  {/*</div>*/}
-                  {/*<span style={{ marginLeft: '10px' }}>添加团队成员</span>*/}
+                  <div className='workspace_add_msg_item'>
+                    <svg className='icon' aria-hidden='true'>
+                      <use xlinkHref='#icon-plus'></use>
+                    </svg>
+                  </div>
+                  <span style={{ marginLeft: '10px' }}>添加团队成员</span>
                 </li>
               </ul>
             )}

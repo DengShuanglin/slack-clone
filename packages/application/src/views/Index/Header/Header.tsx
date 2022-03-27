@@ -1,6 +1,7 @@
 import './Header.css'
 import React, { useContext, useEffect, useState } from 'react'
 import Button from '../../../../../components/src/Button/Button'
+import Input from '../../../../../components/src/Input/Input'
 import UserAvatar from '../../../../../components/src/UserAvatar/UserAvatar'
 import EtPopover from '../../../../../components/src/EtPopover/etPopover'
 import { useHistory } from 'react-router-dom'
@@ -329,168 +330,182 @@ export default function Header(props: any) {
           </div>
         </div>
         {/* 好友申请弹出框 */}
-        <div
-          className='firend_reqest_pop_box'
-          style={{
-            display: isShowFriendRequestPop ? 'flex' : 'none'
-          }}
-        >
-          <div className='firend_reqest_pop_box_title firend_reqest_pop_box_item'>
-            {'好友申请:'}
-            <img
-              className='firend_reqest_pop_box_title_cancle'
-              src='http://cdn.qiniu.shuyuanlab.cn/chahca.png'
-              onClick={() => {
-                setShowFriendRequestPop(false)
-              }}
-            />
-          </div>
-          {/* 好友申请信息 */}
-          {[].map(() => {
-            toConfirmFriend
-            return (
-              <div className='firend_reqest_pop_box_item'>
-                <div className='firend_reqest_pop_box_left'>
-                  <UserAvatar
-                    status='offline'
-                    avatarUrl='http://cdn.qiniu.shuyuanlab.cn/avatar.png'
-                    borderRadius={4}
-                    width={26}
-                    height={26}
-                  />
-                  <div className='firend_reqest_pop_box_name'>{'mingzi'}</div>
+        <div className='friend_card_container' style={{
+          display: isShowFriendRequestPop ? 'flex' : 'none'
+        }}>
+          <div className='firend_reqest_pop_box'>
+            <div className='firend_reqest_pop_box_title firend_reqest_pop_box_item'>
+              {'好友申请'}
+              <img
+                className='firend_reqest_pop_box_title_cancle'
+                src='http://cdn.qiniu.shuyuanlab.cn/chahca.png'
+                onClick={() => {
+                  setShowFriendRequestPop(false)
+                }}
+              />
+            </div>
+            {/* 好友申请信息 */}
+            {[].map(() => {
+              toConfirmFriend
+              return (
+                <div className='firend_reqest_pop_box_item'>
+                  <div className='firend_reqest_pop_box_left'>
+                    <UserAvatar
+                      status='offline'
+                      avatarUrl='http://cdn.qiniu.shuyuanlab.cn/avatar.png'
+                      borderRadius={4}
+                      width={26}
+                      height={26}
+                    />
+                    <div className='firend_reqest_pop_box_name'>{'mingzi'}</div>
+                  </div>
+                  <div className='firend_reqest_pop_box_right firend_reqest_pop_bg'>
+                    <a
+                      onClick={() => {
+                        toConfirmFriend({
+                          user_id: ctx.user_id || '',
+                          friend_id: ''
+                        })
+                      }}
+                    >
+                      {'同意'}
+                    </a>
+                  </div>
                 </div>
-                <div className='firend_reqest_pop_box_right firend_reqest_pop_bg'>
-                  <a
-                    onClick={() => {
-                      toConfirmFriend({
-                        user_id: ctx.user_id || '',
-                        friend_id: ''
-                      })
-                    }}
-                  >
-                    {'同意'}
-                  </a>
-                </div>
+              )
+            })}
+
+            <div className='firend_reqest_pop_box_item'>
+              <div className='firend_reqest_pop_box_left'>
+                <UserAvatar
+                  status='offline'
+                  avatarUrl='http://cdn.qiniu.shuyuanlab.cn/avatar.png'
+                  borderRadius={4}
+                  width={26}
+                  height={26}
+                />
+                <div className='firend_reqest_pop_box_name'>{'mingzi'}</div>
               </div>
-            )
-          })}
-
-          <div className='firend_reqest_pop_box_item'>
-            <div className='firend_reqest_pop_box_left'>
-              <UserAvatar
-                status='offline'
-                avatarUrl='http://cdn.qiniu.shuyuanlab.cn/avatar.png'
-                borderRadius={4}
-                width={26}
-                height={26}
-              />
-              <div className='firend_reqest_pop_box_name'>{'mingzi'}</div>
+              <div className='firend_reqest_pop_box_right firend_reqest_pop_bg'>{'已同意'}</div>
             </div>
-            <div className='firend_reqest_pop_box_right firend_reqest_pop_bg'>{'已同意'}</div>
-          </div>
 
-          <div className='firend_reqest_pop_box_item'>
-            <div className='firend_reqest_pop_box_left'>
-              <UserAvatar
-                status='offline'
-                avatarUrl='http://cdn.qiniu.shuyuanlab.cn/avatar.png'
-                borderRadius={4}
-                width={26}
-                height={26}
-              />
-              <div className='firend_reqest_pop_box_name'>{'mingzi'}</div>
+            <div className='firend_reqest_pop_box_item'>
+              <div className='firend_reqest_pop_box_left'>
+                <UserAvatar
+                  status='offline'
+                  avatarUrl='http://cdn.qiniu.shuyuanlab.cn/avatar.png'
+                  borderRadius={4}
+                  width={26}
+                  height={26}
+                />
+                <div className='firend_reqest_pop_box_name'>{'mingzi'}</div>
+              </div>
+              <div className='firend_reqest_pop_box_right firend_reqest_pop_bg'>{'已拒绝'}</div>
             </div>
-            <div className='firend_reqest_pop_box_right firend_reqest_pop_bg'>{'已拒绝'}</div>
           </div>
         </div>
 
         {/* 修改个人信息弹出框 */}
-        <div
-          className='changinfo_pop_box'
-          style={{
-            display: isShowChangInfoPop ? 'flex' : 'none'
-          }}
-        >
-          <div className='firend_reqest_pop_box_title firend_reqest_pop_box_item'>
-            {'修改信息:'}
-            <img
-              className='firend_reqest_pop_box_title_cancle'
-              src='http://cdn.qiniu.shuyuanlab.cn/chahca.png'
-              onClick={() => {
-                setShowChangeInfoPop(false)
-              }}
-            />
-          </div>
-          {/* 修改个人信息 */}
-          <div className='firend_reqest_pop_box_item'>
-            <div className='firend_reqest_pop_box_left'>{'姓名'}</div>
-            <div className='firend_reqest_pop_box_right'>
-              <input
-                className='change_info_input'
-                type='text'
-                value={updateUserInfo.nickname}
-                onChange={(e) => {
+        <div className='friend_card_container' style={{
+          display: isShowChangInfoPop ? 'flex' : 'none'
+        }}>
+          <div className='changinfo_pop_box'>
+            <div className='firend_reqest_pop_box_title firend_reqest_pop_box_item'>
+              {'编辑你的个人信息'}
+              <img
+                className='firend_reqest_pop_box_title_cancle'
+                src='http://cdn.qiniu.shuyuanlab.cn/chahca.png'
+                onClick={() => {
+                  setShowChangeInfoPop(false)
+                }}
+              />
+            </div>
+            {/* 修改个人信息 */}
+            <div className='firend_reqest_pop_box_item'>
+              <div className='firend_reqest_pop_box_left'>{'姓名'}</div>
+              <div className='firend_reqest_pop_box_right'>
+                <Input borderRadius={4} width='100%' height={30} value={updateUserInfo.nickname} onChangeEvent={(e) => {
                   setUpdateUserInfo((data) => {
                     return {
                       ...data,
                       nickname: e.target.value
                     }
                   })
-                }}
-              />
+                }} />
+                {/* <input
+                  className='change_info_input'
+                  type='text'
+                  value={updateUserInfo.nickname}
+                  onChange={(e) => {
+                    setUpdateUserInfo((data) => {
+                      return {
+                        ...data,
+                        nickname: e.target.value
+                      }
+                    })
+                  }}
+                /> */}
+              </div>
             </div>
-          </div>
 
-          <div className='firend_reqest_pop_box_item'>
-            <div className='firend_reqest_pop_box_left'>{'头像链接'}</div>
-            <div className='firend_reqest_pop_box_right'>
-              <input
-                className='change_info_input'
-                type='text'
-                value={updateUserInfo.avatar}
-                onChange={(e) => {
+            <div className='firend_reqest_pop_box_item'>
+              <div className='firend_reqest_pop_box_left'>{'头像链接'}</div>
+              <div className='firend_reqest_pop_box_right'>
+                <Input borderRadius={4} width='100%' height={30} value={updateUserInfo.avatar} onChangeEvent={(e) => {
                   setUpdateUserInfo((data) => {
                     return {
                       ...data,
                       avatar: e.target.value
                     }
                   })
-                }}
-              />
+                }} />
+                {/* <input
+                  className='change_info_input'
+                  type='text'
+                  value={updateUserInfo.avatar}
+                  onChange={(e) => {
+                    setUpdateUserInfo((data) => {
+                      return {
+                        ...data,
+                        avatar: e.target.value
+                      }
+                    })
+                  }}
+                /> */}
+              </div>
             </div>
-          </div>
 
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'right',
-              marginRight: '40px',
-              textAlign: 'center'
-            }}
-          >
-            <button
-              className='btn confirm_info_btn'
-              onClick={() => {
-                setShowChangeInfoPop(false)
-                getUpdateUserInfoResult(updateUserInfo)
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'right',
+                marginRight: '40px',
+                textAlign: 'center'
               }}
             >
-              确定
-            </button>
-            <button
-              className='btn cancel_info_btn'
-              onClick={() => {
-                setShowChangeInfoPop(false)
-                setUpdateUserInfo({
-                  avatar: ctx.userInfo?.avatar || '',
-                  nickname: ctx.userInfo?.nickname || ''
-                })
-              }}
-            >
-              取消
-            </button>
+              <button
+                className='btn confirm_info_btn'
+                onClick={() => {
+                  setShowChangeInfoPop(false)
+                  getUpdateUserInfoResult(updateUserInfo)
+                }}
+              >
+                确定
+              </button>
+              <button
+                className='btn cancel_info_btn'
+                onClick={() => {
+                  setShowChangeInfoPop(false)
+                  setUpdateUserInfo({
+                    avatar: ctx.userInfo?.avatar || '',
+                    nickname: ctx.userInfo?.nickname || ''
+                  })
+                }}
+              >
+                取消
+              </button>
+            </div>
           </div>
         </div>
       </div>
