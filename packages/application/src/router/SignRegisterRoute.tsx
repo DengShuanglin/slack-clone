@@ -56,7 +56,7 @@ export default function SignRegisterRoute() {
       <Route path='/sign/ConfirmEmail'>
         <ConfirmEmail />
       </Route>
-      <Redirect path='/sign' to='/sign/signin' exact={true} />
+      {/*<Redirect path='/sign' to='/sign/signin' exact={true} />*/}
     </>
   )
 }

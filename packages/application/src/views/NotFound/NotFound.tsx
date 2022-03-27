@@ -14,7 +14,7 @@ export default function NotFound() {
           </h1>
           <p>
             我们不太确定出了什么问题。如果你需要帮助，你可以返回，或尝试访问我们的
-            <a href='/signin'>登陆页</a>
+            <a href='/sign/signin'>登陆页</a>
           </p>
         </div>
       </div>

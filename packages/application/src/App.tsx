@@ -18,6 +18,9 @@ function App() {
             }}
           />
           <IndexRoute />
+          {(() => {
+            console.log(111)
+          })()}
           <Route
             path={'/sign'}
             component={() => {
@@ -25,7 +28,7 @@ function App() {
             }}
           />
 
-          <Redirect from={'/'} to={'/index'} exact={true} />
+          {/*<Redirect from={'/'} to={'/index'} exact={true} />*/}
           {/*<Route path={'*'} component={() => {*/}
           {/*    return <Redirect to={'/notFound'}/>*/}
           {/*}}>*/}
