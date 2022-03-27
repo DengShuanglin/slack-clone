@@ -67,7 +67,7 @@ export default function Aside(props: any) {
   }
   const clickMemberItem = (item: any, index: number) => {
     /* 进入对应用户聊天 */
-    history.push('/index/memberchat', item)
+    history.push('/index/threads?id=' + item.id, item)
     changeMemberTargetIndex(index)
     changeMsgListTargetIndex(99999)
     changeChannelTargetIndex(99999)
@@ -134,6 +134,7 @@ export default function Aside(props: any) {
               {/* 循环创建 */}
               {ctx.userInfo?.channels.map((item, index) => (
                 <li
+                  key={index}
                   className='workspace_aside_msg_item'
                   style={{
                     display:
@@ -180,60 +181,63 @@ export default function Aside(props: any) {
                 changeCloseMember(!closeMember)
               }}
             />
-            <ul style={{ marginTop: '10px' }}>
-              {/* 私信队列 */}
-              {ctx.userInfo?.friends.map((item, index) => (
+            {!closeMember && (
+              <ul style={{ marginTop: '10px' }}>
+                {/* 私信队列 */}
+                {ctx.userInfo?.friends.map((item, index) => (
+                  <li
+                    key={item.id}
+                    className='workspace_aside_msg_item'
+                    style={{
+                      paddingLeft: '20px',
+                      position: 'relative',
+                      backgroundColor:
+                        memberTargetIndex == index ? '#1164A3' : '',
+                      display:
+                        closeMember && memberTargetIndex != index
+                          ? 'none'
+                          : 'flex'
+                    }}
+                    onClick={() => clickMemberItem(item, index)}
+                  >
+                    <UserAvatar
+                      status={'offline'}
+                      avatarUrl={item.avatar}
+                      borderRadius={4}
+                      width={20}
+                      height={20}
+                    />
+                    <span
+                      className='workspace_aside_msg_user_name'
+                      style={{ margin: '0 16px 0 10px' }}
+                    >
+                      {item.nickname}
+                    </span>
+                    <svg
+                      className='icon workspace_aside_msg_item_del'
+                      aria-hidden='true'
+                    >
+                      <use xlinkHref='#icon-plus'></use>
+                    </svg>
+                  </li>
+                ))}
+                {/* 添加团队成员 */}
                 <li
                   className='workspace_aside_msg_item'
-                  style={{
-                    paddingLeft: '20px',
-                    position: 'relative',
-                    backgroundColor:
-                      memberTargetIndex == index ? '#1164A3' : '',
-                    display:
-                      closeMember && memberTargetIndex != index
-                        ? 'none'
-                        : 'flex'
+                  style={{ paddingLeft: '20px' }}
+                  onClick={() => {
+                    if (openMemberCard) openMemberCard()
                   }}
-                  onClick={() => clickMemberItem(item, index)}
                 >
-                  <UserAvatar
-                    status={'offline'}
-                    avatarUrl={item.avatar}
-                    borderRadius={4}
-                    width={20}
-                    height={20}
-                  />
-                  <span
-                    className='workspace_aside_msg_user_name'
-                    style={{ margin: '0 16px 0 10px' }}
-                  >
-                    {item.nickname}
-                  </span>
-                  <svg
-                    className='icon workspace_aside_msg_item_del'
-                    aria-hidden='true'
-                  >
-                    <use xlinkHref='#icon-plus'></use>
-                  </svg>
+                  {/*<div className='workspace_add_msg_item'>*/}
+                  {/*  <svg className='icon' aria-hidden='true'>*/}
+                  {/*    <use xlinkHref='#icon-plus'></use>*/}
+                  {/*  </svg>*/}
+                  {/*</div>*/}
+                  {/*<span style={{ marginLeft: '10px' }}>添加团队成员</span>*/}
                 </li>
-              ))}
-              {/* 添加团队成员 */}
-              <li
-                className='workspace_aside_msg_item'
-                style={{ paddingLeft: '20px' }}
-                onClick={() => {
-                  if (openMemberCard) openMemberCard()
-                }}
-              >
-                <div className='workspace_add_msg_item'>
-                  <svg className='icon' aria-hidden='true'>
-                    <use xlinkHref='#icon-plus'></use>
-                  </svg>
-                </div>
-                <span style={{ marginLeft: '10px' }}>添加团队成员</span>
-              </li>
-            </ul>
+              </ul>
+            )}
           </div>
         </div>
       </div>

@@ -11,17 +11,20 @@ import {
   useFriendMessageRequest,
   useJoinFriendSocketRequest
 } from '../../../../../api/socketRequest'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useLocation, useParams } from 'react-router-dom'
 import { UserContext } from '../../../../../store'
 import { randString } from '../../../../../utils/randString'
 import { uploadFileRequest } from '../../../../../api/userRequest'
 
 export default function Threads() {
   const history = useHistory()
+  const location = useLocation<any>()
   const params = useParams<{
-    friend_id: string | undefined
+    id: string | undefined
   }>()
-  const friend_id = params.friend_id || ''
+  //@ts-ignored
+
+  const friend_id = location.state.id || ''
   const ctx = useContext(UserContext)
   const _1 = useFriendMessageRequest()
   const _2 = useJoinFriendSocketRequest()
@@ -65,7 +68,7 @@ export default function Threads() {
             })
           return true
         }}
-        onSaveFile={(blob: Blob) => {
+        onSaveFile={(blob: Blob): Promise<string> => {
           let form = new FormData()
           form.set('img', blob, randString() + '.wav')
           return uploadFileRequest(form).then((res) => {

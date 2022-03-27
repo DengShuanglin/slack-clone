@@ -36,7 +36,7 @@ export interface MarkdownInputProps {
   defaultHtml?: string
   loading?: boolean
   onSend?: ({ type, content }: { type: MessageType; content: string }) => void
-  onSaveFile?: (file: Blob) => string
+  onSaveFile?: (file: Blob) => Promise<string>
   onChange?: (html: string) => void
   onFocus?: (html: string) => void
   onBlur?: (html: string) => void
@@ -130,11 +130,13 @@ const MarkdownInput: React.FC<MarkdownInputProps> = (
     }
     // 音频消息
     if (msgType === 2 && audio) {
-      const res = props?.onSaveFile?.(audio)
-      content = res || ''
+      props?.onSaveFile?.(audio)?.then((url) => {
+        onSend?.({ type: msgType, content: url })
+      })
+      return
     }
 
-    if (onSend && content !== '') {
+    if (onSend && content !== '' && msgType !== 2) {
       onSend({ type: msgType, content: content })
     }
   }
