@@ -4,14 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prepare": "husky install",
+    "preinstall": "node ./scripts/preinstall.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cd ./packages/application && pnpm run dev",
-    "lint": "prettier -w ./**/*.{html,css,less,sass,js,tx,jsx,tsx,json}",
-    "prepare": "husky install"
+    "build:all": "pnpm run build -r",
+    "lint": "prettier -w ./**/*.{html,css,less,sass,js,tx,jsx,tsx,json}"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged"
+      "pre-commit": "pretty-quick --staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "repository": {

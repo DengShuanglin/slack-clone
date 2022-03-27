@@ -37,7 +37,8 @@ export function useRecordAudio() {
       })
       setRecord(
         RecordRTC(stream, {
-          type: 'audio'
+          type: 'audio',
+          mimeType: 'audio/wav'
         })
       )
     })()

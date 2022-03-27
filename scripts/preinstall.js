@@ -6,7 +6,7 @@ const { yellow } = chalk
 if (!/pnpm/.test(process.env.npm_execpath || '')) {
   console.warn(
     yellow(
-      `[monorepo-tools]:Testing the current unused PNPM as a package management tool.\n` +
+      `[monorepo-tools]:Testpnpmning the current unused PNPM as a package management tool.\n` +
         `[monorepo-tools]:Please install PNPM as a package manager.`
     )
   )
