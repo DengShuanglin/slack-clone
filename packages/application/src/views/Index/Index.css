@@ -7,7 +7,6 @@
 }
 
 .index_workspace {
-  grid-template-areas: 'workspace_aside workspace_chat';
   display: grid;
   grid-template-rows: auto;
   overflow: hidden;
@@ -98,4 +97,16 @@
   position: absolute;
   bottom: 20px;
   right: 20px;
+}
+
+.help_container {
+
+}
+
+.help_container::before {
+
+}
+
+.help {
+  
 }

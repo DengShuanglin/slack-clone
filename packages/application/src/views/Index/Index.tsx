@@ -1,6 +1,7 @@
 import Header from './Header/Header'
 import Aside from './Aside/Aside'
 import Chat from './Chat/Chat'
+import Help from './Help/Help'
 import AddCard from '../../../../components/src/AddCard/AddCard'
 import Input from '../../../../components/src/Input/Input'
 import Button from '../../../../components/src/Button/Button'
@@ -52,6 +53,7 @@ export default function Index() {
   const [canCreateChannel, changeCanCreateChannel] = useState(false)
   const [canInviteNewMember, changeCanInviteNewMember] = useState(false)
   const [openAddChannelCard, changeOpenAddChannelCard] = useState(false)
+  const [openHelpCard, changeOpenHelpCard] = useState(false)
   const [openInviteNewMemberCard, changeOpenInviteNewMemberCard] =
     useState(false)
 
@@ -66,6 +68,13 @@ export default function Index() {
   // }
 
   if (ctx.userInfo?.friends) {
+  }
+  /* 打开帮助 */
+  const openHelp = () => {
+    changeOpenHelpCard(!openHelpCard)
+  }
+  const closeHelp = () => {
+    changeOpenHelpCard(false)
   }
   /* 打开新建频道 */
   const openChannelCard = () => {
@@ -137,13 +146,16 @@ export default function Index() {
       }}
     >
       <SocketHubProvider>
-        <Header />
+        <Header openHelp={() => openHelp()} />
         <div
           className='index_workspace'
-          style={{ gridTemplateColumns: `${resizeWidth}px auto` }}
+          style={{
+            gridTemplateColumns: `${resizeWidth}px auto ${openHelpCard ? '340px' : ''}`,
+            gridTemplateAreas: `workspace_aside workspace_chat ${openHelpCard ? 'help_container' : ''}`
+          }}
         >
           {/* 左侧sidebar */}
-          <Aside resizeWidth={resizeWidth} />
+          <Aside resizeWidth={resizeWidth} openChannelCard={() => openChannelCard()} openMemberCard={() => openInviteNewMemberlCard()} />
           {/* 滑块控制左侧大小 */}
           <div
             className='resize'
@@ -234,7 +246,7 @@ export default function Index() {
                   fontWeight={900}
                   borderRadius={4}
                   onClickEvent={
-                    canCreateChannel ? confirmCreateChannelBtn : () => {}
+                    canCreateChannel ? confirmCreateChannelBtn : () => { }
                   }
                 />
               </div>
@@ -277,12 +289,14 @@ export default function Index() {
                   fontWeight={900}
                   borderRadius={4}
                   onClickEvent={
-                    canInviteNewMember ? confirmInviteNewMemberBtn : () => {}
+                    canInviteNewMember ? confirmInviteNewMemberBtn : () => { }
                   }
                 />
               </div>
             </div>
           </AddCard>
+          {/* 帮助 */}
+          <Help openStatus={openHelpCard} closeHelp={closeHelp} />
         </div>
       </SocketHubProvider>
     </div>

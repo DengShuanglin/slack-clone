@@ -17,7 +17,8 @@ import {
 } from '../../../api/socketRequest'
 import manualFactory from '../../../utils/socketHub/hooks'
 
-export default function Header() {
+export default function Header(props: any) {
+  const { openHelp } = props
   const history = useHistory()
   const [_, set_] = useState(0)
   const ctx = useContext(UserContext)
@@ -61,8 +62,8 @@ export default function Header() {
   }, [])
 
   console.log(__)
-  const [addFriendData, toAddFriend] = __ ? __ : [{}, () => {}]
-  const [confirmFriendData, toConfirmFriend] = ___ ? ___ : [{}, () => {}]
+  const [addFriendData, toAddFriend] = __ ? __ : [{}, () => { }]
+  const [confirmFriendData, toConfirmFriend] = ___ ? ___ : [{}, () => { }]
 
   useEffect(() => {
     if (addFriendData.status === 'finish') {
@@ -194,18 +195,21 @@ export default function Header() {
                         textAlign: 'right'
                       }}
                     >
-                      <Button
-                        borderRadius='50%'
-                        onClickEvent={(e) => {
-                          toAddFriend({
-                            user_id: ctx.user_id || '',
-                            friend_id: String(value.id)
-                          })
-                        }}
-                        text={'添加为好友'}
-                        fontSize={'16px'}
-                        backgroundColor='#00000000'
-                      />
+                      <div className='add_new_friend_btn'>
+                        <Button
+                          borderRadius={4}
+                          onClickEvent={(e) => {
+                            toAddFriend({
+                              user_id: ctx.user_id || '',
+                              friend_id: String(value.id)
+                            })
+                          }}
+                          text={'添加为好友'}
+                          fontSize={14}
+                          backgroundColor='#00000000'
+                          color='#ffffff'
+                        />
+                      </div>
                     </div>
                   </div>
                 )
@@ -235,9 +239,7 @@ export default function Header() {
       <div className='top_nav_right'>
         <div className='top_nav_right_help'>
           <Button
-            onClickEvent={(e) => {
-              window.open('/notFound')
-            }}
+            onClickEvent={() => openHelp()}
             show_icon
             iconString='#icon-kongxinwenhao'
             iconWidth={20}
@@ -358,7 +360,7 @@ export default function Header() {
                   />
                   <div className='firend_reqest_pop_box_name'>{'mingzi'}</div>
                 </div>
-                <div className='firend_reqest_pop_box_right'>
+                <div className='firend_reqest_pop_box_right firend_reqest_pop_bg'>
                   <a
                     onClick={() => {
                       toConfirmFriend({
@@ -385,7 +387,7 @@ export default function Header() {
               />
               <div className='firend_reqest_pop_box_name'>{'mingzi'}</div>
             </div>
-            <div className='firend_reqest_pop_box_right'>{'已同意'}</div>
+            <div className='firend_reqest_pop_box_right firend_reqest_pop_bg'>{'已同意'}</div>
           </div>
 
           <div className='firend_reqest_pop_box_item'>
@@ -399,7 +401,7 @@ export default function Header() {
               />
               <div className='firend_reqest_pop_box_name'>{'mingzi'}</div>
             </div>
-            <div className='firend_reqest_pop_box_right'>{'已拒绝'}</div>
+            <div className='firend_reqest_pop_box_right firend_reqest_pop_bg'>{'已拒绝'}</div>
           </div>
         </div>
 
@@ -425,6 +427,7 @@ export default function Header() {
             <div className='firend_reqest_pop_box_left'>{'姓名'}</div>
             <div className='firend_reqest_pop_box_right'>
               <input
+                className='change_info_input'
                 type='text'
                 value={updateUserInfo.nickname}
                 onChange={(e) => {
@@ -443,6 +446,7 @@ export default function Header() {
             <div className='firend_reqest_pop_box_left'>{'头像链接'}</div>
             <div className='firend_reqest_pop_box_right'>
               <input
+                className='change_info_input'
                 type='text'
                 value={updateUserInfo.avatar}
                 onChange={(e) => {
@@ -467,7 +471,7 @@ export default function Header() {
             }}
           >
             <button
-              className='btn'
+              className='btn confirm_info_btn'
               onClick={() => {
                 setShowChangeInfoPop(false)
                 getUpdateUserInfoResult(updateUserInfo)
@@ -476,7 +480,7 @@ export default function Header() {
               确定
             </button>
             <button
-              className='btn'
+              className='btn cancel_info_btn'
               onClick={() => {
                 setShowChangeInfoPop(false)
                 setUpdateUserInfo({
